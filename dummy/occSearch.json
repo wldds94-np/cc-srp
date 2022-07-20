@@ -1,0 +1,2638 @@
+{
+    "results": "402",
+    "cruiseList": [
+        "DE07220827_PMA07010",
+        "DE07220923_BRI07A00",
+        "DE07220924_PMA07A00",
+        "DE07220930_BRI07174",
+        "DE07221008_PMA07A02",
+        "DE07221014_BRI07172",
+        "DE07221202_BRI07164",
+        "DE07221203_TRS07141",
+        "DE06221216_BRI06418",
+        "DE06221217_TRS06114",
+        "DEC7230105_BRI12710",
+        "DEB5230113_CIV11502",
+        "DE07230929_BRI07127",
+        "DE07230930_VCE07155",
+        "DE07231103_BRI07128",
+        "DE07231104_VCE07156",
+        "DEC6240105_BRI12607",
+        "DEC6240106_VCE12607",
+        "DEB4240110_NAP11406",
+        "DEB6240111_SVN11603",
+        "DI07220715_KEL07040",
+        "DI07220716_CPH07196",
+        "DI07220722_KEL07041",
+        "DI07220729_KEL07042",
+        "DI07220730_CPH07198",
+        "DI07220805_KEL07043",
+        "DI07220806_CPH07199",
+        "DI07220819_KEL07044",
+        "DI07220820_CPH07200",
+        "DI07220826_KEL07027",
+        "DI07220827_CPH07180",
+        "DI07220903_CPH07197",
+        "DI12220909_KEL12022",
+        "DI11220910_CPH11144",
+        "DI04220921_SVN04331",
+        "DI14220925_SVN14142",
+        "DI14220926_NAP14025",
+        "DI14221010_NAP14012",
+        "DI14221011_CTA14011",
+        "DI14221023_SVN14101",
+        "DI14221024_NAP14024",
+        "DI14221025_CTA14027",
+        "DI14221106_SVN14088",
+        "DI14221107_NAP14015",
+        "DI14221108_CTA14014",
+        "DI14221120_SVN14087",
+        "DI14221204_SVN14127",
+        "DI15221218_SVN15046",
+        "DI13230102_SVN13070",
+        "DI14230115_SVN14128",
+        "DI14230226_SVN14112",
+        "DI14230423_SVN14137",
+        "DI07230507_SVN07575",
+        "DI07230508_NAP07083",
+        "DI07230509_PMO07082",
+        "DI07231105_SVN07577",
+        "DI07231106_NAP07084",
+        "DI07231107_PMO07085",
+        "DI05231203_SVN05344",
+        "DI14231208_SVN14131",
+        "DI16231222_SVN16020",
+        "DI14240107_SVN14132",
+        "FA03221009_SVN03368",
+        "FA04221012_SVN04371",
+        "FA11221016_SVN11152",
+        "FA11221027_SVN11155",
+        "FA16221118_SVN16014",
+        "FA17221118_SVN17028",
+        "FA04221212_SSZ04098",
+        "FA03221216_SSZ03177",
+        "FA05221219_SSZ05091",
+        "FA07230211_SSZ07026",
+        "FA07230212_ITJ07003",
+        "FA07230221_MVD07018",
+        "FA07230222_BUE07039",
+        "FA04230409_SSZ04088",
+        "FA17230413_SSZ17011",
+        "FA16230414_RIO16011",
+        "FA03230430_SVN03370",
+        "FA11230503_SVN11154",
+        "FA13230514_SVN13072",
+        "FA14230514_SVN14135",
+        "FA16230527_BRV16003",
+        "FA14230528_AMS14031",
+        "FA14230611_AMS14028",
+        "FA12230612_BRV12014",
+        "FA14230624_BRV14042",
+        "FA14230625_IJM14026",
+        "FA21230708_BRV21002",
+        "FA21230709_AMS21003",
+        "FA13230812_BRV13010",
+        "FA14230813_AMS14029",
+        "FA14230825_BRV14044",
+        "FA14230827_IJM14028",
+        "FA12230908_BRV12015",
+        "FA10230910_AMS10062",
+        "FA10230920_SVN10223",
+        "FA10230930_GOA10017",
+        "FA10231010_SVN10224",
+        "FA10231030_SVN10208",
+        "FA10231109_SVN10215",
+        "FA17231119_SVN17030",
+        "FA18231119_SVN18018",
+        "FA17240406_SSZ17012",
+        "FA16240407_RIO16012",
+        "PA07230205_LRM07074",
+        "PA14230205_LRM14023",
+        "PA14230212_LRM14024",
+        "PA14230216_PTP14073",
+        "PA07230219_LRM07073",
+        "PA14230219_LRM14025",
+        "PA07230226_LRM07064",
+        "PA14230226_LRM14012",
+        "PA14230302_PTP14074",
+        "PA07230305_LRM07063",
+        "PA14230305_LRM14011",
+        "PA22230312_LRM22000",
+        "PA18230316_PTP18007",
+        "PA15230319_LRM15003",
+        "PA04230403_SVN04368",
+        "PA04230407_SVN04369",
+        "PA05230411_SVN05343",
+        "PA15230515_NAP15007",
+        "PA06230528_SVN06492",
+        "PA07230924_CTA07043",
+        "PA07230930_BRI07145",
+        "PA14231001_CTA14029",
+        "PA06231007_BRI06420",
+        "PA14231110_SVN14130",
+        "PA14231111_NAP14023",
+        "PA14231112_CTA14025",
+        "PA14231208_SVN14148",
+        "PA21231208_SVN21020",
+        "PA07231222_SDQ07010",
+        "PA16231222_SDQ16001",
+        "PA09231229_SDQ09002",
+        "PA16231229_SDQ16002",
+        "PA14240107_LRM14007",
+        "PA07240225_LRM07067",
+        "PA14240225_LRM14008",
+        "PA07240303_LRM07066",
+        "PA23240303_LRM23000",
+        "PA16240310_LRM16003",
+        "PA04240403_SVN04370",
+        "SM07220723_SVN07554",
+        "SM07220916_CIV07190",
+        "SM07221006_PMO07063",
+        "SM07221008_SVN07555",
+        "SM07221013_PMO07069",
+        "SM07221014_CIV07201",
+        "SM07221117_PMO07070",
+        "SM07221125_CIV07202",
+        "SM07221126_SVN07561",
+        "SM07230401_SVN07589",
+        "SM07230406_PMO07087",
+        "SM07230407_CIV07238",
+        "SM07230518_PMO07080",
+        "SM07230519_CIV07223",
+        "SM07230520_SVN07572",
+        "SM07231207_PMO07079",
+        "SM07231208_CIV07222",
+        "SM07231209_SVN07571",
+        "TO07220719_NAP07076",
+        "TO07220724_SVN07441",
+        "TO07220725_CIV07245",
+        "TO07220726_NAP07090",
+        "TO07220911_SVN07434",
+        "TO07220913_NAP07088",
+        "TO07220918_SVN07438",
+        "TO07220919_CIV07244",
+        "TO07220920_SAL07026",
+        "TO07221010_CIV07214",
+        "TO07221107_CIV07215",
+        "TO07221113_SVN07435",
+        "TO07221115_NAP07077",
+        "TO07221120_SVN07440",
+        "TO08221121_CIV08153",
+        "TO08221122_NAP08067",
+        "TO24221122_NAP24002",
+        "TO18221127_SVN18A00",
+        "TO19221127_SVN19A00",
+        "TO17221129_CIV17A00",
+        "TO16221130_PMO16A00",
+        "TO07221216_DXB07A00",
+        "TO10221219_AUH10A00",
+        "TO04221229_AUH04A00",
+        "TO07221230_DXB07A02",
+        "TO07230101_DOH07A02",
+        "TO10230102_AUH10A01",
+        "TO07230113_DXB07A01",
+        "TO07230115_DOH07A00",
+        "TO07230119_AUH07A00",
+        "TO07230310_DXB07A07",
+        "FO07230812_STO07037",
+        "FO14230923_STO14007",
+        "FO04231007_SVN04384",
+        "FO04231011_SVN04383",
+        "FO04231015_SVN04365",
+        "FO03231019_SVN03362",
+        "FO04231116_SVN04366",
+        "FO14231120_SVN14133",
+        "FO18231120_SVN18019",
+        "FO19240402_BUE19011",
+        "FO16240405_RIO16013",
+        "FS09220712_KEL09A04",
+        "FS09220802_KEL09A02",
+        "FS09220823_KEL09A01",
+        "FS12220901_KEL12026",
+        "FS09220913_KEL09A03",
+        "FS13220922_KEL13007",
+        "FS12220923_CPH12021",
+        "FS10221025_SVN10203",
+        "FS10221114_SVN10205",
+        "FS11221124_SVN11151",
+        "FS04221205_SVN04334",
+        "FS14221209_SVN14094",
+        "FS14221223_PTP14066",
+        "FS07221230_PTP07134",
+        "FS14221230_PTP14067",
+        "FS14230120_PTP14064",
+        "FS07230127_PTP07133",
+        "FS14230127_PTP14065",
+        "FS14230203_PTP14069",
+        "FS07230210_PTP07135",
+        "FS14230210_PTP14068",
+        "FS07230217_PTP07123",
+        "FS07230224_PTP07121",
+        "FS14230224_PTP14046",
+        "FS07230303_PTP07122",
+        "FS14230303_PTP14047",
+        "FS14230310_PTP14048",
+        "FS21230317_PTP21006",
+        "FS14230324_PTP14049",
+        "FS05230407_SVN05312",
+        "FS10230412_SVN10220",
+        "FS10230522_SVN10207",
+        "FS14230601_SVN14115",
+        "FS09230627_KEL09087",
+        "FS12230706_KEL12032",
+        "FS12230907_KEL12029",
+        "FS12230919_KEL12033",
+        "FS11230920_CPH11150",
+        "FS09230922_IJM09031",
+        "FS10231001_SVN10222",
+        "FS10231031_SVN10206",
+        "FS04231130_SVN04359",
+        "FS14231208_SVN14116",
+        "FS21231208_SVN21015",
+        "FS14240119_PTP14057",
+        "FS07240126_PTP07129",
+        "FS14240126_PTP14059",
+        "FS07240223_PTP07127",
+        "FS14240223_PTP14056",
+        "FS07240301_PTP07128",
+        "FS14240301_PTP14058",
+        "FS07240308_PTP07130",
+        "FS21240308_PTP21007",
+        "FS14240315_PTP14060",
+        "FS04240329_SVN04361",
+        "FS05240402_SVN05338",
+        "LU07220715_BDS07012",
+        "LU07220724_TRS07143",
+        "LU07220731_TRS07133",
+        "LU07220805_BDS07011",
+        "LU07220807_TRS07148",
+        "PA07220723_BRI07116",
+        "PA07220724_CTA07038",
+        "PA04220924_BRI04049",
+        "PA05220924_BRI05065",
+        "PA06220924_BRI06415",
+        "PA04220925_CTA04018",
+        "PA05220925_CTA05021",
+        "PA14220930_SVN14138",
+        "PA14221014_SVN14140",
+        "PA14221028_SVN14139",
+        "PA04221125_SVN04356",
+        "PA03221129_SVN03359",
+        "PA16221202_SVN16016",
+        "PA26221202_SVN26010",
+        "PA34221202_SVN34002",
+        "PA10221218_LRM10007",
+        "PA21221218_LRM21002",
+        "PA11221228_LRM11004",
+        "PA18221228_LRM18005",
+        "PA14230105_PTP14070",
+        "PA14230115_LRM14026",
+        "PA14230119_PTP14071",
+        "PA07230122_LRM07075",
+        "PA14230122_LRM14027",
+        "PA14230129_LRM14022",
+        "PA14230202_PTP14072",
+        "FI07221101_PMO07076",
+        "FI07221114_CAG07043",
+        "FI07221116_CIV07218",
+        "FI07221117_GOA07036",
+        "FI04221124_GOA04040",
+        "FI18221128_GOA18A00",
+        "FI04221212_SSA04A02",
+        "FI06221220_SSZ06A00",
+        "FI06230102_SSZ06029",
+        "FI06230105_SSA06005",
+        "FI07230212_SSZ07042",
+        "FI07230215_SSA07015",
+        "FI04230319_SSZ04108",
+        "FI07230326_SSZ07043",
+        "FI04230402_SSZ04109",
+        "FI19230416_SSZ19A00",
+        "FI14230505_SVN14147",
+        "FI15230505_SVN15047",
+        "FI07230519_KEL07029",
+        "FI07230520_CPH07182",
+        "FI07230602_KEL07033",
+        "FI07230603_CPH07188",
+        "FI07230609_KEL07034",
+        "FI07230610_CPH07189",
+        "FI07230616_KEL07031",
+        "FI07230617_CPH07186",
+        "FI07230623_KEL07037",
+        "FI07230624_CPH07193",
+        "FI07230714_KEL07032",
+        "FI07230715_CPH07187",
+        "FI07230818_KEL07038",
+        "FI07230819_CPH07194",
+        "FI07230825_KEL07039",
+        "FI07230826_CPH07195",
+        "FI14230915_KEL14002",
+        "FI13230916_CPH13015",
+        "FI14231013_SVN14125",
+        "FI14231110_SVN14141",
+        "FO11220720_BRV11018",
+        "FO11220721_AMS11037",
+        "FO13220731_BRV13012",
+        "FO13220801_IJM13005",
+        "FO14220813_BRV14035",
+        "FO14220814_IJM14025",
+        "FO12220827_BRV12012",
+        "FO12220828_IJM12010",
+        "FO16220908_BRV16002",
+        "FO15220909_IJM15001",
+        "FO04221001_SVN04338",
+        "FO04221012_SVN04357",
+        "FO03221024_SVN03376",
+        "FO03221103_SVN03348",
+        "FO16221120_SVN16012",
+        "FO19221120_SVN19016",
+        "FO03221209_BUE03082",
+        "FO08221227_MVD08022",
+        "FO08221228_BUE08042",
+        "FO08221231_RIO08038",
+        "FO08230201_RIO08035",
+        "FO08230209_RIO08036",
+        "FO08230309_MVD08018",
+        "FO08230310_BUE08041",
+        "FO08230317_MVD08021",
+        "FO08230318_BUE08038",
+        "FO18230326_BUE18009",
+        "FO15230329_RIO15012",
+        "FO03230413_SVN03369",
+        "FO04230502_SVN04362",
+        "FO04230506_SVN04363",
+        "FO04230510_SVN04364",
+        "TO07230413_CIV07A02",
+        "TO07230414_GOA07A01",
+        "TO07231031_CAG07045",
+        "TO07231101_NAP07082",
+        "TO07231102_CIV07225",
+        "TO07231103_GOA07038",
+        "VE14220724_IST14A06",
+        "VE07220731_IST07017",
+        "VE07220807_IST07A03",
+        "VE14220821_IST14A09",
+        "VE07220828_IST07013",
+        "VE14220828_IST14011",
+        "VE07220904_IST07018",
+        "VE14220904_IST14010",
+        "VE14220925_IST14A01",
+        "VE07221009_IST07016",
+        "VE14221009_IST14A04",
+        "VE14221016_IST14A02",
+        "VE07221023_IST07A02",
+        "VE14221023_IST14A08",
+        "VE07221030_IST07A01",
+        "VE14221030_IST14A05",
+        "VE07221106_IST07A04",
+        "VE14221106_IST14A07",
+        "VE11221120_IST11003",
+        "VE11221201_IST11001",
+        "TO19230317_PRA19A00",
+        "TO20230317_PRA20A00",
+        "TO21230317_PRA21A00",
+        "TO18230320_AUH18A00",
+        "TO07230404_PMO07091",
+        "TO07230405_NAP07A01",
+        "TO07230406_CIV07A01",
+        "TO07230411_CAG07A00",
+        "TO07230412_NAP07A00",
+        "FO07230603_STO07030",
+        "FO13230514_GOA13008",
+        "FO07230527_STO07031",
+        "TO26230312_DOH26A00",
+        "TO04230316_AUH04A02",
+        "TO18230317_PRA18A00"
+    ],
+    "filterList": [
+        {
+            "type": "region",
+            "attributes": {
+                "options": []
+            }
+        },
+        {
+            "type": "portOfCalls",
+            "attributes": {
+                "options": [
+                    {
+                        "code": "NWF",
+                        "name": " Newhaven",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ARH",
+                        "name": "Aarhus",
+                        "enabled": true
+                    },
+                    {
+                        "code": "IGE",
+                        "name": "Abraao/Ilha Grande",
+                        "enabled": true
+                    },
+                    {
+                        "code": "AUH",
+                        "name": "Abu Dhabi",
+                        "enabled": true
+                    },
+                    {
+                        "code": "AJA",
+                        "name": "Ajaccio",
+                        "enabled": true
+                    },
+                    {
+                        "code": "AEY",
+                        "name": "Akureyri",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ALY",
+                        "name": "Alessandria",
+                        "enabled": true
+                    },
+                    {
+                        "code": "AES",
+                        "name": "Alesund",
+                        "enabled": true
+                    },
+                    {
+                        "code": "AMC",
+                        "name": "Amber Cove     ",
+                        "enabled": true
+                    },
+                    {
+                        "code": "IJM",
+                        "name": "Amsterdam Ijmuiden        ",
+                        "enabled": true
+                    },
+                    {
+                        "code": "AMS",
+                        "name": "Amsterdam",
+                        "enabled": true
+                    },
+                    {
+                        "code": "AND",
+                        "name": "Andalsnes",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ANU",
+                        "name": "Antigua",
+                        "enabled": true
+                    },
+                    {
+                        "code": "AQJ",
+                        "name": "Aqaba",
+                        "enabled": true
+                    },
+                    {
+                        "code": "EFL",
+                        "name": "Argostoli/Cefalonia",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ARI",
+                        "name": "Arica",
+                        "enabled": true
+                    },
+                    {
+                        "code": "AUA",
+                        "name": "Aruba",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ATH",
+                        "name": "Atene",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BGI",
+                        "name": "Barbados",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BCN",
+                        "name": "Barcellona",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BRI",
+                        "name": "Bari",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BEF",
+                        "name": "Belfast",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BGO",
+                        "name": "Bergen",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BOD",
+                        "name": "Bodo",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BDR",
+                        "name": "Bodrum",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BOM",
+                        "name": "Bombay/Mumbay",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BOB",
+                        "name": "Bora Bora",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BRV",
+                        "name": "Bremerhaven",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BDS",
+                        "name": "Brindisi     ",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BNE",
+                        "name": "Brisbane",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BUE",
+                        "name": "Buenos Aires",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PUS",
+                        "name": "Busan",
+                        "enabled": true
+                    },
+                    {
+                        "code": "BUZ",
+                        "name": "Buzios",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CAD",
+                        "name": "Cadice",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CAG",
+                        "name": "Cagliari",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CNS",
+                        "name": "Cairns",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CAM",
+                        "name": "Camboriú",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PAN",
+                        "name": "Canale di Panama",
+                        "enabled": true
+                    },
+                    {
+                        "code": "JCA",
+                        "name": "Cannes",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CRG",
+                        "name": "Cartagena",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CTG",
+                        "name": "Cartagena",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CAS",
+                        "name": "Casablanca",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CTA",
+                        "name": "Catania",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CER",
+                        "name": "Cherbourg",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CHC",
+                        "name": "Christchurch",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CPT",
+                        "name": "Città del Capo",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CIV",
+                        "name": "Civitavecchia / Roma",
+                        "enabled": true
+                    },
+                    {
+                        "code": "COL",
+                        "name": "Colombo",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ONX",
+                        "name": "Colon",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CPH",
+                        "name": "Copenhagen",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CFU",
+                        "name": "Corfù",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ORK",
+                        "name": "Cork",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CZM",
+                        "name": "Cozumel",
+                        "enabled": true
+                    },
+                    {
+                        "code": "HER",
+                        "name": "Creta",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CUR",
+                        "name": "Curacao",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CMY",
+                        "name": "Da-Nang",
+                        "enabled": true
+                    },
+                    {
+                        "code": "DOH",
+                        "name": "Doha",
+                        "enabled": true
+                    },
+                    {
+                        "code": "DOM",
+                        "name": "Dominica",
+                        "enabled": true
+                    },
+                    {
+                        "code": "DOV",
+                        "name": "Dover",
+                        "enabled": true
+                    },
+                    {
+                        "code": "DXB",
+                        "name": "Dubai",
+                        "enabled": true
+                    },
+                    {
+                        "code": "DBV",
+                        "name": "Dubrovnik",
+                        "enabled": true
+                    },
+                    {
+                        "code": "DUR",
+                        "name": "Durban",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FLA",
+                        "name": "Flåm",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FUE",
+                        "name": "Fuerteventura",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FNC",
+                        "name": "Funchal",
+                        "enabled": true
+                    },
+                    {
+                        "code": "GDN",
+                        "name": "Gdynia",
+                        "enabled": true
+                    },
+                    {
+                        "code": "GEI",
+                        "name": "Geiranger",
+                        "enabled": true
+                    },
+                    {
+                        "code": "GOA",
+                        "name": "Genova",
+                        "enabled": true
+                    },
+                    {
+                        "code": "GGT",
+                        "name": "George Town",
+                        "enabled": true
+                    },
+                    {
+                        "code": "GIB",
+                        "name": "Gibilterra",
+                        "enabled": true
+                    },
+                    {
+                        "code": "GTU",
+                        "name": "Grand Turk",
+                        "enabled": true
+                    },
+                    {
+                        "code": "GRO",
+                        "name": "Greenock",
+                        "enabled": true
+                    },
+                    {
+                        "code": "GND",
+                        "name": "Grenada",
+                        "enabled": true
+                    },
+                    {
+                        "code": "GRU",
+                        "name": "Grundafjord   ",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PTP",
+                        "name": "Guadalupa",
+                        "enabled": true
+                    },
+                    {
+                        "code": "HAI",
+                        "name": "Haifa",
+                        "enabled": true
+                    },
+                    {
+                        "code": "HWH",
+                        "name": "Harwich",
+                        "enabled": true
+                    },
+                    {
+                        "code": "HAU",
+                        "name": "Haugesund         ",
+                        "enabled": true
+                    },
+                    {
+                        "code": "HES",
+                        "name": "Hellesylt",
+                        "enabled": true
+                    },
+                    {
+                        "code": "HEL",
+                        "name": "Helsinki",
+                        "enabled": true
+                    },
+                    {
+                        "code": "HBO",
+                        "name": "Hobart",
+                        "enabled": true
+                    },
+                    {
+                        "code": "HKG",
+                        "name": "Hong Kong (Cina)",
+                        "enabled": true
+                    },
+                    {
+                        "code": "HVG",
+                        "name": "Honningsvåg",
+                        "enabled": true
+                    },
+                    {
+                        "code": "IBZ",
+                        "name": "Ibiza",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ILB",
+                        "name": "Ilhabela",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ILH",
+                        "name": "Ilheus",
+                        "enabled": true
+                    },
+                    {
+                        "code": "INV",
+                        "name": "Invergordon",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ISA",
+                        "name": "Isafjord",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CAT",
+                        "name": "Isola Catalina",
+                        "enabled": true
+                    },
+                    {
+                        "code": "IPC",
+                        "name": "Isola di Pasqua",
+                        "enabled": true
+                    },
+                    {
+                        "code": "KRA",
+                        "name": "Isole BES",
+                        "enabled": true
+                    },
+                    {
+                        "code": "IST",
+                        "name": "Istanbul",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ITJ",
+                        "name": "Itajai",
+                        "enabled": true
+                    },
+                    {
+                        "code": "KAT",
+                        "name": "Katakolon/Olimpia",
+                        "enabled": true
+                    },
+                    {
+                        "code": "KEE",
+                        "name": "Keelung",
+                        "enabled": true
+                    },
+                    {
+                        "code": "KEL",
+                        "name": "Kiel",
+                        "enabled": true
+                    },
+                    {
+                        "code": "KTN",
+                        "name": "Kingstown",
+                        "enabled": true
+                    },
+                    {
+                        "code": "KOI",
+                        "name": "Kirkwall",
+                        "enabled": true
+                    },
+                    {
+                        "code": "KLA",
+                        "name": "Klaipeda",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PHG",
+                        "name": "Klang",
+                        "enabled": true
+                    },
+                    {
+                        "code": "KTK",
+                        "name": "Kotka",
+                        "enabled": true
+                    },
+                    {
+                        "code": "KOT",
+                        "name": "Kotor ",
+                        "enabled": true
+                    },
+                    {
+                        "code": "KID",
+                        "name": "Kristiansand",
+                        "enabled": true
+                    },
+                    {
+                        "code": "KUS",
+                        "name": "Kusadasi",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LAC",
+                        "name": "La Coruna",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LRM",
+                        "name": "La Romana / Santo Domingo",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LSP",
+                        "name": "La Spezia",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MLT",
+                        "name": "La Valletta",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ACE",
+                        "name": "Lanzarote",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LPA",
+                        "name": "Las Palmas",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LEH",
+                        "name": "Le Havre",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LEX",
+                        "name": "Leixoes",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LKN",
+                        "name": "Leknes",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LWK",
+                        "name": "Lerwick",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LIM",
+                        "name": "Lima Callao",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LMS",
+                        "name": "Limassol",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LIS",
+                        "name": "Lisbona",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LVI",
+                        "name": "Liverpool",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MCZ",
+                        "name": "Maceio",
+                        "enabled": true
+                    },
+                    {
+                        "code": "AGP",
+                        "name": "Malaga",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MLE",
+                        "name": "Male",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MEC",
+                        "name": "Manta",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PMA",
+                        "name": "Marghera / Venezia",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MRS",
+                        "name": "Marsiglia",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FDF",
+                        "name": "Martinica",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MES",
+                        "name": "Messina",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MOD",
+                        "name": "Molde",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MBJ",
+                        "name": "Montego Bay",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MVD",
+                        "name": "Montevideo",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MRM",
+                        "name": "Mormugao",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MCT",
+                        "name": "Muscat",
+                        "enabled": true
+                    },
+                    {
+                        "code": "JMK",
+                        "name": "Mykonos",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MAY",
+                        "name": "Måløy",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NGS",
+                        "name": "Nagasaki",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NAP",
+                        "name": "Napoli",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NVK",
+                        "name": "Narvik          ",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NYC",
+                        "name": "New York",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NCL",
+                        "name": "Newcastle",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPT",
+                        "name": "Newport",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NOR",
+                        "name": "Nordfjordeid",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NOS",
+                        "name": "NosyBe",
+                        "enabled": true
+                    },
+                    {
+                        "code": "GOH",
+                        "name": "Nuuk",
+                        "enabled": true
+                    },
+                    {
+                        "code": "OBA",
+                        "name": "Oban",
+                        "enabled": true
+                    },
+                    {
+                        "code": "OCJ",
+                        "name": "Ocho Rios",
+                        "enabled": true
+                    },
+                    {
+                        "code": "OLD",
+                        "name": "Olden",
+                        "enabled": true
+                    },
+                    {
+                        "code": "OSA",
+                        "name": "Osaka",
+                        "enabled": true
+                    },
+                    {
+                        "code": "OSL",
+                        "name": "Oslo",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PMO",
+                        "name": "Palermo",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PMI",
+                        "name": "Palma",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PPT",
+                        "name": "Papeete",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PEN",
+                        "name": "Penang",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PHU",
+                        "name": "Phu My",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PDL",
+                        "name": "Ponta Delgada",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PCA",
+                        "name": "Port Canaveral",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PLZ",
+                        "name": "Port Elizabeth",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FLL",
+                        "name": "Port Everglades",
+                        "enabled": true
+                    },
+                    {
+                        "code": "MRU",
+                        "name": "Port Louis",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PRA",
+                        "name": "Port Rashid",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PSD",
+                        "name": "Port Said",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PTB",
+                        "name": "Portobelo",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PRV",
+                        "name": "Praia Da Vitoria",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PCH",
+                        "name": "Puerto Chacabuco",
+                        "enabled": true
+                    },
+                    {
+                        "code": "LMO",
+                        "name": "Puerto Limon",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PMY",
+                        "name": "Puerto Madryn",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PMC",
+                        "name": "Puerto Montt",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PUQ",
+                        "name": "Punta Arenas",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PDP",
+                        "name": "Punta del Este",
+                        "enabled": true
+                    },
+                    {
+                        "code": "QAQ",
+                        "name": "Qaqortoq                 ",
+                        "enabled": true
+                    },
+                    {
+                        "code": "RAB",
+                        "name": "Rabaul",
+                        "enabled": true
+                    },
+                    {
+                        "code": "RAR",
+                        "name": "Rarotonga",
+                        "enabled": true
+                    },
+                    {
+                        "code": "REC",
+                        "name": "Recife",
+                        "enabled": true
+                    },
+                    {
+                        "code": "REK",
+                        "name": "Reykjavik",
+                        "enabled": true
+                    },
+                    {
+                        "code": "RCB",
+                        "name": "Richards Bay",
+                        "enabled": true
+                    },
+                    {
+                        "code": "RYX",
+                        "name": "Riga",
+                        "enabled": true
+                    },
+                    {
+                        "code": "RIO",
+                        "name": "Rio de Janeiro",
+                        "enabled": true
+                    },
+                    {
+                        "code": "RTB",
+                        "name": "Roatan",
+                        "enabled": true
+                    },
+                    {
+                        "code": "RHO",
+                        "name": "Rodi",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ROS",
+                        "name": "Roseau",
+                        "enabled": true
+                    },
+                    {
+                        "code": "RTM",
+                        "name": "Rotterdam",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SLL",
+                        "name": "Salalah",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SAL",
+                        "name": "Salerno",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SSA",
+                        "name": "Salvador ",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SMA",
+                        "name": "Samanà",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SAC",
+                        "name": "San Antonio / Santiago del Cile",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PIE",
+                        "name": "San Pietroburgo",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SDQ",
+                        "name": "Santo Domingo",
+                        "enabled": true
+                    },
+                    {
+                        "code": "JTR",
+                        "name": "Santorini",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SSZ",
+                        "name": "Santos",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SVN",
+                        "name": "Savona",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SEY",
+                        "name": "Seyðisfjörður      ",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SIN",
+                        "name": "Singapore",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SKN",
+                        "name": "Skagen",
+                        "enabled": true
+                    },
+                    {
+                        "code": "IZM",
+                        "name": "Smirne",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SPU",
+                        "name": "Spalato",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TCI",
+                        "name": "St. Cruz de Tenerife",
+                        "enabled": true
+                    },
+                    {
+                        "code": "JMS",
+                        "name": "St. Helena Jamestown",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SLU",
+                        "name": "St. Lucia",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SXM",
+                        "name": "St. Maarten",
+                        "enabled": true
+                    },
+                    {
+                        "code": "RUN",
+                        "name": "St.Denis - Le Port",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SVG",
+                        "name": "Stavanger",
+                        "enabled": true
+                    },
+                    {
+                        "code": "STO",
+                        "name": "Stoccolma",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SYD",
+                        "name": "Sydney",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TLL",
+                        "name": "Tallinn",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TMM",
+                        "name": "Tamatave",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TNG",
+                        "name": "Tangeri",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TRG",
+                        "name": "Tarragona",
+                        "enabled": true
+                    },
+                    {
+                        "code": "SCA",
+                        "name": "Tobago Scarborough",
+                        "enabled": true
+                    },
+                    {
+                        "code": "YNE",
+                        "name": "Tolone-La Seyne sur Mer",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TOV",
+                        "name": "Tortola",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TRS",
+                        "name": "Trieste",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TOS",
+                        "name": "Tromso",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TRD",
+                        "name": "Trondheim",
+                        "enabled": true
+                    },
+                    {
+                        "code": "USH",
+                        "name": "Ushuaia",
+                        "enabled": true
+                    },
+                    {
+                        "code": "VLC",
+                        "name": "Valencia",
+                        "enabled": true
+                    },
+                    {
+                        "code": "VCE",
+                        "name": "Venezia",
+                        "enabled": true
+                    },
+                    {
+                        "code": "VIC",
+                        "name": "Victoria",
+                        "enabled": true
+                    },
+                    {
+                        "code": "VGO",
+                        "name": "Vigo",
+                        "enabled": true
+                    },
+                    {
+                        "code": "VIK",
+                        "name": "Vik",
+                        "enabled": true
+                    },
+                    {
+                        "code": "VBY",
+                        "name": "Visby",
+                        "enabled": true
+                    },
+                    {
+                        "code": "WVB",
+                        "name": "Walvis Bay",
+                        "enabled": true
+                    },
+                    {
+                        "code": "WLG",
+                        "name": "Wellington",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ZAD",
+                        "name": "Zadar",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ZEE",
+                        "name": "Zeebrugge/Bruges",
+                        "enabled": true
+                    }
+                ]
+            }
+        },
+        {
+            "type": "cruiseType",
+            "attributes": {
+                "options": []
+            }
+        },
+        {
+            "type": "offers",
+            "attributes": {
+                "options": [
+                    {
+                        "code": "IAHA0470",
+                        "name": "AIR DI NE7 CTA2 ITA",
+                        "enabled": false
+                    },
+                    {
+                        "code": "IAHA0474",
+                        "name": "AIR NE KEL promo SPLASH",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PINTUS22",
+                        "name": "Angelo Pintus a bordo!",
+                        "enabled": true
+                    },
+                    {
+                        "code": "CHD2BEDC",
+                        "name": "CHD2BED 50% NEW PRICING",
+                        "enabled": false
+                    },
+                    {
+                        "code": "FKCCLUB2",
+                        "name": "CREDITO Speciale Soci C|Club ",
+                        "enabled": false
+                    },
+                    {
+                        "code": "OB50BRCC",
+                        "name": "CREDITO di \u20AC100 a cabina (Livello Bronze) ",
+                        "enabled": false
+                    },
+                    {
+                        "code": "OB75SILV",
+                        "name": "CREDITO di \u20AC150 a cabina (Livello Silver)",
+                        "enabled": false
+                    },
+                    {
+                        "code": "OB100GPL",
+                        "name": "CREDITO di \u20AC200 a cabina (Livello Gold & Platinum)",
+                        "enabled": false
+                    },
+                    {
+                        "code": "CTA2IT22",
+                        "name": "CTA2 ITA FY22",
+                        "enabled": false
+                    },
+                    {
+                        "code": "FAKECTA5",
+                        "name": "Cancellazione gratuita",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ITAFK051",
+                        "name": "Cruise & Golf",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FAMPLMYC",
+                        "name": "FAMILY PLAN MYCRUISE",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FKPASTRY",
+                        "name": "Fake disc TO PATISSEARIE",
+                        "enabled": false
+                    },
+                    {
+                        "code": "FKSPLWV1",
+                        "name": "Fake promo Splash ITA WAV",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ITAFK040",
+                        "name": "Last Minute",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYHSC",
+                        "name": "NPM 2021 HSC INCLUDED",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FKAIRITA",
+                        "name": "PROMO SPLASH",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FKSPLASH",
+                        "name": "PROMO SPLASH",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ITAFK053",
+                        "name": "PROMO Super All Inclusive",
+                        "enabled": false
+                    },
+                    {
+                        "code": "PRIVILEG",
+                        "name": "Sconti fino al {discount} %",
+                        "enabled": true
+                    },
+                    {
+                        "code": "WCTKTPKG",
+                        "name": "TKT PKG WORLD CRUISE",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TRACKING",
+                        "name": "TRACKING PACKAGE",
+                        "enabled": true
+                    }
+                ],
+                "optionsByFare": [
+                    {
+                        "code": "IAHA0470",
+                        "name": "AIR DI NE7 CTA2 ITA",
+                        "enabled": false
+                    },
+                    {
+                        "code": "IAHA0474",
+                        "name": "AIR NE KEL promo SPLASH",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PINTUS22",
+                        "name": "Angelo Pintus a bordo!",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FKCCLUB2",
+                        "name": "CREDITO Speciale Soci C|Club ",
+                        "enabled": false
+                    },
+                    {
+                        "code": "CTA2IT22",
+                        "name": "CTA2 ITA FY22",
+                        "enabled": false
+                    },
+                    {
+                        "code": "FAKECTA5",
+                        "name": "Cancellazione gratuita",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ITAFK051",
+                        "name": "Cruise & Golf",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FAMPLEXP",
+                        "name": "FAM.PLAN SHOREX MYEXPLORA",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FAMPLMYA",
+                        "name": "FAMILY PLAN MYALLINCL",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FAMPLMYC",
+                        "name": "FAMILY PLAN MYCRUISE",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FKPASTRY",
+                        "name": "Fake disc TO PATISSEARIE",
+                        "enabled": false
+                    },
+                    {
+                        "code": "FKSPLWV1",
+                        "name": "Fake promo Splash ITA WAV",
+                        "enabled": true
+                    },
+                    {
+                        "code": "IESAIR00",
+                        "name": "I ES AIR FF TRAVEL",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ITAFK040",
+                        "name": "Last Minute",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYHSC",
+                        "name": "NPM 2021 HSC INCLUDED",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPBL",
+                        "name": "NPM 2021 SUPERALL.BALTIC7",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPCA",
+                        "name": "NPM 2021 SUPERALL.CARIBBE",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPEM",
+                        "name": "NPM 2021 SUPERALL.EMIRATE",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPFJ",
+                        "name": "NPM 2021 SUPERALL.FJORDS7",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPM7",
+                        "name": "NPM 2021 SUPERALL.MED7",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPML",
+                        "name": "NPM 2021 SUPERALL.MED7\/LO",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYALLI",
+                        "name": "NPM ALLINCLUSIVE 2021",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPLB",
+                        "name": "NPM21 SUPERAL BALTIC LONG",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPFL",
+                        "name": "NPM21 SUPERAL FJORDS LONG",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FKAIRITA",
+                        "name": "PROMO SPLASH",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FKSPLASH",
+                        "name": "PROMO SPLASH",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ITAFK053",
+                        "name": "PROMO Super All Inclusive",
+                        "enabled": false
+                    },
+                    {
+                        "code": "ITAFKSAL",
+                        "name": "PROMO Super All Inclusive",
+                        "enabled": false
+                    },
+                    {
+                        "code": "PRIVILEG",
+                        "name": "Sconti fino al {discount} %",
+                        "enabled": true
+                    },
+                    {
+                        "code": "IAHA0472",
+                        "name": "TA FO FS NE LONG",
+                        "enabled": true
+                    },
+                    {
+                        "code": "WCTKTPKG",
+                        "name": "TKT PKG WORLD CRUISE",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TRACKING",
+                        "name": "TRACKING PACKAGE",
+                        "enabled": true
+                    }
+                ],
+                "optionsByFareLogged": [
+                    {
+                        "code": "IAHA0470",
+                        "name": "AIR DI NE7 CTA2 ITA",
+                        "enabled": false
+                    },
+                    {
+                        "code": "IAHA0474",
+                        "name": "AIR NE KEL promo SPLASH",
+                        "enabled": true
+                    },
+                    {
+                        "code": "PINTUS22",
+                        "name": "Angelo Pintus a bordo!",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FKCCLUB2",
+                        "name": "CREDITO Speciale Soci C|Club ",
+                        "enabled": false
+                    },
+                    {
+                        "code": "OB50BRCC",
+                        "name": "CREDITO di \u20AC100 a cabina (Livello Bronze) ",
+                        "enabled": false
+                    },
+                    {
+                        "code": "OB75SILV",
+                        "name": "CREDITO di \u20AC150 a cabina (Livello Silver)",
+                        "enabled": false
+                    },
+                    {
+                        "code": "OB100GPL",
+                        "name": "CREDITO di \u20AC200 a cabina (Livello Gold & Platinum)",
+                        "enabled": false
+                    },
+                    {
+                        "code": "CTA2IT22",
+                        "name": "CTA2 ITA FY22",
+                        "enabled": false
+                    },
+                    {
+                        "code": "FAKECTA5",
+                        "name": "Cancellazione gratuita",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ITAFK051",
+                        "name": "Cruise & Golf",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FAMPLEXP",
+                        "name": "FAM.PLAN SHOREX MYEXPLORA",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FAMPLMYA",
+                        "name": "FAMILY PLAN MYALLINCL",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FAMPLMYC",
+                        "name": "FAMILY PLAN MYCRUISE",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FKPASTRY",
+                        "name": "Fake disc TO PATISSEARIE",
+                        "enabled": false
+                    },
+                    {
+                        "code": "FKSPLWV1",
+                        "name": "Fake promo Splash ITA WAV",
+                        "enabled": true
+                    },
+                    {
+                        "code": "IESAIR00",
+                        "name": "I ES AIR FF TRAVEL",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ITAFK040",
+                        "name": "Last Minute",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYHSC",
+                        "name": "NPM 2021 HSC INCLUDED",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPBL",
+                        "name": "NPM 2021 SUPERALL.BALTIC7",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPCA",
+                        "name": "NPM 2021 SUPERALL.CARIBBE",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPEM",
+                        "name": "NPM 2021 SUPERALL.EMIRATE",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPFJ",
+                        "name": "NPM 2021 SUPERALL.FJORDS7",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPM7",
+                        "name": "NPM 2021 SUPERALL.MED7",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPML",
+                        "name": "NPM 2021 SUPERALL.MED7\/LO",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYALLI",
+                        "name": "NPM ALLINCLUSIVE 2021",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPLB",
+                        "name": "NPM21 SUPERAL BALTIC LONG",
+                        "enabled": true
+                    },
+                    {
+                        "code": "NPMYSPFL",
+                        "name": "NPM21 SUPERAL FJORDS LONG",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FKAIRITA",
+                        "name": "PROMO SPLASH",
+                        "enabled": true
+                    },
+                    {
+                        "code": "FKSPLASH",
+                        "name": "PROMO SPLASH",
+                        "enabled": true
+                    },
+                    {
+                        "code": "ITAFK053",
+                        "name": "PROMO Super All Inclusive",
+                        "enabled": false
+                    },
+                    {
+                        "code": "ITAFKSAL",
+                        "name": "PROMO Super All Inclusive",
+                        "enabled": false
+                    },
+                    {
+                        "code": "PRIVILEG",
+                        "name": "Sconti fino al {discount} %",
+                        "enabled": true
+                    },
+                    {
+                        "code": "IAHA0472",
+                        "name": "TA FO FS NE LONG",
+                        "enabled": true
+                    },
+                    {
+                        "code": "WCTKTPKG",
+                        "name": "TKT PKG WORLD CRUISE",
+                        "enabled": true
+                    },
+                    {
+                        "code": "TRACKING",
+                        "name": "TRACKING PACKAGE",
+                        "enabled": true
+                    }
+                ]
+            }
+        },
+        {
+            "type": "soldOut",
+            "attributes": {
+                "options": [
+                    {
+                        "code": "true",
+                        "enabled": true
+                    }
+                ]
+            }
+        },
+        {
+            "type": "departures",
+            "attributes": {
+                "options": [
+                    {
+                        "name": "Savona",
+                        "code": "SVN",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Civitavecchia / Roma",
+                        "code": "CIV",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Bari",
+                        "code": "BRI",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Venezia",
+                        "code": "VCE",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Abu Dhabi",
+                        "code": "AUH",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Amsterdam Ijmuiden        ",
+                        "code": "IJM",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Amsterdam",
+                        "code": "AMS",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Bremerhaven",
+                        "code": "BRV",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Brindisi     ",
+                        "code": "BDS",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Buenos Aires",
+                        "code": "BUE",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Cagliari",
+                        "code": "CAG",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Catania",
+                        "code": "CTA",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Copenhagen",
+                        "code": "CPH",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Doha",
+                        "code": "DOH",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Dubai",
+                        "code": "DXB",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Genova",
+                        "code": "GOA",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Guadalupa",
+                        "code": "PTP",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Istanbul",
+                        "code": "IST",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Itajai",
+                        "code": "ITJ",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Kiel",
+                        "code": "KEL",
+                        "enabled": true
+                    },
+                    {
+                        "name": "La Romana / Santo Domingo",
+                        "code": "LRM",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Marghera / Venezia",
+                        "code": "PMA",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Marsiglia",
+                        "code": "MRS",
+                        "enabled": false
+                    },
+                    {
+                        "name": "Montevideo",
+                        "code": "MVD",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Napoli",
+                        "code": "NAP",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Palermo",
+                        "code": "PMO",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Port Rashid",
+                        "code": "PRA",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Rio de Janeiro",
+                        "code": "RIO",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Salerno",
+                        "code": "SAL",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Salvador ",
+                        "code": "SSA",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Santo Domingo",
+                        "code": "SDQ",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Santos",
+                        "code": "SSZ",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Stoccolma",
+                        "code": "STO",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Trieste",
+                        "code": "TRS",
+                        "enabled": true
+                    }
+                ]
+            }
+        },
+        {
+            "type": "destinations",
+            "attributes": {
+                "options": [
+                    {
+                        "name": "Mediterraneo",
+                        "code": "ME",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Dubai ed Emirati Arabi",
+                        "code": "PG",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Caraibi",
+                        "code": "CA",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Nord Europa",
+                        "code": "NO",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Sud America",
+                        "code": "SA",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Transoceaniche",
+                        "code": "TR",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Giro del Mondo",
+                        "code": "RW",
+                        "enabled": true
+                    }
+                ]
+            }
+        },
+        {
+            "type": "durations",
+            "attributes": {
+                "options": [
+                    {
+                        "label": "2 - 7",
+                        "count": "52",
+                        "start": "2",
+                        "end": "7",
+                        "enabled": true
+                    },
+                    {
+                        "label": "8",
+                        "count": "145",
+                        "start": "8",
+                        "end": "8",
+                        "enabled": true
+                    },
+                    {
+                        "label": "9 - 16",
+                        "count": "152",
+                        "start": "9",
+                        "end": "16",
+                        "enabled": true
+                    },
+                    {
+                        "label": "17",
+                        "count": "53",
+                        "start": "17",
+                        "end": "*",
+                        "enabled": true
+                    }
+                ]
+            }
+        },
+        {
+            "type": "flightRequired",
+            "attributes": {
+                "options": [
+                    {
+                        "code": "false",
+                        "label": "falseFlightLabel",
+                        "enabled": true
+                    },
+                    {
+                        "code": "true",
+                        "label": "trueFlightLabel",
+                        "enabled": true
+                    }
+                ]
+            }
+        },
+        {
+            "type": "months",
+            "attributes": {
+                "options": [
+                    {
+                        "code": "2022-01-01T00:00:00Z",
+                        "month": "01",
+                        "year": "2022",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2022-02-01T00:00:00Z",
+                        "month": "02",
+                        "year": "2022",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2022-03-01T00:00:00Z",
+                        "month": "03",
+                        "year": "2022",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2022-04-01T00:00:00Z",
+                        "month": "04",
+                        "year": "2022",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2022-05-01T00:00:00Z",
+                        "month": "05",
+                        "year": "2022",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2022-06-01T00:00:00Z",
+                        "month": "06",
+                        "year": "2022",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2022-07-01T00:00:00Z",
+                        "month": "07",
+                        "year": "2022",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2022-08-01T00:00:00Z",
+                        "month": "08",
+                        "year": "2022",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2022-09-01T00:00:00Z",
+                        "month": "09",
+                        "year": "2022",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2022-10-01T00:00:00Z",
+                        "month": "10",
+                        "year": "2022",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2022-11-01T00:00:00Z",
+                        "month": "11",
+                        "year": "2022",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2022-12-01T00:00:00Z",
+                        "month": "12",
+                        "year": "2022",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-01-01T00:00:00Z",
+                        "month": "01",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-02-01T00:00:00Z",
+                        "month": "02",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-03-01T00:00:00Z",
+                        "month": "03",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-04-01T00:00:00Z",
+                        "month": "04",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-05-01T00:00:00Z",
+                        "month": "05",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-06-01T00:00:00Z",
+                        "month": "06",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-07-01T00:00:00Z",
+                        "month": "07",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-08-01T00:00:00Z",
+                        "month": "08",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-09-01T00:00:00Z",
+                        "month": "09",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-10-01T00:00:00Z",
+                        "month": "10",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-11-01T00:00:00Z",
+                        "month": "11",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2023-12-01T00:00:00Z",
+                        "month": "12",
+                        "year": "2023",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2024-01-01T00:00:00Z",
+                        "month": "01",
+                        "year": "2024",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2024-02-01T00:00:00Z",
+                        "month": "02",
+                        "year": "2024",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2024-03-01T00:00:00Z",
+                        "month": "03",
+                        "year": "2024",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2024-04-01T00:00:00Z",
+                        "month": "04",
+                        "year": "2024",
+                        "enabled": true
+                    },
+                    {
+                        "code": "2024-05-01T00:00:00Z",
+                        "month": "05",
+                        "year": "2024",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2024-06-01T00:00:00Z",
+                        "month": "06",
+                        "year": "2024",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2024-07-01T00:00:00Z",
+                        "month": "07",
+                        "year": "2024",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2024-08-01T00:00:00Z",
+                        "month": "08",
+                        "year": "2024",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2024-09-01T00:00:00Z",
+                        "month": "09",
+                        "year": "2024",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2024-10-01T00:00:00Z",
+                        "month": "10",
+                        "year": "2024",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2024-11-01T00:00:00Z",
+                        "month": "11",
+                        "year": "2024",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2024-12-01T00:00:00Z",
+                        "month": "12",
+                        "year": "2024",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-01-01T00:00:00Z",
+                        "month": "01",
+                        "year": "2025",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-02-01T00:00:00Z",
+                        "month": "02",
+                        "year": "2025",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-03-01T00:00:00Z",
+                        "month": "03",
+                        "year": "2025",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-04-01T00:00:00Z",
+                        "month": "04",
+                        "year": "2025",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-05-01T00:00:00Z",
+                        "month": "05",
+                        "year": "2025",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-06-01T00:00:00Z",
+                        "month": "06",
+                        "year": "2025",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-07-01T00:00:00Z",
+                        "month": "07",
+                        "year": "2025",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-08-01T00:00:00Z",
+                        "month": "08",
+                        "year": "2025",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-09-01T00:00:00Z",
+                        "month": "09",
+                        "year": "2025",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-10-01T00:00:00Z",
+                        "month": "10",
+                        "year": "2025",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-11-01T00:00:00Z",
+                        "month": "11",
+                        "year": "2025",
+                        "enabled": false
+                    },
+                    {
+                        "code": "2025-12-01T00:00:00Z",
+                        "month": "12",
+                        "year": "2025",
+                        "enabled": false
+                    }
+                ]
+            }
+        },
+        {
+            "type": "ships",
+            "attributes": {
+                "options": [
+                    {
+                        "name": "Costa Deliziosa",
+                        "code": "DE",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Costa Diadema",
+                        "code": "DI",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Costa Fascinosa",
+                        "code": "FS",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Costa Favolosa",
+                        "code": "FA",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Costa Firenze",
+                        "code": "FI",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Costa Fortuna",
+                        "code": "FO",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Costa Luminosa",
+                        "code": "LU",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Costa Pacifica",
+                        "code": "PA",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Costa Smeralda",
+                        "code": "SM",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Costa Toscana",
+                        "code": "TO",
+                        "enabled": true
+                    },
+                    {
+                        "name": "Costa Venezia",
+                        "code": "VE",
+                        "enabled": true
+                    }
+                ]
+            }
+        }
+    ]
+}

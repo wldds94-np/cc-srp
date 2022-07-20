@@ -1,0 +1,212 @@
+.cc-fe_srp {
+  font-family: 'Poppins';
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 130%;
+
+  &.cc-fe {
+    &_srp {
+      &-container {
+        width: 100%;
+        display: flex;
+        padding-top: 64px; // padding-top: 80px;
+        flex-direction: column;
+
+        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.12);
+
+        z-index: 9;
+        // To production ??
+        // position: fixed;
+      }
+
+      &-search {
+        padding: 24px 20px 14px; // 24px 20px 24px 20px;
+        background: $greyNatural;
+        position: relative;
+
+        &_wrap {
+          padding-bottom: 8px;
+          border-bottom: 1px solid $greyNatural4;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        &__info {}
+
+        &__action {
+          width: 20px;
+          height: 20px;
+          cursor: pointer;
+          // background: grey;
+          position: relative;
+
+          &::before {
+            content: "\E938";
+            font-family: Icomoon;
+            color: #63666a;
+            font-size: 1.2rem;
+          }
+        }
+
+        &_overlay {
+          position: fixed;
+          width: 100%;
+          left: 0;
+          z-index: 8;
+          min-height: 0; //100%;
+          height: 0; // 100%;
+          margin-top: 14px;
+
+          background-color: transparent;
+          transition: background-color $time ease-in;
+        }
+
+        &_display {
+          display: flex;
+          flex-direction: column;
+          // justify-content: flex-start;
+          // gap: 12px;
+          max-height: 0;
+          // height: 0;
+          overflow: hidden;
+
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 100%; // bottom: calc(-100% + 8px); // bottom: -20px;
+          background: $white;
+          z-index: 9;
+
+          transition: max-height $time ease-in;
+
+          &.open {
+            // max-height: unset;
+            // min-height: 165px;
+            // height: calc(3* (19px*2 + 1.2rem*1.3));
+            max-height: 500px;
+            /*auto*/
+
+            &+* {
+              background-color: rgba(0, 0, 0, 0.8);
+              min-height: 100%;
+              height: 100%;
+            }
+          }
+
+          &-container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 12px;
+            padding: 19px 20px;
+            border-bottom: 1px solid $greyNatural2;
+
+            ::before {
+              font-family: Icomoon;
+              color: #63666a;
+              font-size: 1.2rem;
+            }
+
+            &.destinations {
+              &>* {
+                &:first-of-type {
+                  &::before {
+                    content: "\e938";
+                  }
+                }
+              }
+            }
+
+            &.occupancy {
+              &>* {
+                &:first-of-type {
+                  &::before {
+                    content: "\E931";
+                  }
+                }
+              }
+            }
+
+            &.months {
+              &>* {
+                &:first-of-type {
+                  &::before {
+                    content: "\E95B";
+                  }
+                }
+              }
+            }
+
+            &>* {
+              &:last-of-type {
+                color: $turquoise;
+              }
+            }
+          }
+        }
+      }
+
+      &-filters {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 12px;
+        gap: 12px;
+        overflow-x: scroll;
+        background: $white;
+
+        &>* {
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding: 13.5px 20px;
+          gap: 15px;
+          border: 1px solid $greyNatural3;
+          border-radius: 1px;
+          min-width: fit-content;
+          font-weight: 600;
+
+          .cc-fe_srp-filters__action-reset {
+            display: none;
+            // opacity: 0;
+          }
+
+          &.valorised {
+            background: $greyNatural;
+            border-color: $greyNatural8;
+            padding-right: 15px;
+
+            &, * {
+              font-weight: 700;
+            }
+
+            .cc-fe_srp-filters__action-reset {
+              display: block;
+              position: relative;
+              // opacity: 1;
+              width: 15px;
+              height: 15px;
+
+              &::before {
+                content: "\e93b";
+                position: absolute;
+                font-family: Icomoon;
+                color: #292929;
+                font-size: 0.825rem;
+                font-weight: 700;
+                left: 0;
+                top: 50%;
+                width: 100%;
+                height: 100%;
+                transform: translateY(-50%);
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

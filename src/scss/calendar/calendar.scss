@@ -1,0 +1,191 @@
+#cc-months-date-picker.cc-date-picker-container {
+    // background: red;
+    margin: auto;
+    width: 100%; // fit-content;
+    border: unset;
+
+    .cc-calendar-header-bar {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1rem;
+        line-height: 1.6875rem;
+
+        .year-container {
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+
+        .cc-calendar-nav {
+            position: relative;
+
+            &.next {
+                &:before {
+                    content: "\E961";
+                }
+            }
+
+            &.prev {
+                &:before {
+                    content: "\E960";
+                }
+            }
+
+            &:before {
+                color: #292929;
+                font-family: Icomoon;
+                font-size: .875rem;
+            }
+        }
+    }
+
+    .cc-calendar-body-container {
+        display: flex;
+        margin-top: 20px;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        padding: 15px 5px; // 15px 30px;
+
+        .cc-calendar-body_slider-wrapper {
+            display: flex;
+            // overflow: hidden;
+            position: relative;
+            left: 0;
+            transition: left 320ms ease-in-out;
+
+            .cc-calendar-body {
+                // display: grid;
+                // grid-template-columns: 1fr 1fr 1fr 1fr;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                min-width: 100%;
+                // position: relative;
+                // left: 0;
+                // transition: left 320ms ease-in-out;
+
+                .search-filter-calendar {
+                    margin: 6px 0;
+                    text-align: center;
+                    position: relative;
+                    flex-basis: 25%;
+
+                    button {
+                        font-weight: 400;
+                        font-family: 'Poppins', 'Open-Sans-400', Arial, Helvetica, sans-serif;
+                        font-size: 1rem;
+                        line-height: 1.6875rem;
+                        letter-spacing: 0;
+                        color: #292929;
+                        height: 60px;
+                        width: 60px;
+                        position: relative;
+                        background: white;
+
+                        span {
+                            z-index: 1;
+                            position: relative;
+                        }
+                    }
+
+                    /* &.selected,  */&.start, &.end {
+                        button {
+                            color: #fff;
+                            background-color: #0091f0;
+                            border-radius: 1px;
+                            z-index: 2;
+
+                            // @media screen and (min-width: 981px) {
+                            //     &:before {
+                            //         width: 105px;
+                            //     }
+                            // }
+
+                        }
+                    }
+
+                    &.end {
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            top: 0;
+                            height: 100%;
+                            width: 100%;
+                            background-color: #b6e5fd;
+                            z-index: 0;
+                            pointer-events: none;
+                            right: 50%;
+                        }
+
+                        &:nth-child(4n+1)::before {
+                            width: 0;
+                        }
+                    }
+
+                    &.between {
+                        button {
+                            background-color: #b6e5fd;
+
+                            &:before {
+                                content: "";
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                                width: 25vw;
+                                background-color: #b6e5fd;
+                                height: 100%;
+                                z-index: 0;
+                                pointer-events: none;
+                            }
+                        }
+
+                        &:nth-child(4n+1) {
+                            button:before {
+                                right: auto;
+                                left: 0;
+
+                            }
+                        }
+
+                        &:nth-child(4n) {
+                            button::before {
+                                left: auto;
+                                right: 0;
+                            }
+                        }
+                    }
+
+                    // &:nth-child(4n+1).between {
+                    //     button {
+                    //         &::before {
+                    //             right: auto;
+                    //             left: 0;
+                    //         }
+                    //     }
+                    // }
+
+                    // &:nth-child(4n).between {
+                    //     button {
+                    //         &::before {
+                    //             left: auto;
+                    //             right: 0;
+                    //         }
+                    //     }
+                    // }
+
+                    &.disabled {
+                        button {
+                            color: #ccc;
+                            cursor: default;
+                            user-select: none;
+                        }
+                    }
+                }
+
+            }
+        }
+
+    }
+}
