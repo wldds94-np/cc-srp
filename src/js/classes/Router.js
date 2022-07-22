@@ -38,6 +38,7 @@ class Router {
         let query = []
         params.map(el => {
             let locs = this.locations(this.config.equalChar, el)
+            // Take the last
             let lastIndex = locs.length ? locs.pop() : 0
 
             let [filterTagKey, filterSearchValues] = this.splitInArray(el, lastIndex) // console.log(newElArray); // this.initialQuery[filterTagKey] = filterSearchValues // this.query.push({ filterTagKey: filterSearchValues })
@@ -53,6 +54,12 @@ class Router {
         return result;
     }
 
+    /**
+     * 
+     * @param {string} substring 
+     * @param {string} string 
+     * @returns {Array}
+     */
     locations(substring, string) {
         let a = [], i = -1;
         while ((i = string.indexOf(substring, i + 1)) >= 0) a.push(i);
@@ -108,7 +115,7 @@ class Router {
 
         // let newHash = ''
         let newHash = hash ? hash : Object.keys(this.query).reduce((prev, next) => {
-            console.log(prev, next); // console.log(this.query[prev]);
+            // console.log(prev, next); // console.log(this.query[prev]);
             return prev += next + '=' + this.query[next] + '&'
         }, '').slice(0, -1)
 

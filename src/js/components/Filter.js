@@ -1,12 +1,12 @@
 import ccObject from "../abstract/ccObject"
 
 class Filter extends ccObject {
-
     constructor(props) {
         super(props)
         // this.props = Object.assign(props, {}) // console.log(props);
         this.type = this.saveSafePropertyProps(this.props, 'filterAPIKey')
 
+        this.subType = this.saveSafePropertyProps(this.props, 'subType', [this.type])
 
         this.props = {
             ...this.props,
@@ -17,32 +17,8 @@ class Filter extends ccObject {
             // The real filter with PLACEHOLDER {{ $i }}
             realFilterTagKey: this.saveSafePropertyProps(this.props, 'realFilterTagKey', false), // filterTagKey || '',
             // selected: props.selected || false
-            default: this.saveSafePropertyProps(this.props, 'default', this.props.filterTitleDesktop)
+            defaultFilterValue: this.saveSafePropertyProps(this.props, 'defaultFilterValue', this.props.filterTitleDesktop)
         } // console.log(this.state);
-
-        const subtypeProps = this.saveSafePropertyProps(this.props, 'subtypeProps', false)
-        if (false != subtypeProps) {
-            this.subtype = subtypeProps
-        } else {
-            let newSubtype = []
-            newSubtype[this.type] = {
-                filterTagKey: this.props.filterTagKey, // '{!tag=offerTag}fareType={cc*\w+*cc}'
-                filterTagValue: '{cc*filterSearch*cc}',
-                regex: /\{cc\*filterSearch\*cc\}/,
-                indexTag: false,
-            }
-            this.subtype = newSubtype
-        }
-        // this.subtype = {
-        //     fare: {
-        // filterTagKey: '{!tag=offerTag}fareType', // '{!tag=offerTag}fareType={cc*\w+*cc}'
-        // filterTagValue: '{cc*\w+*cc}',
-        // },
-        // discount: {
-        //     filterTagKey: '{!tag=offerTag}campaignId_EUR_{cc*\w+*cc}', // '{!tag=offerTag}campaignId_EUR_{cc*\w+*cc}=anonymous'
-        //     filterTagValue: 'anonymous',
-        // },
-        // }
 
         this.config = {
             ...this.config,
@@ -54,17 +30,11 @@ class Filter extends ccObject {
             valorisedStyleClass: 'valorised',
             // enabledStyleClass: 'enabled',
             domInstanceSelector: `#${this.config.baseStyleClass}-${this.type}`,
-            labelSeparator: props.hasOwnProperty('labelSeparator') ? props.labelSeparator : ','
+            labelSeparator: props.hasOwnProperty('labelSeparator') ? props.labelSeparator : ', '
         }
 
-
-        // this.state = {
-        //     label: this.saveSafePropertyProps(this.props, 'label', this.props.default),
-        //     search: this.saveSafePropertyProps(this.props, 'search', ''),
-        //     openPing: false, // Set by Setup after inject HTML in the DOM
-        // }
         this.state = {
-            label: this.saveSafePropertyProps(this.props, 'label', this.props.default),
+            label: this.saveSafePropertyProps(this.props, 'label', []), // this.props.defaultFilterValue),
             search: this.saveSafePropertyProps(this.props, 'search', []),
             valorised: this.saveSafePropertyProps(this.props, 'valorised', false),
             // search: this.saveSafePropertyProps(this.props, 'search', ''),
@@ -80,56 +50,56 @@ class Filter extends ccObject {
 
         this.applyTransformContent = content => content
 
-        // console.log(this)
+        // console.log('Filter');
+        // console.log(this);
     }
 
     isValorised() {
         const searchKey = Object.keys(this.state.search)
-        console.log(searchKey); // console.log(searchKey);
-        const res =  Boolean(searchKey.length) && searchKey.reduce((prev, next) => {
-            console.log(this.state.search[next]);
+        // console.log(searchKey); // console.log(searchKey);
+        const res = Boolean(searchKey.length) && searchKey.reduce((prev, next) => {
+            // console.log(this.state.search[next]);
             return prev && Boolean(this.state.search[next].length)
-        }, true) // 
-        console.log(res);
-        // const res = searchKey.reduce((prev, next) => {
-        //     return prev && Boolean(this.state.search[next].length)
-        // }, true) // console.log(res);
+        }, true) // console.log(res);
+
         return res
 
     }
 
-    registerChoice(content = '', search = []/* , subtypeKey = this.type */) {
+    registerChoice(content = [], search = [], sendPing = true/* , subtypeKey = this.type */) {
         console.log(this);
         console.log(content, search);
         // console.log('You clicked ByList with value: ' + search + ' --- Content: ', content); // console.log('RegisterChoice');
 
         this.state.label = content
-        this.state.search = search // console.log(this); // console.log(subtypeKey); // console.log(this.subtype) // console.log(this.subtype[subtypeKey]);
+        this.state.search = search // console.log(this); // console.log(subtypeKey); // console.log(this.subType) // console.log(this.subType[subtypeKey]);
         this.updatingBeforeInjectContent()
 
         // I HAVE TO USE A PRE STRUCTURE STRING FOR ANY FILTER - duration / offers ecc.
         // const filterTag = false != this.props.realFilterTagKey ? this.props.realFilterTagKey : this.props.filterTagKey
 
-        if (this.state.openPing) {
+        if (this.state.openPing && sendPing) {
             let newQueryValues = []
-            Object.keys(this.subtype).map(typeKey => {
+            // console.log(this.subType);
+            Object.keys(this.subType).map(typeKey => {
                 console.log(typeKey);
 
-                let queryObject = this.subtype[typeKey]
+                let queryObject = this.subType[typeKey]
                 const { filterTagKey, filterTagValue, regex } = queryObject
                 // I HAVE TO SEND THE REQUEST WITH THE REGEX
                 const newSearchAttachedValue = this.generateSrcStringParam(this.state.search[typeKey])
                 newQueryValues.push({
                     queryTag: filterTagKey.replace(regex, newSearchAttachedValue),
                     queryValue: filterTagValue.replace(regex, newSearchAttachedValue),
-                    indexTag: this.subtype[typeKey].indexTag,
+                    indexTag: this.subType[typeKey].indexTag,
                 })
             })
+            // console.log(newQueryValues);
             this.callbacks.Router.pingRequest(newQueryValues)
         }
     }
 
-    updateState(newContent = '', newSearch = []) {
+    updateState(newContent = [], newSearch = []) {
         const { label, search } = this.state
         // console.log(this); // console.log(label); console.log(search); console.log(newContent); console.log(newSearch); 
         // console.log(newSearch == search); console.log(label == newContent);
@@ -137,60 +107,54 @@ class Filter extends ccObject {
         // RETURN IF IT'S EQUAL - Otherwise -> Loop
         if (this.arrayEquals(newSearch, search) && label == newContent) { // console.log('FILTER LABEL - NOT UPDATE RETURN - Nothing to UPDATE');
             return
-        } else { // console.log('FILTER LABEL - UPDATE RETURN - I have to UPDATE');
-            this.registerChoice(newContent, newSearch)
+        } else { // 
+            // console.log('FILTER LABEL - UPDATE RETURN - I have to UPDATE');
+            this.registerChoice(newContent, newSearch/* , false */)
         }
-    }
-
-    saveChoices(callback = el => el) {
-        console.log('Saving Choices...');
     }
 
     updatingBeforeInjectContent() {
         console.log('Update Content');
-        let newContent = '' // console.log(this.state.label);
+        let newContent = ''
         if (this.state.label.length) {
-            newContent += this.state.label
+            newContent = this.generateLabelStringContent(this.state.label)
         } else {
-            newContent += this.getDefault() // this.state.defaultContent // this.state.filterTitleDesktop
+            newContent += this.getDefault() // this.state.defaultFilterValueContent // this.state.filterTitleDesktop
         }
         this.injectContent(this.applyTransformContent(newContent))
-    
+
         this.updateValorised()
-        
+
     }
 
     updateValorised() {
-        const { valorisedStyleClass } = this.config
+        const { valorisedStyleClass, domInstanceSelector } = this.config
         // console.log('Set Content');
-        let thisButton = this.getDomInstance(this.config.domInstanceSelector)
-        this.state.valorised = Boolean(this.isValorised()) ? true : false 
+        let thisButton = this.getDomInstance(domInstanceSelector)
+        this.state.valorised = Boolean(this.isValorised()) ? true : false
         if (null != thisButton) {
-            console.log(thisButton);
-            if (this.state.valorised) {
+            // console.log(thisButton);
+            if (this.state.valorised) { // CHECK IF CLASS IS CONTAIN ??
                 thisButton.classList.add(valorisedStyleClass)
             } else {
                 thisButton.classList.remove(valorisedStyleClass)
             }
         }
-        
+
     }
 
     injectContent(newContent) {
-        const { contentContainerSelector } = this.config
-        // console.log('Set Content');
-        let thisButton = this.getDomInstance(this.config.domInstanceSelector) //  this.getDomInstance(this.config.domInstanceSelector)
-        console.log(thisButton);
-        let contentNode = null != thisButton ? thisButton.querySelector(contentContainerSelector) : null
-        console.log(contentNode); // console.log(contentContainer); // contentContainer.textContent = newContent
+        const { contentContainerSelector, domInstanceSelector } = this.config // console.log('Set Content');
+        let thisButton = this.getDomInstance(domInstanceSelector) // console.log(thisButton);
+        let contentNode = null != thisButton ? thisButton.querySelector(contentContainerSelector) : null // console.log(contentNode); // console.log(contentContainer); // contentContainer.textContent = newContent
         // on Start non è nel DOM
         if (null != contentNode) {
             contentNode.textContent = newContent
         }
     }
 
-    getDefault(content = this.props.default, callback = el => el) {
-        return content == '' ? this.props.default : callback(content)
+    getDefault(content = this.props.defaultFilterValue, callback = el => el) {
+        return content == '' ? this.props.defaultFilterValue : callback(content)
         // console.log(content); // return callback(content)
     }
 
@@ -203,7 +167,7 @@ class Filter extends ccObject {
     resetFiltersPanel(e) {
         e.preventDefault()
         e.stopImmediatePropagation() // IMPORTANT
-        Object.keys(this.subtype).map(typeKey => {
+        Object.keys(this.subType).map(typeKey => {
             console.log(typeKey);
             this.state.search[typeKey] = []
         })
@@ -229,7 +193,7 @@ class Filter extends ccObject {
                     attrs: {
                         class: contentContainer,
                     },
-                    content: this.getDefault(label), // 'function' == typeof this.transformContent ? this.transformContent() : filterTitleDesktop,
+                    content: this.getDefault(this.generateLabelStringContent(label)), // 'function' == typeof this.transformContent ? this.transformContent() : filterTitleDesktop,
                 },
                 {
                     attrs: {
@@ -253,13 +217,38 @@ class Filter extends ccObject {
             filter += elArray.reduce((prev, curr) => {
                 // console.log(prev, curr);
                 return prev + ',' + curr
-
             }, '')
             // console.log(filter.slice(1, filter.length));
             return filter.slice(1, filter.length)
         } else {
             return filter
         }
+    }
+
+    generateLabelStringContent(elArray = this.state.label) {
+        const { hasCounter, labelSeparator } = this.config
+        let filterContent = ''
+        if (elArray.length) {
+            if (hasCounter) {
+                // console.log('Has Counter');
+                let count = 0
+                elArray.map(value => {
+                    filterContent += count > 0 ? '' : value
+                    count++
+                })
+                filterContent += count - 1 > 0 ? ' (+' + (count - 1) + ')' : ''
+            } else {
+                // console.log('Not Has Counter');
+                filterContent += elArray.reduce((prev, curr) => {
+                    // console.log(prev, curr);
+                    return prev + labelSeparator + curr
+
+                }, '')
+                return filterContent.slice(labelSeparator.length, filterContent.length)
+            }
+        }
+        return filterContent
+
     }
 
     /**

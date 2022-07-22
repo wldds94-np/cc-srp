@@ -4,12 +4,6 @@ class TopHeader extends ccObject {
     constructor(props) { // back = 'Cancel', save = 'Apply', ...props
         super(props)
 
-        // this.props = {
-        //     ...this.props,
-        //     ...props
-        // }
-
-        // console.log(props);
         this.config = {
             ...this.config,
             close: this.saveSafePropertyProps(props, 'close'),
@@ -17,9 +11,6 @@ class TopHeader extends ccObject {
             onClose: this.saveSafePropertyProps(props, 'onClose'),
             onSave: this.saveSafePropertyProps(props, 'onSave'),
         }
-        // this.back = back
-        // this.save = save
-
     }
 
     getHtmlJson() {
@@ -49,7 +40,6 @@ class TopHeader extends ccObject {
                 }
             ]
         }
-        // return {}
     }
 }
 

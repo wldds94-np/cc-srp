@@ -1,3 +1,6 @@
+// CC CalendarPicker
+import datePicker from './modules/datePicker'
+
 class _App {
     constructor() {
         console.log('Instace Here all other auxiliary modules');
@@ -11,12 +14,7 @@ class _App {
             '.srp-header-left'
         ]
 
-        // this.newElements = [
-        //     () => (
-        //         <div></div>
-        //     )
-        // ]
-        // this.registerHandler()
+        datePicker()
     }
 
     // registerHandler() {

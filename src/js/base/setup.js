@@ -1,27 +1,23 @@
-// import filterLabel from "../classes/filterLabel";
-import Filter from "../components/Filter"
 import FilterPanel from "../components/FilterPanel"
-// import filterList from "../classes/filterList";
-// import Duration from "../filter/duration";
-// import flightRequired from "../filter/flightRequired";
-// import Offers from "../filter/offers";
+import Option from "../components/Option"
+import Filter from "../components/Filter"
 
-// // Search Components
-// import searchLabel from "../search/searchLabel";
-// import occupancyLabel from "../search/occupancyLabel";
+// SUBCOMP
+import FilterPanelMonth from "../components/subcomp/FilterPanelMonth"
+import OptionMonth from "../components/subcomp/OptionMonth"
+import OptionDestination from "../components/subcomp/OptionDestination"
+// SEARCH FILTER
+import FilterSearch from "../components/subcomp/FilterSearch"
 
-// import destinationList from "../search/components/destinationList";
-// import monthsList from "../search/components/monthsList";
-// import occupancyList from "../search/components/occupancyList";
-
-// Router
-// import Router from './Router'
+// SERVICES
+// import datePicker from "../modules/datePicker"
 
 class Setup {
     constructor(Router, Funnel) {
         // Router CLASS INSTANCE
         this.Router = Router
         this.Funnel = Funnel
+
         // LIST OF ALL PANEL CONTROLLERS
         this.FiltersPanelControllers = []
 
@@ -33,9 +29,6 @@ class Setup {
         // Filter DOMS ELEMENT STYLE CLASS
         this.srpMob = '.srp-header-mob'
         this.srpResInfo = '.srp-header-results'
-
-        // HASHCHANGE 
-        // window.addEventListener('hashchange', this.checkUrl.bind(this))
     }
 
     syncOccupancySearch(data) {
@@ -46,15 +39,49 @@ class Setup {
         this.Funnel.syncOccupancySearch(data, query) // console.log(this.Funnel);
 
         if (this.isInitializedOccSrc) {
-            // console.log(this.Funnel);
-            // I have intanciated all classes
-            // console.log('IT\'S INITIALIZED... I HAVE TO RESYNC THE ALL OPTIONS');
+            // console.log(this.Funnel); // I have intanciated all classes
+            console.log('IT\'S INITIALIZED... I HAVE TO RESYNC THE ALL OPTIONS');
 
             // Update the options inside the Panels Classes
-            this.Funnel.filtersKey.map(filterKey => {
-                // console.log(filterKey); // console.log(this.FiltersPanelControllers[filterKey]); console.log(this.Funnel);
-                // console.log({ ...this.entryOccSrcFilterList[filterKey], ...{ filterLabelClass: this.filterLabelInstance[filterKey] } });
-                this.FiltersPanelControllers[filterKey].updatePanel.apply(this.FiltersPanelControllers[filterKey], [{ ...this.Funnel.entryOccSrcFilterList[filterKey] }]) // .updatePanel({ ...this.Funnel.entryOccSrcFilterList[filterKey] })
+            // this.Funnel.filtersKey.map(filterKey => {
+            //     // console.log(filterKey); // console.log(this.FiltersPanelControllers[filterKey]); console.log(this.Funnel);
+            //     // console.log({ ...this.entryOccSrcFilterList[filterKey], ...{ filterLabelClass: this.filterLabelInstance[filterKey] } });
+            //     this.FiltersPanelControllers[filterKey].updatePanel.apply(this.FiltersPanelControllers[filterKey], [{ ...this.Funnel.entryOccSrcFilterList[filterKey] }]) // .updatePanel({ ...this.Funnel.entryOccSrcFilterList[filterKey] })
+            // })
+            const { search, secondary } = this.Funnel.filtersData
+
+            Object.keys(secondary).map(filterApiKey => {
+                switch (filterApiKey) {
+                    case 'occupancy':
+
+                        break;
+
+                    default:
+                        this.FiltersPanelControllers[filterApiKey].updatePanel({
+                            ...secondary[filterApiKey].panel,
+                            options: secondary[filterApiKey].options, // OptionsInstances: this.createOptionsPanelArray(secondary[filterApiKey].options),
+                            filter: secondary[filterApiKey].filter,
+
+                        })
+                        break;
+                }
+            })
+
+            Object.keys(search).map(filterApiKeySearch => {
+                switch (filterApiKeySearch) {
+                    case 'occupancy':
+
+                        break;
+
+                    default:
+                        this.FiltersPanelControllers[filterApiKeySearch].updatePanel({
+                            ...search[filterApiKeySearch].panel,
+                            options: search[filterApiKeySearch].options, // OptionsInstances: this.createOptionsPanelArray(secondary[filterApiKey].options),
+                            filter: search[filterApiKeySearch].filter,
+
+                        })
+                        break;
+                }
             })
         } else {
             this.isInitializedOccSrc = true
@@ -63,24 +90,76 @@ class Setup {
     }
 
     init() {
-        // let queryURL = this.Router.getQuery() // console.log(queryURL);
-        // Instanciate the Panel Class
-        this.Funnel.filtersKey.map(filterKey => { // console.log({ ...this.entryOccSrcFilterList[filterKey], ...{ filterLabelClass: this.filterLabelInstance[filterKey] } });
-            const entryFilter = {
-                ...this.Funnel.entrySrpDataSecondaryFilters[filterKey],
-                onSaveChoice: this.Router.pingRequestToHash.bind(this.Router),
-            }
+        console.log('Initialization..');
 
-            this.FiltersPanelControllers[filterKey] = new FilterPanel({
-                ...this.Funnel.entryOccSrcFilterList[filterKey],
-                ...{ filterLabelClass: new Filter(entryFilter) /* this.filterLabelInstance[filterKey] */ },
-                ...{ labels: this.Funnel.childAttributes.labels },
-                // RESETTING
-                onResetPanel: this.Router.resetQuery.bind(this.Router)
-            })
+        const { search, secondary } = this.Funnel.filtersData
+        // console.log(search, secondary);
+
+        // Initialize all search components
+        Object.keys(search).map(filterSearchApiKey => {
+            switch (filterSearchApiKey) {
+                case 'months':
+                    this.FiltersPanelControllers[filterSearchApiKey] = new FilterPanelMonth({
+                        ...search[filterSearchApiKey].panel, // PANEL DATA
+                        OptionsInstances: this.createOptionsPanelArray(search[filterSearchApiKey].options, 'code', OptionMonth),
+                        FilterClass: new FilterSearch({
+                            ...search[filterSearchApiKey].filter,
+                            onSaveChoice: this.Router.pingRequestToHash.bind(this.Router),
+                        }),
+                        // callbacks
+                        onResetPanel: this.Router.resetQuery.bind(this.Router),
+                    })
+                    break;
+                case 'destinations':
+                    this.FiltersPanelControllers[filterSearchApiKey] = new FilterPanel({
+                        ...search[filterSearchApiKey].panel, // PANEL DATA
+                        OptionsInstances: this.createOptionsPanelArray(search[filterSearchApiKey].options, 'code', OptionDestination),
+                        FilterClass: new FilterSearch({
+                            ...search[filterSearchApiKey].filter,
+                            onSaveChoice: this.Router.pingRequestToHash.bind(this.Router),
+                        }),
+                        // callbacks
+                        onResetPanel: this.Router.resetQuery.bind(this.Router),
+                    })
+                    break;
+                default:
+                    break;
+            }
+        })
+
+        // Initialize all filters (secondary) components
+        Object.keys(secondary).map(filterApiKey => {
+            switch (filterApiKey) {
+                // case 'occupancy':
+                //     break;
+
+                default:
+                    this.FiltersPanelControllers[filterApiKey] = new FilterPanel({
+                        ...secondary[filterApiKey].panel, // PANEL DATA
+                        // OptionsInstances: secondary[filterApiKey].options.map(opt => {
+                        //     return new Option(opt)
+                        // }), // 
+                        OptionsInstances: this.createOptionsPanelArray(secondary[filterApiKey].options, 'code', Option),
+                        FilterClass: new Filter({
+                            ...secondary[filterApiKey].filter,
+                            onSaveChoice: this.Router.pingRequestToHash.bind(this.Router),
+                        }),
+                        // callbacks
+                        onResetPanel: this.Router.resetQuery.bind(this.Router),
+                    })
+                    break;
+            }
         })
     }
 
+    createOptionsPanelArray(options, code, content) {
+        let newObj = []
+        options.map(opt => {
+            // console.log(opt);
+            newObj[opt[code]] = new content(opt)
+        })
+        return newObj
+    }
 
     draw() {
         // eslint-disable-next-line no-console
@@ -94,6 +173,8 @@ class Setup {
         // FiltersList / SearchList Containers
         this.panelsContainer = document.querySelector('body')
 
+        const { search, secondary } = this.Funnel.filtersData
+
         let newHtmlSearchElements = [
             {
                 attrs: {
@@ -102,45 +183,82 @@ class Setup {
                 children: [
                     {
                         attrs: {
+                            class: "cc-fe_srp cc-fe_srp-search"
+                        },
+                        children: [
+                            {
+                                attrs: {
+                                    class: "cc-fe_srp cc-fe_srp-search_wrap"
+                                },
+                                children: [
+                                    {
+                                        tagName: "span",
+                                        attrs: {
+                                            class: "cc-fe_srp cc-fe_srp-search__info"
+                                        },
+                                        content: '2 adults, Dec 2022, Mediterranean',
+                                    },
+                                    {
+                                        // tagName: "i",
+                                        attrs: {
+                                            class: "cc-fe_srp cc-fe_srp-search__action"
+                                        },
+                                        props: {
+                                            onclick: function (e) { $('.cc-fe_srp-search_display').toggleClass('open') }
+                                        }
+                                    },
+                                ]
+                            },
+                            {
+                                attrs: {
+                                    class: "cc-fe_srp cc-fe_srp-search_display"
+                                },
+                                children: Object.keys(search).map(searchFilter => {
+                                    return this.FiltersPanelControllers[searchFilter].Filter.getHtmlJson()
+                                })
+                            },
+                            {
+                                attrs: {
+                                    class: "cc-fe_srp cc-fe_srp-search_overlay",
+                                },
+                                props: {
+                                    onclick: function (e) {
+                                        e.preventDefault()
+                                        e.stopImmediatePropagation()
+                                        $('.cc-fe_srp-search_display').removeClass('open')
+                                    }
+                                }
+                            },
+                        ]
+                    },
+                    {
+                        attrs: {
                             class: "cc-fe_srp cc-fe_srp-filters"
                         },
-                        children: this.Funnel.SRPDataSecondaryFilters.filter(el => {
-
-                            if (undefined != this.FiltersPanelControllers[el.filterAPIKey]) {
-                                // console.log(el); console.log(this.FiltersPanelControllers);
-                                // console.log(this.FiltersPanelControllers[el.filterAPIKey]);
-                                // console.log(this.FiltersPanelControllers[el.filterAPIKey].Filter);
-                                // console.log(this.FiltersPanelControllers[el.filterAPIKey].Filter.props);
-                                // console.log(this.FiltersPanelControllers[el.filterAPIKey].Filter.props.hasOwnProperty('filterAPIKey'));
-
-                                return this.FiltersPanelControllers[el.filterAPIKey].Filter.props.hasOwnProperty('filterAPIKey') // this.filterLabelInstance.hasOwnProperty(el.filterAPIKey)   
-                            } else {
-                                return false
-                            }
-                        }).map(filter => {
-                            console.log(filter);
-                            return this.FiltersPanelControllers[filter.filterAPIKey].Filter.getHtmlJson() // this.filterLabelInstance[filter.filterAPIKey].getHtmlJson()
+                        children: Object.keys(secondary).map(filter => {
+                            // console.log(filter);
+                            return this.FiltersPanelControllers[filter].Filter.getHtmlJson() // this.filterLabelInstance[filter.filterAPIKey].getHtmlJson()
                         })
                     },
                 ]
             },
         ]
 
-        // let newHtmlListElements = this.entryVarsList
-        // let newHtmlListElements = this.entryOccSrcFilterList.map(entry => {
-        //     console.log(entry);
-        // })
-        // console.log(this.Funnel.entryOccSrcFilterList);
         let newHtmlPanelElements = []
-        Object.keys(this.Funnel.entryOccSrcFilterList).map(type => {
+        Object.keys(secondary).map(type => {
             if (this.FiltersPanelControllers.hasOwnProperty(type)) {
-                const res = this.FiltersPanelControllers[type] // console.log(res);
+                // const res = this.FiltersPanelControllers[type] // console.log(res);
                 newHtmlPanelElements.push(this.FiltersPanelControllers[type].getHtmlJson())
             }
-            // return this.filterLabelInstance.hasOwnProperty(type) ? 
-            // console.log(type);
+        })
+        Object.keys(search).map(filterSearch => {
+            if (this.FiltersPanelControllers.hasOwnProperty(filterSearch)) {
+                // const res = this.FiltersPanelControllers[type] // console.log(res);
+                newHtmlPanelElements.push(this.FiltersPanelControllers[filterSearch].getHtmlJson())
+            } // return this.FiltersPanelControllers[filterSearch].Filter.getHtmlJson() // this.filterLabelInstance[filter.filterAPIKey].getHtmlJson()
         })
 
+        // Before insert the panel then the relative buttons
         for (let newList in newHtmlPanelElements) {
             let elList = newHtmlPanelElements[newList]
             let newDomList = this.paint(elList)
@@ -154,31 +272,13 @@ class Setup {
         }
 
         // Open Ping Requests for all Filter instance class inside Filters Panel - Start to accept requests to Router
-        Object.keys(this.FiltersPanelControllers).map(key => {
-            console.log('OPEN PING'); console.log(this.FiltersPanelControllers[key]); console.log(this.FiltersPanelControllers[key].Filter);
+        console.log('OPEN PING');
+        Object.keys(this.FiltersPanelControllers).map(key => { // console.log(this.FiltersPanelControllers[key]); console.log(this.FiltersPanelControllers[key].Filter);
             this.FiltersPanelControllers[key].Filter.state.openPing = true // this.filterLabelInstance[key].state.openPing = true
         })
-    }
 
-
-    getObjInArryByKey(arr, key, search) {
-        const filter = arr.filter(item => {
-            const value = item[key]
-            // type = search.value // console.log(type);
-            return value == search
-        })
-
-        return filter.length ? filter[0] : {}
-    }
-
-    getFilterBySRPByKey(key) {
-        const filter = this.searchFilters.filter(searchFilter => {
-            const search = searchFilter.filter,
-                type = search.filterAPIKey // console.log(type);
-            return type == key
-        })
-
-        return filter.length ? filter[0] : {}
+        // START THE SERVICES OF CORE DEPENDANT
+        // datePicker()
     }
 
     paint({ tagName = "div", attrs = {}, props = {}, dataset = {}, content = false, children = [], ...otherprops }) {
@@ -201,133 +301,6 @@ class Setup {
 
         return dom
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // draw() {
-    //     // eslint-disable-next-line no-console
-    //     // console.log('Initialize Setup'); // console.log(SRData.components.data); // console.log(SRData.components); // console.log(SRData);
-
-    //     this.panelsContainer = document.querySelector('body') // this.srpRes = this.domContainer.querySelector('.srp-header-results') // console.log(this.domContainer);
-
-    //     this.domContainer = document.querySelector(this.srpMob)
-    //     this.srpRes = this.domContainer.querySelector(this.srpResInfo)
-
-    //     this.headerSearch = [
-    //         {
-    //             attrs: {
-    //                 class: "cc-fe_srp cc-fe_srp-container"
-    //             },
-    //             children: [
-    //                 {
-    //                     attrs: {
-    //                         class: "cc-fe_srp cc-fe_srp-search"
-    //                     },
-    //                     children: [
-    //                         {
-    //                             attrs: {
-    //                                 class: "cc-fe_srp cc-fe_srp-search_wrap"
-    //                             },
-    //                             children: [
-    //                                 {
-    //                                     tagName: "span",
-    //                                     attrs: {
-    //                                         class: "cc-fe_srp cc-fe_srp-search__info"
-    //                                     },
-    //                                     content: '2 adults, Dec 2022, Mediterranean',
-    //                                 },
-    //                                 {
-    //                                     // tagName: "i",
-    //                                     attrs: {
-    //                                         class: "cc-fe_srp cc-fe_srp-search__action"
-    //                                     },
-    //                                     props: {
-    //                                         onclick: function (e) { $('.cc-fe_srp-search_display').toggleClass('open') }
-    //                                     }
-    //                                 },
-    //                             ]
-    //                         },
-    //                         {
-    //                             attrs: {
-    //                                 class: "cc-fe_srp cc-fe_srp-search_display"
-    //                             },
-    //                             children: this.searchFilters.map(searchFilter => {
-    //                                 console.log(searchFilter);
-    //                                 let search = searchFilter.filter
-    //                                 const type = search.filterAPIKey // console.log(type);
-    //                                 let filterSearchClass = undefined
-    //                                 switch (type) {
-    //                                     case 'months':
-    //                                         search.labelSeparator = ' -'
-    //                                         filterSearchClass = new searchLabel(search)
-    //                                         break;
-    //                                     case 'occupancy':
-    //                                         search.occupancyInfo = searchFilter
-    //                                         filterSearchClass = new occupancyLabel(search)
-    //                                         break;
-    //                                     default:
-    //                                         filterSearchClass = new searchLabel(search)
-    //                                         break;
-    //                                 }
-    //                                 this.filterLabelInstance[type] = filterSearchClass
-    //                                 // if (type == 'months') search.labelSeparator = ' -' // { console.log('monthsSep'); search.labelSeparator = ' -' }
-
-    //                                 // let filterSearchClass = new searchLabel(search)
-    //                                 this.filterLabelInstance[type] = filterSearchClass
-    //                                 // return filterSearchClass.getHtmlJson()
-    //                             })
-
-    //                         },
-    //                         {
-    //                             attrs: {
-    //                                 class: "cc-fe_srp cc-fe_srp-search_overlay",
-    //                             },
-    //                             props: {
-    //                                 onclick: (e) => {
-    //                                     e.stopImmediatePropagation()
-    //                                     console.log('You clicked on Overlay');
-    //                                     $('.cc-fe_srp-search_display').removeClass('open')
-    //                                 }
-    //                             }
-    //                         },
-    //                     ]
-    //                 },
-    //                 {
-    //                     attrs: {
-    //                         class: "cc-fe_srp cc-fe_srp-filters"
-    //                     },
-    //                     children: this.SRPDataSecondaryFilters.map(filter => {
-    //                         const keyFilterLabel = filter.filterAPIKey
-    //                         let filterClass = new filterLabel(filter)
-    //                         this.filterLabelInstance[keyFilterLabel] = filterClass
-    //                         // console.log(this.filterLabelInstance);
-    //                         // return filterClass.getHtmlJson()
-    //                     })
-    //                 },
-    //             ]
-    //         },
-    //     ]
-
-    //     this.panelSearch = []
-
-    //     for (let newEl in this.headerSearch) {
-    //         let el = this.headerSearch[newEl]
-    //         let newDom = this.paint(el)
-    //         this.domContainer.insertBefore(newDom, this.srpRes)
-    //     }
-    // }
-
 }
 
-export default Setup;
+export default Setup

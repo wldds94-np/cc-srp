@@ -57,6 +57,11 @@
                         &-clear {
                             border-bottom: 1px solid;
                             opacity: .4;
+                            transition: opacity 320ms ease-in;
+
+                            &.resettabled {
+                                opacity: 1;
+                            }
                         }
                     }
 
