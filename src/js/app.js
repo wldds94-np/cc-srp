@@ -55,7 +55,7 @@ const app = () => {
 
     function handlerBestPrice(data) {
         if (appCouldStart) {
-
+            // SYNC OCCUPANCY
         } else {
             toIntercept['/itineraries/bestPrice'].resolve = true
             setup.Funnel.syncBestPrice(data)

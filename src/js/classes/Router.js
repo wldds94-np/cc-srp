@@ -31,7 +31,10 @@ class Router {
     }
 
     getParamsByHash(hash = location.hash) {
-        return hash.length ? hash.split("#")[1].split("&") : []
+        // console.log(hash);
+        return hash.length ? hash.split("#")[1].split("&").map(item => {
+            return decodeURI( item )
+        }) : []
     }
 
     getMapQuery(params) {
@@ -197,17 +200,18 @@ class Router {
     //     console.log(e.newURL);
     //     const newURL = e.newURL
     //     const newParams = this.getParamsByHash(newURL)
-    //     const newQuery = this.getMapQuery(newParams)
-    //     // let newHash = newURL.slice(newURL.indexOf('#')+1, -1)
-    //     // console.log(newQuery); console.log(this.query);
-    //     console.log(this.arrayEquals(newQuery, this.query)); // console.log(newQuery == this.query); //console.log(newQuery === this.query);
+    //     // const newQuery = this.getMapQuery(newParams)
+    //     // // let newHash = newURL.slice(newURL.indexOf('#')+1, -1)
+    //     // console.log(newQuery); console.log(newParams);
+    //     // console.log(this.arrayEquals(newQuery, this.query)); // console.log(newQuery == this.query); //console.log(newQuery === this.query);
 
-    //     if (this.arrayEquals(newQuery, this.query)) {
-    //         // Nothing else
-    //     } else {
-    //         // Ricreate my query
-    //         this.updateUrl()
-    //     }
+    //     this.query = this.getMapQuery(newParams)
+    //     // if (this.arrayEquals(newQuery, this.query)) {
+    //     //     // Nothing else
+    //     // } else {
+    //     //     // Ricreate my query
+    //     //     this.updateUrl()
+    //     // }
     // }
 
     // arrayEquals(a, b) {

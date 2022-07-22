@@ -45,6 +45,10 @@ class Filter extends ccObject {
         this.callbacks = {
             Router: {
                 pingRequest: this.saveSafePropertyProps(props, 'onSaveChoice', (...args) => { return }),
+            },
+            // ON RUN
+            FilterPanel: {
+                onOpenCallback: this.saveSafePropertyProps(props, 'onOpenCallback', (...args) => { return }),
             }
         }
 
@@ -162,6 +166,8 @@ class Filter extends ccObject {
         e.preventDefault()
         // console.log('You click by this class type: ' + this.type);
         document.querySelector(`[data-filterpanel=${this.type}]`).classList.add('open')
+
+        this.callbacks.FilterPanel.onOpenCallback(/* this.state.search */)
     }
 
     resetFiltersPanel(e) {

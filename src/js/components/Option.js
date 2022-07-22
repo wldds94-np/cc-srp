@@ -115,7 +115,7 @@ class Option extends ccObject {
         }
     }
 
-    updateState(newState, prevState) {
+    updateState(newState, prevState = { selected: this.state.selected, enabled: this.state.enabled }) {
         const { selected, enabled } = newState
         const actualSelect = prevState.selected
         const actualEnabled = prevState.enabled // console.log(this); // console.log(selected); // console.log(enabled); // console.log(actualSelect); // console.log(actualEnabled);

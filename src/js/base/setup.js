@@ -38,16 +38,15 @@ class Setup {
         const query = this.Router.getQuery() // console.log(query);
         this.Funnel.syncOccupancySearch(data, query) // console.log(this.Funnel);
 
+        console.log('LAST RESYNC BY SETUP');
+        console.log(this.Funnel.filtersData);
+        console.log('QUERY');
+        console.log(query);
+
         if (this.isInitializedOccSrc) {
             // console.log(this.Funnel); // I have intanciated all classes
             console.log('IT\'S INITIALIZED... I HAVE TO RESYNC THE ALL OPTIONS');
 
-            // Update the options inside the Panels Classes
-            // this.Funnel.filtersKey.map(filterKey => {
-            //     // console.log(filterKey); // console.log(this.FiltersPanelControllers[filterKey]); console.log(this.Funnel);
-            //     // console.log({ ...this.entryOccSrcFilterList[filterKey], ...{ filterLabelClass: this.filterLabelInstance[filterKey] } });
-            //     this.FiltersPanelControllers[filterKey].updatePanel.apply(this.FiltersPanelControllers[filterKey], [{ ...this.Funnel.entryOccSrcFilterList[filterKey] }]) // .updatePanel({ ...this.Funnel.entryOccSrcFilterList[filterKey] })
-            // })
             const { search, secondary } = this.Funnel.filtersData
 
             Object.keys(secondary).map(filterApiKey => {

@@ -121,7 +121,7 @@ class FilterPanelMonth extends FilterPanel {
                 newFilterSearch[this.type].push(this.state.limits[limit])
             }
         })
-        console.log(newFilterSearch);
+        // console.log(newFilterSearch);
         this.updateLimits(this.state.limits.start, this.state.limits.end)
 
         return newFilterSearch // [this.type] // this.state.filterSearchValue[this.type] = Object.keys(newFilterSearch).map(newValue => newFilterSearch[newValue]/*  += '-01T00:00:00Z' */) // newFilterSearch
@@ -142,13 +142,13 @@ class FilterPanelMonth extends FilterPanel {
     }
 
     updateLimits(start, end) {
-        console.log('Updating Limits...'); console.log(start + ',' + end);
+        // console.log('Updating Limits...'); console.log(start + ',' + end);
         const startClassPattern = 'start',
             endClassPattern = 'end',
             selectedClass = 'selected'
         let searchFilterCalendar = $(`.search-filter-calendar`)
 
-        console.log(this.OptionsInstances);
+        // console.log(this.OptionsInstances);
         Object.keys(this.OptionsInstances).map(optionInstance => {
             this.OptionsInstances[optionInstance].state.end = false
             this.OptionsInstances[optionInstance].state.end = false
@@ -189,7 +189,7 @@ class FilterPanelMonth extends FilterPanel {
         /** BewtweenWalker */ // console.log($(`.search-filter-calendar.start`), $(`.search-filter-calendar.end`));
         const newStartIndex = searchFilterCalendar.index($('.start')) // .index('.search-filter-calendar.selected.start') // .index(`.start`)
         const newEndIndex = searchFilterCalendar.index($('.end')) // .index(`.search-filter-calendar.end`)
-        console.log(newStartIndex, newEndIndex);
+        // console.log(newStartIndex, newEndIndex);
         searchFilterCalendar.removeClass('between')
         if (newEndIndex > 0) {
             for (let i = 1 + newStartIndex; i < newEndIndex; i++) {
