@@ -1,5 +1,7 @@
 // CC CalendarPicker
 import datePicker from './modules/datePicker'
+// STICKY
+import stickyFilter from './modules/stickyFilter';
 
 class _App {
     constructor() {
@@ -15,6 +17,7 @@ class _App {
         ]
 
         datePicker()
+        stickyFilter()
     }
 
     // registerHandler() {
