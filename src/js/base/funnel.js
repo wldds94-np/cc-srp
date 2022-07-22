@@ -80,7 +80,7 @@ class Funnel {
         this.SRPDataSecondaryFilters = this.SRPData.attributes.header.secondaryFilters // USE THIS FOR THE LABEL
         // console.log(this.SRPDataSecondaryFilters);
 
-        // THE PARAMETERS FOR INSTANCE ALL CLASSES
+        // THE PARAMETERS OF CLASSES - minus callbacks
         this.filtersData = {
             search: {
                 // months: {
@@ -90,10 +90,7 @@ class Funnel {
                 // }
             },
             secondary: {
-                // filter: {},
-                // panel: {},
-                // options: {},
-                // departures: {}
+                // ... equal
             }
         }
 
@@ -119,7 +116,7 @@ class Funnel {
             if (this.filtersKey.includes(keyFilterLabel)) {
                 if (keyFilterLabel == "flightRequired") {
                     filter.realFilterTagKey = filter.filterTagKey
-                    filter.filterTagKey = filter.filterTagKey.replace(/{{\w+}}/, taxCurrencyCodes).replace(/{{\w+}}/, memberLoyaltyLevel)
+                    filter.filterTagKey = filter.filterTagKey.replace(/\{\{\w+\}\}/, taxCurrencyCodes).replace(/\{\{\w+\}\}/, memberLoyaltyLevel)
                 }
                 this.filtersData.secondary[keyFilterLabel] = {}
                 this.filtersData.secondary[keyFilterLabel].filter = filter // console.log(this.filtersData.secondary.filter[keyFilterLabel]);
