@@ -254,6 +254,14 @@ class Funnel {
                         } else {
                             opt.name = this.searchBarV2Data.attributes.labels.falseFlightLabel
                         }
+                        opt.ID = opt.code
+                        break;
+                    case 'durations':
+                        const durationLabel = this.searchBarV2Data.attributes.labels.durationLabel
+                        const { start, end } = opt
+                        opt.code = start + '-' + end
+                        opt.name = durationLabel.replace(/{{\w+}}/, opt.label + ('*' == end ? '+' : ''))
+                        opt.ID = start + '-' + end
                         break;
                     default:
                         options.map(opt => {
