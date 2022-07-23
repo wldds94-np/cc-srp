@@ -1,6 +1,10 @@
-class ccObject {
-    constructor(props) {
-        this.props = Object.assign(props, {}) // console.log(props);
+import ClassPrototype from "./ClassPrototype"
+
+class ccObject extends ClassPrototype {
+    constructor(props = {}) {
+        super()
+
+        this.props = Object.assign(props, {})
 
         this.config = {
             baseStyleClass: this.saveSafePropertyProps(this.props, 'baseStyleClass', 'cc-fe_srp'),

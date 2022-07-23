@@ -240,16 +240,22 @@ class FilterPanel extends ccObject {
         this.props.options.filter(opt => opt.hasOwnProperty('code') && '' != opt.code).map(option => {
             const key = option.code // console.log(option); // console.log('OLD OPTION CLASS'); // console.log(key);
             // let thisOption = 
-            this.OptionsInstances[key].updateState(
-                {   // NEXT
-                    selected: option.selected,
-                    enabled: option.enabled
-                },
-                {   // PREV
-                    selected: this.OptionsInstances[key].state.selected,
-                    enabled: this.OptionsInstances[key].state.enabled
-                },
-            )
+            if (undefined != this.OptionsInstances[key]) {
+                this.OptionsInstances[key].updateState(
+                    {   // NEXT
+                        selected: option.selected,
+                        enabled: option.enabled
+                    },
+                    {   // PREV
+                        selected: this.OptionsInstances[key].state.selected,
+                        enabled: this.OptionsInstances[key].state.enabled
+                    },
+                )
+            } else {
+                console.log('ITS UNDEFINED');
+                console.log(this.OptionsInstances);
+            }
+            
         })
 
         // // I HAVE TO UPDATE THE FILTER // UPDATE FILTER CLASS

@@ -12,9 +12,20 @@ class FilterSearch extends Filter {
         this.config = {
             ...this.config,
             hasCounter: false,
-            // contentContainer: this.config.baseStyleClass + ' ' + this.config.baseStyleClass + "-search__display-action " + this.props.filterAPIKey,
-            // contentContainerSelector: "." + this.config.baseStyleClass + "__display-action" + "." + this.type,
         }
+  
+        // this.callbacks = {
+        //     ...this.callbacks,,
+        //     Mirror: {
+        //         onSavingMirror: this.saveSafePropertyProps(props, 'onSavingMirror', false),
+        //     }
+        // }
+        // console.log(this);
+
+        // UPDATE THE MIRROR
+        // if (false != this.callbacks.Mirror.onSavingMirror && 'function' == typeof this.callbacks.Mirror.onSavingMirror) {
+        //     this.callbacks.Mirror.onSavingMirror(this.type, this.getRealStringLabel({...this.state.label}))
+        // }
     }
 
     getHtmlJson() {
@@ -42,7 +53,7 @@ class FilterSearch extends Filter {
                     attrs: {
                         class: contentContainer, // 'cc-fe_srp cc-fe_srp-search__display-action'
                     },
-                    content: this.getDefault(label),
+                    content: this.getRealStringLabel(label), // this.getDefault(this.generateLabelStringContent(label)),
                 }
             ]
         }

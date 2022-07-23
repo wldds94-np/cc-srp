@@ -9,6 +9,9 @@ import OptionDestination from "../components/subcomp/OptionDestination"
 // SEARCH FILTER
 import FilterSearch from "../components/subcomp/FilterSearch"
 
+// SEARCH MIRROR
+import SearchMirror from "../components/inc/SearchMirror"
+
 // SERVICES
 // import datePicker from "../modules/datePicker"
 
@@ -20,6 +23,8 @@ class Setup {
 
         // LIST OF ALL PANEL CONTROLLERS
         this.FiltersPanelControllers = []
+        // SEARCH MIRROR
+        this.Mirror = {} // Class TYPE
 
         // console.log('Construct Setup');
         this.isInitializedPromos = false
@@ -37,11 +42,7 @@ class Setup {
 
         const query = this.Router.getQuery() // console.log(query);
         this.Funnel.syncOccupancySearch(data, query) // console.log(this.Funnel);
-
-        console.log('LAST RESYNC BY SETUP');
-        console.log(this.Funnel.filtersData);
-        console.log('QUERY');
-        console.log(query);
+        // console.log('LAST RESYNC BY SETUP'); console.log(this.Funnel.filtersData); / console.log('QUERY'); // console.log(query);
 
         if (this.isInitializedOccSrc) {
             // console.log(this.Funnel); // I have intanciated all classes
@@ -91,10 +92,11 @@ class Setup {
     init() {
         console.log('Initialization..');
 
-        const { search, secondary } = this.Funnel.filtersData
+        const { search, secondary, mirror } = this.Funnel.filtersData
         // console.log(search, secondary);
 
         // Initialize all search components
+        this.Mirror = new SearchMirror(mirror)
         Object.keys(search).map(filterSearchApiKey => {
             switch (filterSearchApiKey) {
                 case 'months':
@@ -103,7 +105,9 @@ class Setup {
                         OptionsInstances: this.createOptionsPanelArray(search[filterSearchApiKey].options, 'code', OptionMonth),
                         FilterClass: new FilterSearch({
                             ...search[filterSearchApiKey].filter,
+                            // callbacks
                             onSaveChoice: this.Router.pingRequestToHash.bind(this.Router),
+                            onSavingMirror: this.Mirror.update.bind(this.Mirror),
                         }),
                         // callbacks
                         onResetPanel: this.Router.resetQuery.bind(this.Router),
@@ -116,6 +120,7 @@ class Setup {
                         FilterClass: new FilterSearch({
                             ...search[filterSearchApiKey].filter,
                             onSaveChoice: this.Router.pingRequestToHash.bind(this.Router),
+                            onSavingMirror: this.Mirror.update.bind(this.Mirror),
                         }),
                         // callbacks
                         onResetPanel: this.Router.resetQuery.bind(this.Router),
@@ -185,29 +190,30 @@ class Setup {
                             class: "cc-fe_srp cc-fe_srp-search"
                         },
                         children: [
-                            {
-                                attrs: {
-                                    class: "cc-fe_srp cc-fe_srp-search_wrap"
-                                },
-                                children: [
-                                    {
-                                        tagName: "span",
-                                        attrs: {
-                                            class: "cc-fe_srp cc-fe_srp-search__info"
-                                        },
-                                        content: '2 adults, Dec 2022, Mediterranean',
-                                    },
-                                    {
-                                        // tagName: "i",
-                                        attrs: {
-                                            class: "cc-fe_srp cc-fe_srp-search__action"
-                                        },
-                                        props: {
-                                            onclick: function (e) { $('.cc-fe_srp-search_display').toggleClass('open') }
-                                        }
-                                    },
-                                ]
-                            },
+                            // {
+                            //     attrs: {
+                            //         class: "cc-fe_srp cc-fe_srp-search_wrap"
+                            //     },
+                            //     children: [
+                            //         {
+                            //             tagName: "span",
+                            //             attrs: {
+                            //                 class: "cc-fe_srp cc-fe_srp-search__info"
+                            //             },
+                            //             content: '2 adults, Dec 2022, Mediterranean',
+                            //         },
+                            //         {
+                            //             // tagName: "i",
+                            //             attrs: {
+                            //                 class: "cc-fe_srp cc-fe_srp-search__action"
+                            //             },
+                            //             props: {
+                            //                 onclick: function (e) { $('.cc-fe_srp-search_display').toggleClass('open') }
+                            //             }
+                            //         },
+                            //     ]
+                            // },
+                            this.Mirror.getHtmlJson(),
                             {
                                 attrs: {
                                     class: "cc-fe_srp cc-fe_srp-search_display"

@@ -2,8 +2,9 @@ const stickyFilter = () => {
     console.log('Init Sticky FIlter');
 
     updateSticky()
+    const breakpoint = 240 // seems good
     /* ========================================== 
-     * scrollTop() >= 180
+     * scrollTop() >= breakpoint
      * Should be equal the the height of the header
      * ========================================== */
 
@@ -12,8 +13,8 @@ const stickyFilter = () => {
     });
 
     function updateSticky() {
-        console.log($(window).scrollTop());
-        if ($(window).scrollTop() >= 180) {
+        // console.log($(window).scrollTop());
+        if ($(window).scrollTop() >= breakpoint) {
             $('.cc-fe_srp.cc-fe_srp-container').addClass('sticky-filter'); // $('nav div').addClass('visible-title');
         }
         else {

@@ -42,8 +42,27 @@
 //@include placeholder;
 @mixin placeholder {
   // sass-lint:disable no-vendor-prefixes
-  ::-webkit-input-placeholder {@content}
-  :-moz-placeholder           {@content}
-  ::-moz-placeholder          {@content}
-  :-ms-input-placeholder      {@content}
+  ::-webkit-input-placeholder {@content};
+  :-moz-placeholder           {@content};
+  ::-moz-placeholder          {@content};
+  :-ms-input-placeholder      {@content};
+}
+
+// hiddenScrollbar
+@mixin hiddenScrollbar {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+// EXCERTP
+@mixin excerpt {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -88,9 +88,14 @@ class Funnel {
                 //     filterPanelProps: {},
                 //     filterPanelOptionsProps: {},
                 // }
+
+                // SearchMirror Data
             },
             secondary: {
                 // ... equal
+            },
+            mirror: {
+
             }
         }
 
@@ -263,6 +268,22 @@ class Funnel {
                         opt.name = durationLabel.replace(/{{\w+}}/, opt.label + ('*' == end ? '+' : ''))
                         opt.ID = start + '-' + end
                         break;
+                    case 'ships':
+                        if (undefined != opt.code && '' != opt.code) {
+                            opt.code = opt.code
+                        } else {
+                            let shipName = opt.name.split(' ')[1], // console.log(opt); console.log(opt.name);
+                                newOptCode = ''
+                            const letters = shipName.split('')
+                            if (shipName == 'Fascinosa') {
+                                newOptCode += letters[0] + letters[2]
+                            } else {
+                                newOptCode += letters[0] + letters[1]
+                            }
+                            opt.code = newOptCode.toUpperCase()
+                        }
+                        opt.ID = opt.code
+                        break;
                     default:
                         options.map(opt => {
                             opt.ID = opt.code
@@ -304,7 +325,7 @@ class Funnel {
                         // console.log(options);
                         break;
                     case 'offers':
-                        console.log(opt);
+                        // console.log(opt);
                         if (opt.hasOwnProperty('isCCFareType') && true == opt.isCCFareType) {
                             subtypePropsOffers['fare'] = {
                                 filterTagKey: '{!tag=offerTag}fareType', // '{!tag=offerTag}fareType={cc*\w+*cc}'
@@ -442,7 +463,7 @@ class Funnel {
                     filter.valorised = filterSearchLabel.length
                     break;
             }
-            console.log(filter); // console.log(type); // console.log(options);
+            // console.log(filter); // console.log(type); // console.log(options);
 
             // ADD THE TYPE IN THE OBJECT
             // this.filtersData[filterLayoutType][options][type] = [options]
@@ -461,6 +482,9 @@ class Funnel {
 
         })
 
+        // Mirror Search
+        let searchMirrorData = {}
+
         // I HAVE TO UPDATE the isFilterPanelResettable
         // with the        
         this.newSecondaryFilters.map(filterType => {
@@ -471,6 +495,14 @@ class Funnel {
             if (this.filtersData.search.hasOwnProperty(type)) {
                 filter = this.filtersData.search[type].filter
                 filterLayoutType += 'search'
+
+                // console.log(this.filtersData.search[type].filter.label);
+                if (!searchMirrorData.hasOwnProperty(type)) {
+                    searchMirrorData[type] = {}
+                }
+                searchMirrorData[type].searchLabel = this.filtersData.search[type].filter.label
+                searchMirrorData[type].defaultFilterValue = this.filtersData.search[type].filter.defaultFilterValue
+
             } else {
                 filter = this.filtersData.secondary[type].filter
                 filterLayoutType += 'secondary'
@@ -478,6 +510,10 @@ class Funnel {
 
             this.filtersData[filterLayoutType][type].panel.isResettable = isFilterPanelResettable
         })
+
+        this.filtersData.mirror.labels = searchMirrorData
+        // this.filtersData.search.mirror = searchMirrorData
+
         console.log('LAST SYNC RESULTS: ');
         console.log(this.filtersData);
     }
@@ -510,7 +546,7 @@ class Funnel {
      * @returns Array
      */
     getVisibleDiscountType(offersOptions) {
-        console.log(offersOptions); console.log(this.specialOffers);
+        // console.log(offersOptions); console.log(this.specialOffers);
         let filtered = []
         offersOptions.filter(opt => {
             if (/* opt.enabled &&  */this.specialOffers.hasOwnProperty(opt.code)) {
@@ -532,7 +568,7 @@ class Funnel {
      * @returns Array
      */
     getVisiblePaxType() {
-        console.log(this.offerDeals);
+        // console.log(this.offerDeals);
         let filtered = []
         Object.keys(this.offerDeals).filter(key => { // onsole.log(this.offerDeals[key]);
 

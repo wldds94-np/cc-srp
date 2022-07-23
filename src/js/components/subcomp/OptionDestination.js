@@ -9,7 +9,7 @@ class OptionDestination extends Option {
             destinationImage: this.saveSafePropertyProps(props, 'destinationImage', ''),
         }
 
-        console.log(this);
+        // console.log(this);
     }
 
     getHtmlJson() {

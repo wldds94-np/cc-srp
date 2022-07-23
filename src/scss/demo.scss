@@ -16,21 +16,28 @@
 
         z-index: 9;
 
-        top: 0;
+        // top: 0;
+        top: -200px;
         // To production ??
-        position: fixed;
-        transition: top 320ms ease-in;
+        // position: fixed;
+        transition: top 420ms linear; // top 320ms ease-in;
 
         &.sticky-filter {
-          transition: top 320ms ease-in;
+          position: fixed;
+
+          transition: top 420ms linear; // top 320ms ease-in;
           top: -64px;
           left: 0;
+
+          .cc-fe_srp-search {
+            background: $greyNatural;
+          }
         }
       }
 
       &-search {
         padding: 24px 20px 14px; // 24px 20px 24px 20px;
-        background: $greyNatural;
+        background: $white; // background: $greyNatural;
         position: relative;
 
         &_wrap {
@@ -41,7 +48,11 @@
           align-items: center;
         }
 
-        &__info {}
+        &__info {
+          max-width: 85%;
+
+          @include excerpt;
+        }
 
         &__action {
           width: 20px;
@@ -116,6 +127,14 @@
               font-size: 1.2rem;
             }
 
+            // Label
+            .cc-fe_srp-filters__action-label {
+              @include excerpt;
+              // white-space: nowrap;
+              // overflow: hidden;
+              // text-overflow: ellipsis;
+            }
+
             &.destinations {
               &>* {
                 &:first-of-type {
@@ -164,6 +183,8 @@
         overflow-x: scroll;
         background: $white;
 
+        @include hiddenScrollbar;
+
         &>* {
           position: relative;
           display: flex;
@@ -186,7 +207,8 @@
             border-color: $greyNatural8;
             padding-right: 15px;
 
-            &, * {
+            &,
+            * {
               font-weight: 700;
             }
 

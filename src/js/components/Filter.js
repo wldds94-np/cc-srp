@@ -49,6 +49,9 @@ class Filter extends ccObject {
             // ON RUN
             FilterPanel: {
                 onOpenCallback: this.saveSafePropertyProps(props, 'onOpenCallback', (...args) => { return }),
+            },
+            Mirror: {
+                onSavingMirror: this.saveSafePropertyProps(props, 'onSavingMirror', false),
             }
         }
 
@@ -98,6 +101,12 @@ class Filter extends ccObject {
                     indexTag: this.subType[typeKey].indexTag,
                 })
             })
+
+            // UPDATE THE MIRROR
+            if (false != this.callbacks.Mirror.onSavingMirror && 'function' == typeof this.callbacks.Mirror.onSavingMirror) {
+                this.callbacks.Mirror.onSavingMirror(this.type, this.getRealStringLabel(this.state.label))
+            }
+
             // console.log(newQueryValues);
             this.callbacks.Router.pingRequest(newQueryValues)
         }
@@ -199,7 +208,7 @@ class Filter extends ccObject {
                     attrs: {
                         class: contentContainer,
                     },
-                    content: this.getDefault(this.generateLabelStringContent(label)), // 'function' == typeof this.transformContent ? this.transformContent() : filterTitleDesktop,
+                    content: this.getRealStringLabel(label), //  this.getDefault(this.generateLabelStringContent(label)), // 'function' == typeof this.transformContent ? this.transformContent() : filterTitleDesktop,
                 },
                 {
                     attrs: {
@@ -213,6 +222,14 @@ class Filter extends ccObject {
         }
         // return {}
     }
+
+    getRealStringLabel(label) {
+        return this.getDefault(this.generateLabelStringContent(label))
+    }
+
+    // getRealStringMirror(search) {
+
+    // }
 
     /**
      * AUX
@@ -255,16 +272,6 @@ class Filter extends ccObject {
         }
         return filterContent
 
-    }
-
-    /**
-     * EQUALITY
-     */
-    arrayEquals(a, b) {
-        return Array.isArray(a) &&
-            Array.isArray(b) &&
-            a.length === b.length &&
-            a.every((val, index) => val === b[index]);
     }
 }
 

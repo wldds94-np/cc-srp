@@ -1,8 +1,10 @@
-class Router {
-    constructor() {
-        console.log('Initialized Router');
+import ClassPrototype from "../abstract/ClassPrototype";
 
-        // this.filtersListClass = []
+class Router extends ClassPrototype {
+    constructor() {
+        super() 
+
+        console.log('Initialized Router');
 
         this.config = {
             equalChar: '='
@@ -19,7 +21,7 @@ class Router {
         // console.log(this);
 
         // // HASHCHANGE 
-        // window.addEventListener('hashchange', this.checkUrl.bind(this))
+        window.addEventListener('hashchange', this.checkUrl.bind(this))
     }
 
     /** SET / GET QUERY */
@@ -194,32 +196,26 @@ class Router {
     // window.location.hash = newHash
     // }
 
-    // checkUrl(e) {
-    //     console.log('The hash has changed!')
-    //     console.log(e);
-    //     console.log(e.newURL);
-    //     const newURL = e.newURL
-    //     const newParams = this.getParamsByHash(newURL)
-    //     // const newQuery = this.getMapQuery(newParams)
-    //     // // let newHash = newURL.slice(newURL.indexOf('#')+1, -1)
-    //     // console.log(newQuery); console.log(newParams);
-    //     // console.log(this.arrayEquals(newQuery, this.query)); // console.log(newQuery == this.query); //console.log(newQuery === this.query);
+    checkUrl(e) {
+        // console.log('The hash has changed!') console.log(e); console.log(e.newURL); // const newURL = e.newURL
+        this.state.params = this.getParamsByHash()
+        const newQuery = this.getMapQuery(this.state.params) // [...this.getMapQuery(newParams)]
 
-    //     this.query = this.getMapQuery(newParams)
-    //     // if (this.arrayEquals(newQuery, this.query)) {
-    //     //     // Nothing else
-    //     // } else {
-    //     //     // Ricreate my query
-    //     //     this.updateUrl()
-    //     // }
-    // }
+        if (this.arrayEquals(newQuery, this.query)) {
+            console.log('ITS EQUALS QUERY');
+            // Nothing else
+        } else {
+            // Ricreate my query
+            this.query = this.getMapQuery(newParams)
+        }
+    }
 
-    // arrayEquals(a, b) {
-    //     return Array.isArray(a) &&
-    //         Array.isArray(b) &&
-    //         a.length === b.length &&
-    //         a.every((val, index) => val === b[index]);
-    // }
+    arrayEquals = function (a, b) {
+        return Array.isArray(a) &&
+            Array.isArray(b) &&
+            a.length === b.length &&
+            a.every((val, index) => val === b[index]);
+    }
 }
 
 export default Router
