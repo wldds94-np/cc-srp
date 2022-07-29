@@ -17,6 +17,10 @@ class Option extends ccObject {
         this.state = {
             selected: this.saveSafePropertyProps(props, 'selected', false),
             enabled: this.saveSafePropertyProps(props, 'enabled', true),
+            error: {
+                hasError: this.saveSafePropertyProps(props, 'hasError', false),
+                errorMsg: this.saveSafePropertyProps(props, 'errorMsg', 'Invalid Input'),
+            }
         }
 
         this.config = {

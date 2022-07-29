@@ -1,8 +1,9 @@
 import ccObject from "../../abstract/ccObject"
+import Error from "./Error"
 
 class DatePicker extends ccObject {
     constructor(props) {
-        super()
+        super(props)
 
         this.props = {
             ...this.props,
@@ -11,6 +12,8 @@ class DatePicker extends ccObject {
             injectabled: this.saveSafePropertyProps(props, 'injectabled', true),
             labels: this.saveSafePropertyProps(props, 'labels', {}),
             endModalTitle: this.saveSafePropertyProps(props, 'endModalTitle', ''),
+            minAge: this.saveSafePropertyProps(props, 'minAge', 'dd/mm/yyyy'),
+            maxAge: this.saveSafePropertyProps(props, 'maxAge', 'dd/mm/yyyy'),
         }
 
         this.config = {
@@ -25,22 +28,147 @@ class DatePicker extends ccObject {
             ...this.state,
             // occupancy: this.saveSafePropertyProps(props, 'occupancy', 'A'),
             guestBirthdates: this.saveSafePropertyProps(props, 'guestBirthdates', ''),
+            error: {
+                hasError: !this.isValidDate(this.saveSafePropertyProps(props, 'guestBirthdates', '')),
+                types: {
+                    empty: {
+                        isOn: !this.validateDOB(this.saveSafePropertyProps(props, 'guestBirthdates', '')),
+                        label: this.saveSafePropertyProps(props, 'emptyErrorLabel', ''),
+                        validator: this.validateDOB.bind(this)
+                    },
+                    minError: {
+                        isOn: !this.validateMax(this.saveSafePropertyProps(props, 'guestBirthdates', '')),
+                        label: this.saveSafePropertyProps(props, 'minErrorLabel', ''),
+                        validator: this.validateMax.bind(this)
+                    },
+                    maxError: {
+                        isOn: !this.validateMin(this.saveSafePropertyProps(props, 'guestBirthdates', '')),
+                        label: this.saveSafePropertyProps(props, 'maxErrorLabel', ''),
+                        validator: this.validateMin.bind(this)
+                    },
+                }
+            }
             // guestAges: this.saveSafePropertyProps(props, 'guestBirthdates', '') != '' ? this.calcAge(this.saveSafePropertyProps(props, 'guestBirthdates', '')) : '',
+        }
+
+        this.Errors = []
+        // this.state.error.types = 
+
+        this.callbacks = {
+            ...this.callbacks,
+            Counter: {
+                // ON RUN - SETTED BY COUNTER -> Passed by FilterPanelOccupancy
+                onChangeInput: this.saveSafePropertyProps(props, 'onChangeInput', (...args) => { return true }),
+            }
         }
 
         console.log('DATEPICKER');
         console.log(this);
     }
 
+    // USE FOR CHECKING THE EMPTY ERROR AND A VALID DATE
+    validateDOB(dob) {
+        console.log(dob); // return true
+        var pattern = /^([0-9]{4}-([0-9]{2})-([0-9]{2}))$/;
+        if (dob == null || dob == "" || !pattern.test(dob)) { // errMessage += "Invalid date of birth\n";
+            return false;
+        } else {
+            return true
+        }
+    }
+
+    validateMin(dob) {
+        const {minAge, /* maxAge */} = this.props // console.log(labels);
+        const guestAges = this.calcAge(dob)
+
+        if (!isNaN(guestAges)) {
+            return guestAges >= minAge
+        } else {
+            return false
+        }
+    }
+
+    validateMax(dob) {
+        const {/* minAge, */ maxAge} = this.props // console.log(labels);
+        const guestAges = this.calcAge(dob)
+
+        if (!isNaN(guestAges)) {
+            return guestAges <= maxAge
+        } else {
+            return false
+        }
+    }
+
+
     inputChange(e) {
         // console.log('CHANGING'); // console.log(e.target.value);
-
         this.setGuestBirthdate(e.target.value)
-        // this.setGuestAge()
+
+        const isValid = this.isValidDate(e.target.value) // !this.validateDOB(e.target.value)
+        this.state.error.hasError = !isValid
+        console.log(this.state.error.hasError);
+
+        Object.keys(this.state.error.types).map(type => {
+            console.log(type, this.state.error.types[type].validator(e.target.value));
+            this.state.error.types[type].isOn = ! (this.state.error.types[type].validator(e.target.value))
+        })
+        
+        console.log(this.state.error.types);
+
+        this.cleanErrors()
+        
+        if (!isValid) {
+            this.addErrors()
+        }
+
+        this.callbacks.Counter.onChangeInput(this.state.error.hasError)
+
+        this.restyleInput()
+    }
+
+    cleanErrors() {
+        // Object.keys(this.state.error.types).map(index => {
+        //     this.state.error.types[index].isOn = false
+        // })
+
+        $('#' + this.config.baseNodeSelector + this.props.index).closest('div').find('small').remove()
+    }
+
+    addErrors() {
+        console.log(this.state.error.types);
+        let types = Object.keys(this.state.error.types).filter(type => this.state.error.types[type].isOn)
+        console.log(types);
+        if (types.length) {
+
+            for (let i = 0; i < 1; i++) {
+                console.log($('#' + this.config.baseNodeSelector + this.props.index));
+                $('#' + 'cc-age-picker-value-' + this.props.index).closest('div').append('<small class="cc-srp_fe-input-error">' + this.state.error.types[types[i]].label + '</small>')
+            }
+        }
+    }
+
+    isValidDate(dob) {
+        const {minAge, maxAge} = this.props // console.log(labels);
+        const guestAges = this.calcAge(dob)
+        if (!isNaN(guestAges)) {
+            console.log(guestAges);
+            console.log(minAge, maxAge);
+            console.log(guestAges >= minAge && guestAges <= maxAge);
+            const isValid = (guestAges >= minAge && (maxAge > 0 ? guestAges <= maxAge : true)) && this.validateDOB(dob)
+            console.log(isValid);
+            return isValid
+        } else {
+            return false
+        }
+        
+    }
+
+    restyleInput() {
+        // INSERT / REMOVE THE ERROR
     }
 
     getHtmlJson() {
-        const {baseStyleClass, baseNodeSelector, labelsType} = this.config
+        const {baseStyleClass, baseNodeSelector, labelsType, dateFormat} = this.config
         const {index, endModalTitle} = this.props
         const {guestBirthdates} = this.state
         return {
@@ -72,7 +200,7 @@ class DatePicker extends ccObject {
                                         class: 'cc-age-picker input-container',
                                         type: 'date',
                                         name: 'cc-age-picker',
-                                        placeholder: 'dd / mm / yyyy',
+                                        placeholder: dateFormat, // 'dd / mm / yyyy',
                                         value: guestBirthdates
                                     },
                                     props: {

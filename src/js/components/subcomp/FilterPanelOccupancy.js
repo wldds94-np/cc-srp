@@ -1,7 +1,7 @@
 import FilterPanel from "../FilterPanel";
 
 import Counter from "../inc/Counter";
-import DatePicker from "../inc/DatePicker";
+// import DatePicker from "../inc/DatePicker";
 
 class FilterPanelOccupancy extends FilterPanel {
     constructor(props) {
@@ -23,6 +23,7 @@ class FilterPanelOccupancy extends FilterPanel {
             const counterObj = {
                 ...counter,
                 onBeforeAlterCounter: this.onBeforeAlterCounterCallback.bind(this),
+                onUpdateValidation: this.updateValidation.bind(this)
             }
             this.CounterInstances[counter.type] = new Counter(counterObj)
         })
@@ -97,22 +98,28 @@ class FilterPanelOccupancy extends FilterPanel {
     }
 
     savePanel() {
-        console.log('Save Panel By Occupancy Prototype'); // 
-        console.log(this);
+        this.updateValidation()
+        if (this.state.isValid) {
+            console.log('Save Panel By Occupancy Prototype'); // 
+            console.log(this);
+    
+            // UPDATE THIS FILTER SEARCH VALUE
+            this.state.filterSearchValue = this.getSearchPanel() // search
+            
+            // CREATE THE ARRAYS FOR SEARCH FILTER
+            let searchFilter = this.getSearchFilter(this.state.filterSearchValue)
+            
+            // GENERATE THE LABELS ARRAY FOR FILTER
+            let labels = this.getLabelsFilterByOccupancy(searchFilter.occupancy)
+    
+            this.Filter.registerChoice(
+                labels,
+                searchFilter, // this.valueTransformCallback(updatedFilterValue),
+            ) 
+        } else {
 
-        // UPDATE THIS FILTER SEARCH VALUE
-        this.state.filterSearchValue = this.getSearchPanel() // search
-        
-        // CREATE THE ARRAYS FOR SEARCH FILTER
-        let searchFilter = this.getSearchFilter(this.state.filterSearchValue)
-        
-        // GENERATE THE LABELS ARRAY FOR FILTER
-        let labels = this.getLabelsFilterByOccupancy(searchFilter.occupancy)
+        }
 
-        this.Filter.registerChoice(
-            labels,
-            searchFilter, // this.valueTransformCallback(updatedFilterValue),
-        ) 
     }
 
     updatePanelOccState(props) {
@@ -209,6 +216,21 @@ class FilterPanelOccupancy extends FilterPanel {
         ]
     }
     
+    // OVERRIDE
+    getObjsValidation() {
+        let datePickers = []
+        let counter = 0
+        // console.log(this.CounterInstances);//
+        Object.keys(this.CounterInstances).map(type => {
+            // console.log(this.CounterInstances[type]); console.log(this.CounterInstances[type].DatePickersInstances); console.log(this.CounterInstances[type].DatePickersInstances.length);
+            for (let i = 0; i < this.CounterInstances[type].DatePickersInstances.length; i++) {
+                // console.log(this.CounterInstances[type].DatePickersInstances[i]);
+                datePickers[counter] = this.CounterInstances[type].DatePickersInstances[i]
+                counter++            
+            }            
+        })
+        return datePickers
+    }
 }
 
 export default FilterPanelOccupancy

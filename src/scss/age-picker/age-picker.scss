@@ -120,7 +120,8 @@
         .input-container {
             width: 100%;
 
-            input[type="tel"], input[type="date"] {
+            input[type="tel"],
+            input[type="date"] {
                 width: 100%;
                 border: 1px solid $greyNatural4;
                 padding: 16px;
@@ -141,12 +142,37 @@
                     color: $greyNatural6;
                 }
 
-                &::-webkit-calendar-picker-indicator{
+                &::-webkit-calendar-picker-indicator {
                     display: none;
                 }
 
-                &::-webkit-input-placeholder{ 
+                &::-webkit-input-placeholder {
                     visibility: hidden;
+                }
+            }
+
+            small {
+                color: $red;
+                font-weight: 400;
+                font-size: .6875rem;
+                line-height: 1.1875rem;
+                letter-spacing: .03em;
+
+                &.cc-srp_fe-input-error {      
+                    font-family: Poppins-400, Open-Sans-400, Arial, Helvetica, sans-serif;
+                    margin-top: 8px;
+                    margin-bottom: 12px;
+                    text-align: left;
+                    display: block;
+                    position: relative;
+
+                    &::before {
+                        font-family: Icomoon;
+                        font-size: 1rem;
+                        vertical-align: middle;
+                        margin: 0 5px;
+                        content: "\E973";
+                    }
                 }
             }
         }

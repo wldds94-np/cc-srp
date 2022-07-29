@@ -392,6 +392,11 @@ class Funnel extends ClassPrototype {
                         injectabled: false,
                         labels: occTypeLabels, // ['A'],
                         endModalTitle: this.searchFilters.occupancy.modalAddKid.title,
+                        minAge: 18,
+                        maxAge: -1,
+                        emptyErrorLabel: this.searchFilters.occupancy.labels.emptyErrorLabel, // '',
+                        minErrorLabel: this.searchFilters.occupancy.labels.minErrorLabel, // '',
+                        maxErrorLabel: this.searchFilters.occupancy.labels.maxErrorLabel, // '',
                     },
                     search: occupancyOptions.find(opt => opt.datePickerType == 'A').search,
                 },
@@ -405,6 +410,11 @@ class Funnel extends ClassPrototype {
                         injectabled: true,
                         labels: occTypeLabels, // {...occTypeLabels['C'], ...occTypeLabels['I']},
                         endModalTitle: this.searchFilters.occupancy.modalAddKid.title,
+                        minAge: 0,
+                        maxAge: 17,
+                        emptyErrorLabel: this.searchFilters.occupancy.labels.emptyErrorLabel, // '',
+                        minErrorLabel: this.searchFilters.occupancy.labels.minErrorLabel, // '',
+                        maxErrorLabel: this.searchFilters.occupancy.labels.maxErrorLabel, // '',
                     },
                     search: occupancyOptions.filter(opt => opt.datePickerType == 'C').reduce((prev, next) => {
                         return [...prev, ...next.search]

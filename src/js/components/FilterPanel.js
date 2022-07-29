@@ -28,24 +28,30 @@ class FilterPanel extends ccObject {
         }
 
         // CLASSES
-        this.OptionsInstances = this.saveSafePropertyProps(props, 'OptionsInstances', []), // props.options,
-            this.Filter = this.saveSafePropertyProps(props, 'FilterClass', {}), // props.options,
-            this.Filter.callbacks.FilterPanel.onOpenCallback = this.onOpenPanel.bind(this)
+        this.OptionsInstances = this.saveSafePropertyProps(props, 'OptionsInstances', []) // props.options,
+        this.Filter = this.saveSafePropertyProps(props, 'FilterClass', {}) // props.options,
+        this.Filter.callbacks.FilterPanel.onOpenCallback = this.onOpenPanel.bind(this)
 
         this.state = {
             filterSearchLabel: this.saveSafePropertyProps(props, 'filterSearchLabel', []), // [],
             filterSearchValue: this.saveSafePropertyProps(props, 'filterSearchValue', []), // [],
             filterSearchMemory: [],
             isResettable: this.saveSafePropertyProps(props, 'isResettable', false), // [],
+            isValid: this.saveSafePropertyProps(props, 'isValid', true), // [],
         }
         if (Array.isArray(props.options)) {
             // console.log(props.options); console.log(this.OptionsInstances);
             props.options.map(opt => {
                 this.OptionsInstances[opt.code].callbacks.FilterPanel.onClickCallback = this.onClickOptionCallback.bind(this)
+                this.OptionsInstances[opt.code].callbacks.FilterPanel.onUpdateValidation = this.updateValidation.bind(this)
             })
         }
 
-        // Pensare come aggiungere priority su Classi "parallele"
+        // // VALIDITY
+        // this.validation = {
+        //     updateValidation: this.updateValidation.bind(this)
+        // }
+
         // Su ChildClass -> OK stack normale (al bisogno overriding)
         this.update = {
             callbacks: {},
@@ -66,6 +72,8 @@ class FilterPanel extends ccObject {
             close: this.config.htmlLabels.cancel,
             onClose: this.closePanel.bind(this),
             onSave: this.saveClosePanel.bind(this),
+            type: this.type,
+            isSafe: this.state.isValid,
         })
 
         // console.log('FilterPanel');
@@ -74,7 +82,7 @@ class FilterPanel extends ccObject {
 
     // OVERRIDDEN BEFORE UPDATE THE SEARCH VALUE
     transformFilterSearchValue(el, newEl = '', prevCopy = []) {
-        return {...el}
+        return { ...el }
     }
     // transformFilterSearchValue(el, newEl = '', prevCopy = []) {
     //     return el
@@ -124,12 +132,15 @@ class FilterPanel extends ccObject {
             // console.log(this); // const updatedFilterValue = this.transformFilterSearchValue(this.state.filterSearchValue, optCode)
             this.state.filterSearchMemory = { ...this.transformFilterSearchValue(this.state.filterSearchMemory, optCode) }
         }
+
+        // UPDATE VALIDATION
+
     }
 
     // OVERRIDDEN
     getFilterValueBySearch(updatedFilterValue) {
         return updatedFilterValue
-    }   
+    }
     // OVERRIDDEN
     getLabelValueBySearch(updatedFilterValue, callback = this.transformFilterLabelValue) {
         console.log('getLabelValueBySearch BY PANEL');
@@ -183,18 +194,24 @@ class FilterPanel extends ccObject {
 
     saveClosePanel(e) {
         e.preventDefault() // 
-        console.log('You Save & Close the filters: ' + this.type);
+        console.log('You Save & Close the filters: ' + this.type)
 
-        this.closeStylePanel() // console.log('You want ressend Filter Value by Class List to Router??');
+        this.updateValidation()
 
-        this.savePanel()
+        if (this.state.isValid) {
+            this.closeStylePanel() // console.log('You want ressend Filter Value by Class List to Router??');
+
+            this.savePanel()
+        } else {
+            console.log('Can not send the inputs - INVALID ARGS');
+        }
+        
     }
 
     savePanel() {
         // RESET THE MEMORY
         const memory = this.state.filterSearchMemory
-        // this.state.filterSearchValue = memory
-        // this.state.filterSearchMemory = []
+        // this.state.filterSearchValue = memory // this.state.filterSearchMemory = []
 
         const updatedLabelValue = this.getLabelValueBySearch(memory) // console.log(updatedLabelValue);
 
@@ -232,7 +249,7 @@ class FilterPanel extends ccObject {
         // FOR THE MEMORY AND RETURN TO THE INTIAL RESYNC
         this.props.options = this.saveSafePropertyProps(props, 'options', [])
         console.log(this); console.log(this.state.filterSearchValue);
-        
+
         this.updateStyleResettable()
 
         // Start the callback stack
@@ -354,6 +371,45 @@ class FilterPanel extends ccObject {
         }
     }
 
+    /** VALIDATION */
+    /** SET GET */
+    setIsValid(valid) {
+        this.state.isValid = valid
+    }
+
+    updateValidation() {
+        
+        const isValid = this.isValidPanel()
+
+        this.setIsValid(isValid)
+
+        // UPDATE STYLE AND OTHER PROPS / CLASSES
+        this.TopHeader.setIsSafe(isValid)
+    }
+
+    isValidPanel() {
+        const objs = this.getObjsValidation() // this.OptionsInstances
+
+        const isNotValid = Object.keys(objs).reduce((prev, next) => {
+            console.log(objs[next].state.error.hasError);
+            return prev || objs[next].state.error.hasError
+        }, false) // 
+        console.log(isNotValid);
+
+        return !isNotValid
+
+        // const isValid = Object.keys(objs).reduce((prev, next) => {
+        //     return prev && !objs[next].state.error.hasError
+        // }, true) // 
+        // console.log(isValid);
+
+        // return isValid
+    }
+
+    // OVERRIDDEN
+    getObjsValidation() {
+        return this.OptionsInstances
+    }
 }
 
 export default FilterPanel

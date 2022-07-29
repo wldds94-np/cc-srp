@@ -36,6 +36,10 @@
                     &:last-of-type {
                         color: $turquoise;
                         border-color: $turquoise;
+
+                        &.disabled {
+                            opacity: .5;
+                        }
                     }
                 }
             }

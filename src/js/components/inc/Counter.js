@@ -25,10 +25,7 @@ class Counter extends ccObject {
             value: this.saveSafePropertyProps(props, 'value', 0),
             maxValue: this.saveSafePropertyProps(props, 'maxValue', 4),
             search: this.saveSafePropertyProps(props, 'search', []),
-        }
-
-        this.DatePickersInstances = this.generateNewDatePickersInstances() // []
-        
+        }       
 
         this.callbacks = {
             ...this.callbacks,
@@ -36,8 +33,12 @@ class Counter extends ccObject {
                 // ON RUN - SETTED BY FilterPanel
                 onBeforeAlterCounter: this.saveSafePropertyProps(props, 'onBeforeAlterCounter', (...args) => { return }),
                 onDetractAlterCounter: this.saveSafePropertyProps(props, 'onDetractAlterCounter', (...args) => { return }),
+                onUpdateValidation: this.saveSafePropertyProps(props, 'onUpdateValidation', (...args) => { return }),
             }
         }
+
+        // DATE PICKERS CLASSES
+        this.DatePickersInstances = this.generateNewDatePickersInstances() // []
 
         console.log('COUNTER');
         console.log(this);
@@ -49,7 +50,7 @@ class Counter extends ccObject {
      */
     generateNewDatePickersInstances() {
         let res = []
-
+        console.log(this.callbacks);
         const length = this.state.search.length
         for (let i = 1; i <= length; i++) {
             res.push(
@@ -58,10 +59,16 @@ class Counter extends ccObject {
                     index: i,
                     counterType: this.props.type,
                     guestBirthdates: this.state.search[i - 1].guestBirthdates,
+                    onChangeInput: this.onChangeInput.bind(this)
                 }))
         }
 
         return res
+    }
+
+    onChangeInput(isValid) {
+        console.log(isValid);
+        this.callbacks.FilterPanel.onUpdateValidation()
     }
 
     deleteDatePicker(index = -1) {
@@ -143,6 +150,7 @@ class Counter extends ccObject {
                 index: lenght + 1,
                 counterType: this.props.type,
                 guestBirthdates: datePicker.labels[this.props.type].subtypeOption.guestBirthdates,
+                onChangeInput: this.onChangeInput.bind(this),
             })
             // this.deleteDatePicker()
             this.restyleOption()
@@ -158,6 +166,8 @@ class Counter extends ccObject {
         if (false != withFocus) {
             $(this.DatePickersInstances[index].config.inputNodeSelector).focus()
         }
+
+        this.callbacks.FilterPanel.onUpdateValidation()
     }
 
     /**
