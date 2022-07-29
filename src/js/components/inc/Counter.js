@@ -66,8 +66,8 @@ class Counter extends ccObject {
         return res
     }
 
-    onChangeInput(isValid) {
-        console.log(isValid);
+    onChangeInput(/* isValid */) {
+        // console.log(isValid);
         this.callbacks.FilterPanel.onUpdateValidation()
     }
 
@@ -124,6 +124,8 @@ class Counter extends ccObject {
 
             this.deleteDatePicker()
             this.restyleOption()
+
+            this.onChangeInput()
         }
     }
 

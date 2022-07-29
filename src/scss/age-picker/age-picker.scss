@@ -163,14 +163,15 @@
                     margin-top: 8px;
                     margin-bottom: 12px;
                     text-align: left;
-                    display: block;
+                    display: flex;
                     position: relative;
 
                     &::before {
                         font-family: Icomoon;
                         font-size: 1rem;
                         vertical-align: middle;
-                        margin: 0 5px;
+                        margin: 0 10px 0 5px;
+                        align-self: center;
                         content: "\E973";
                     }
                 }

@@ -27,7 +27,7 @@ class OptionOccupancy extends Option {
             }
         }
 
-        console.log(this);
+        // console.log(this);
     }
 
     updateOptionOccupancyState(props) {

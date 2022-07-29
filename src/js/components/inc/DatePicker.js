@@ -121,7 +121,7 @@ class DatePicker extends ccObject {
             this.addErrors()
         }
 
-        this.callbacks.Counter.onChangeInput(this.state.error.hasError)
+        this.callbacks.Counter.onChangeInput(/* this.state.error.hasError */)
 
         this.restyleInput()
     }
