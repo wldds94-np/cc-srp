@@ -83,6 +83,9 @@
                         width: 60px;
                         position: relative;
                         background: white;
+                        text-align: center;
+                        padding: 0;
+                        border: none;
 
                         span {
                             z-index: 1;
@@ -90,7 +93,9 @@
                         }
                     }
 
-                    /* &.selected,  */&.start, &.end {
+                    /* &.selected,  */
+                    &.start,
+                    &.end {
                         button {
                             color: #fff;
                             background-color: #0091f0;

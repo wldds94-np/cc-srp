@@ -1,5 +1,8 @@
-class Funnel {
+import ClassPrototype from "../abstract/ClassPrototype"
+
+class Funnel extends ClassPrototype {
     constructor() {
+        super()
         // configs HTML JS VAR  // console.log(configs); // EMPTY -> console.log(configs.srpFilters);
         const { taxCurrencyCodes } = configs
         this.taxCurrencyCodes = taxCurrencyCodes
@@ -8,7 +11,8 @@ class Funnel {
         this.memberLoyaltyLevel = memberLoyaltyLevel
 
         // FILTERS KEY OF SRP - We can use dynamic array by the responses ?? THINK!
-        this.filtersKey = ['departures', 'portOfCalls', "ships", "durations", 'flightRequired', 'offers', "destinations", "months"] // ['departures', 'portOfCalls', "destinations", "months", "offers"]
+        this.filtersKey = ['departures', 'portOfCalls', "ships", "durations", 'flightRequired', 'offers', "destinations", "months", "occupancy",] // ['departures', 'portOfCalls', "destinations", "months", "offers"]
+        // this.filtersKey = ["occupancy", 'departures'/*, "months", */] // this.filtersKey = [/* 'departures', 'offers',  */"occupancy",]
 
         // SRData is printed in HTML DOM by System
         // Retrieve the data of searchResultsV2
@@ -64,7 +68,7 @@ class Funnel {
             },
         }
         // this.searchData = {}
-        // console.log(this.searchFilters);
+        console.log(this.searchFilters);
 
         // SECONDARY FILTER - ARRAY | The secondary filters // embarkPort - Duration - Ships - Offers - Flight+Cruis - PortsOfCall
         // FILTER LABEL
@@ -78,7 +82,7 @@ class Funnel {
         ---- USE THIS filterTagKey FOR MERGE SELECTED VALUE
          */
         this.SRPDataSecondaryFilters = this.SRPData.attributes.header.secondaryFilters // USE THIS FOR THE LABEL
-        // console.log(this.SRPDataSecondaryFilters);
+        console.log(this.SRPDataSecondaryFilters);
 
         // THE PARAMETERS OF CLASSES - minus callbacks
         this.filtersData = {
@@ -95,7 +99,7 @@ class Funnel {
                 // ... equal
             },
             mirror: {
-
+                labels: {}
             }
         }
 
@@ -107,7 +111,7 @@ class Funnel {
         // DISCOUNTS
         this.specialOffers = [] // specialOffers // console.log(this.specialOffers);
 
-        // Catch the request for initializa the occupancy
+        // Catch the request for initialize the occupancy
         this.promosBestPrice = {} // ARGS OF THE REQUEST - NOT THE RESPONSE
         // OCCUPANCY RESPONSE DATA
 
@@ -171,14 +175,256 @@ class Funnel {
 
     }
 
-    syncBestPrice(data) {
+    syncBestPrice(data, query) {
         // Catch the request ARGS of Best Price for OCCUPANCY & PRIORITY(sorting)
         console.log('Sync BestPrice...'); // console.log(data); // console.log(JSON.parse(data.body))
+        // console.log('QUERY:'); console.log(query);
 
-        this.promosBestPrice = JSON.parse(data.body)
-        // console.log(this.promosBestPrice);
+        if (!this.filtersKey.includes('occupancy')) {
+            return
+        }
+
+        // BASE QUERY EXAMPLE -> &occupancy_EUR_anonymous=AAI&guestAges=30,30,1&guestBirthdates=1992-07-23,1992-07-23,2021-01-12
+        // SORT QUERY EXAMPLE group.sort=departDate%20asc
+        const promosBestPriceCatched = JSON.parse(data.body)
+        // Not use this Period -> use the query of Router for set months (Period) initial value 
+        // The value of the request of occupancy (e.q. AA or AAI or AAC ecc)
+        const { Occupancy } = promosBestPriceCatched.Cruise // console.log(Occupancy.split(''));
+        const { Priority } = promosBestPriceCatched
+
+        this.promosBestPrice = {
+            Occupancy,
+            Priority,
+        } // console.log(promosBestPriceCatched); console.log(this.promosBestPrice); // console.log(this.taxCurrencyCodes); console.log(this.memberLoyaltyLevel);
+        // console.log(promosBestPriceCatched); // console.log(this.searchFilters.occupancy);
+
+        // IS RESETTABLE ??  CHECK THE DIFFERENT BY DEFAULT
+        let occIsResettable = false
+        if (Occupancy != 'AA') {
+            occIsResettable = true
+        }
+
+        // ADJUST OPTIONS
+        const occTypeLabels = {
+            A: {
+                singular: this.searchFilters.occupancy.labels.adultSingular,
+                plural: this.searchFilters.occupancy.labels.adultPlural,
+                subtypeOption: {
+                    guestAges: 30,
+                    guestBirthdates: this.getDateByYear(30),
+                },
+                range: {
+                    min: 18,
+                    max: -1,
+                }
+            },
+            C: {
+                singular: this.searchFilters.occupancy.labels.childSingular,
+                plural: this.searchFilters.occupancy.labels.childPlural,
+                subtypeOption: {
+                    guestAges: '', // 3,
+                    guestBirthdates: '', // this.getDateByYear(3),
+                },
+                range: {
+                    min: 2,
+                    max: 17,
+                },
+            },
+            I: {
+                singular: this.searchFilters.occupancy.labels.infantSingular,
+                plural: this.searchFilters.occupancy.labels.infantPlural,
+                subtypeOption: {
+                    guestAges: '', // 1,
+                    guestBirthdates: '', // this.getDateByYear(1),
+                },
+                range: {
+                    min: 0,
+                    max: 1,
+                },
+            },
+        }
+        let occupancyOptions = []
+        const occupancySplitted = Occupancy.split('')
+
+        // let occPanelSearchFilterValue = [] - NOT USED
+        let occupancyObjsSearchFilterValue = [] // Array of object [{occupancy: A, guestAges: ..., guestBirthdates}]
+        let occupancyPanelSearchFilterValue = []
+
+        Object.keys(occupancySplitted).map(index => {
+            let occSrcObj = {}
+
+            let guestAgesArray = undefined != query['guestAges'] ? query['guestAges'].split(',') : [] // console.log(guestAgesArray[index]);
+            let guestBirthdatesArray = undefined != query['guestBirthdates'] ? query['guestBirthdates'].split(',') : []
+
+            occSrcObj.occupancy = occupancySplitted[index]
+            occSrcObj.guestAges = null != guestAgesArray[index] ? guestAgesArray[index] : occTypeLabels[occupancySplitted[index]].subtypeOption.guestAges
+            occSrcObj.guestBirthdates = null != guestBirthdatesArray[index] ? guestBirthdatesArray[index] : this.getDateByYear(occSrcObj.guestAges)
+
+            occupancyObjsSearchFilterValue.push(occSrcObj)
+            // console.log(index);
+            // PANEL
+            if (!occupancyPanelSearchFilterValue.hasOwnProperty('occupancy')) {
+                occupancyPanelSearchFilterValue['occupancy'] = [] // filterSearchValue[type].push(opt.code)
+            }
+            occupancyPanelSearchFilterValue['occupancy'].push(occupancySplitted[index])
+            if (!occupancyPanelSearchFilterValue.hasOwnProperty('guestAges')) {
+                occupancyPanelSearchFilterValue['guestAges'] = [] // filterSearchValue[type].push(opt.code)
+            }
+            occupancyPanelSearchFilterValue['guestAges'].push(occSrcObj.guestAges)
+            if (!occupancyPanelSearchFilterValue.hasOwnProperty('guestBirthdates')) {
+                occupancyPanelSearchFilterValue['guestBirthdates'] = [] // filterSearchValue[type].push(opt.code)
+            }
+            occupancyPanelSearchFilterValue['guestBirthdates'].push(occSrcObj.guestBirthdates)
+        })
+        // console.log(occupancyObjsSearchFilterValue);
+        // console.log(occupancyPanelSearchFilterValue);
+
+        let occupancySearchLabel = [] // FOR THE FILTER SEARCH LABEL -> Array of String
+        // let countersValues = {} // FOR THE COUNTER INITIAL VALUE
+        this.searchFilters.occupancy.attributes.options.map(opt => {
+            // console.log(opt);
+            let newLabel = opt.label + " " + opt.range.replace(/{{\w+}}/, '0').replace(/\{\{\w+\}\}/, opt.max).replaceAll(' ', '')
+            opt.realLabel = opt.label
+            opt.name = newLabel
+            opt.ID = opt.type
+            opt.code = opt.type
+            opt.parentType = 'occupancy'
+            opt.datePickerType = opt.type == 'A' ? opt.type : 'C'
+            // opt.datePickerActive = opt.type == 'A' ? false : true
+            opt.enabled = true
+            opt.selected = false
+
+            // LABELS SINGULAR / PLURAL
+            opt.singular = occTypeLabels[opt.type].singular
+            opt.plural = occTypeLabels[opt.type].plural
+
+            // VALUE AND LABEL FILTER
+            let occStringLabel = ''
+            opt.value = this.countIndexInArray(occupancySplitted, opt.type) //
+            if (opt.value > 0) {
+                // countersValues[opt.type] = opt.value
+                occStringLabel += opt.value + " " + (opt.value > 1 ? occTypeLabels[opt.type].plural : occTypeLabels[opt.type].singular)
+                // if (opt.value > 1) { occStringLabel += opt.value + " " + occTypeLabels[opt.type].plural } 
+                // else { occStringLabel += opt.value + " " + occTypeLabels[opt.type].singular }
+                occupancySearchLabel.push(occStringLabel)
+            }
+
+            opt.search = occupancyObjsSearchFilterValue.filter(obj => { return obj.occupancy == opt.type }) // console.log(obj); 
+            occupancyOptions.push(opt)
+        })
+
+        // Set the OCCUPANCY MIRROR
+        if (!this.filtersData.mirror.hasOwnProperty('labels')) {
+            this.filtersData.mirror.labels = {}
+        }
+        const defGuests = this.searchFilters.occupancy.defaultGuests
+        const defaultGuestsFilterValue = defGuests + " " + occTypeLabels.A.plural
+        this.filtersData.mirror.labels.occupancy = {
+            defaultFilterValue: defaultGuestsFilterValue,
+            searchLabel: occupancySearchLabel,
+        }
+
+        this.filtersData.search.occupancy.options = occupancyOptions
+
+        // ADJUST FILTER
+        let filter = {} //
+        let searchOccFilter = this.searchFilters.occupancy.filter
+
+        filter = {
+            ...searchOccFilter,
+            defaultFilterValue: defaultGuestsFilterValue,
+            realFilterTagKey: searchOccFilter.filterTagKey,
+            filterTagKey: searchOccFilter.filterTagKey.replace(/\{\{\w+\}\}/, this.taxCurrencyCodes).replace(/\{\{\w+\}\}/, this.memberLoyaltyLevel),
+        }
+        // console.log(filter);
+        filter.subType = {
+            occupancy: {
+                filterTagKey: filter.filterTagKey, // '{!tag=offerTag}fareType={cc*\w+*cc}'
+                filterTagValue: '{cc*filterSearch*cc}',
+                regex: /\{cc\*filterSearch\*cc\}/,
+                indexTag: false,
+                valueQuerySeparator: '',
+            },
+            guestAges: {
+                filterTagKey: 'guestAges', // '{!tag=offerTag}fareType={cc*\w+*cc}'
+                filterTagValue: '{cc*filterSearch*cc}',
+                regex: /\{cc\*filterSearch\*cc\}/,
+                indexTag: false,
+                valueQuerySeparator: ',',
+            },
+            guestBirthdates: {
+                filterTagKey: 'guestBirthdates', // '{!tag=offerTag}fareType={cc*\w+*cc}'
+                filterTagValue: '{cc*filterSearch*cc}',
+                regex: /\{cc\*filterSearch\*cc\}/,
+                indexTag: false,
+                valueQuerySeparator: ',',
+            },
+        }
+
+        filter.label = occupancySearchLabel
+        let searchFilter = []
+        occupancyObjsSearchFilterValue.map(src => {
+            Object.keys(src).map(subtype => {
+                if (!Array.isArray(searchFilter[subtype])) {
+                    searchFilter[subtype] = []
+                }
+                searchFilter[subtype].push(src[subtype]) // console.log(subtype);
+            }) // console.log(src);
+        })
+        filter.search = searchFilter //  occupancyPanelSearchFilterValue //  occupancyObjsSearchFilterValue
+
+        // PREPARE PANEL
+        this.filtersData.search.occupancy.panel = {
+            filterSearchValue: occupancyObjsSearchFilterValue, // occupancyPanelSearchFilterValue, // filterSearchValue,
+            filterSearchLabel: [], // filterSearchLabel,
+            labels: this.childAttributes.labels, // GENERIC LABELS FOT TOPHeader ecc
+            type: 'occupancy',
+            options: occupancyOptions,
+            maxOptions: this.searchFilters.occupancy.maxGuests,
+            counters: [
+                {
+                    type: 'A',
+                    minValue: 1,
+                    maxValue: this.searchFilters.occupancy.maxGuests - occupancySplitted.length,
+                    value: Number(this.countIndexInArray(occupancyPanelSearchFilterValue.occupancy, 'A')),
+                    labelName: occupancyOptions.filter(opt => opt.type == 'A').reduce((prev, next) => { return prev + next.name }, ''),
+                    datePicker: {
+                        injectabled: false,
+                        labels: occTypeLabels, // ['A'],
+                        endModalTitle: this.searchFilters.occupancy.modalAddKid.title,
+                    },
+                    search: occupancyOptions.find(opt => opt.datePickerType == 'A').search,
+                },
+                {
+                    type: 'C',
+                    minValue: 0,
+                    maxValue: this.searchFilters.occupancy.maxGuests - occupancySplitted.length,
+                    value: Number(this.countIndexInArray(occupancyPanelSearchFilterValue.occupancy, 'C') + this.countIndexInArray(occupancyPanelSearchFilterValue.occupancy, 'I')),
+                    labelName: occupancyOptions.filter(opt => opt.type == 'C').reduce((prev, next) => { return prev + next.name }, ''),
+                    datePicker: {
+                        injectabled: true,
+                        labels: occTypeLabels, // {...occTypeLabels['C'], ...occTypeLabels['I']},
+                        endModalTitle: this.searchFilters.occupancy.modalAddKid.title,
+                    },
+                    search: occupancyOptions.filter(opt => opt.datePickerType == 'C').reduce((prev, next) => {
+                        return [...prev, ...next.search]
+                    }, []),
+                }
+            ],
+            // limits: {}
+        }
+
+        this.filtersData.search.occupancy.panel.isResettable = occIsResettable
+        // console.log(this.filtersData.search.occupancy); // console.log(this.searchFilters.occupancy);
+        this.filtersData.search.occupancy.filter = filter
+        // console.log(this.filtersData); 
         this.isInitializedBestPrc = true
     }
+
+    // getSumValue(array, type = []) {
+    //     let sum = 0
+    //     array.map
+    // }
 
     syncOccupancySearch(data, query) {
         // I HAVE TO PREPARE THE ALL DATA FOR THE FilterPanel INSTANCE
@@ -195,12 +441,11 @@ class Funnel {
             }
             return false
         })
-        // Add the occupancy 
-        // this.newSecondaryFilters.push(this.getFilterBySRPByKey('occupancy')) // console.log(this.newSecondaryFilters);
+        // console.log(this.newSecondaryFilters);
+        // Add the occupancy  // this.newSecondaryFilters.push(this.searchFilters.occupancy)
 
         let isFilterPanelResettable = false
-        this.newSecondaryFilters.map(optionsObject => { // 
-            // console.log(optionsObject);
+        this.newSecondaryFilters.map(optionsObject => { // console.log(optionsObject);
 
             // SEARCH PANEL & FILTER VARIABLES
             let filterSearchValue = []
@@ -366,7 +611,7 @@ class Funnel {
 
                             subtypePropsOffers['discount'] = {
                                 filterTagKey: '{!tag=offerTag}' + indexTag + '{cc*filterSearch*cc}', // '{!tag=offerTag}campaignId_EUR_{cc*\w+*cc}=anonymous'
-                                filterTagValue: 'anonymous',
+                                filterTagValue: this.memberLoyaltyLevel,
                                 regex: /\{cc\*filterSearch\*cc\}/,// /{\c+\*/, // \w+\c+\*}
                                 indexTag: indexTag,
                             }
@@ -447,6 +692,8 @@ class Funnel {
                 case 'offers':
                     filter.subType = { ...subtypePropsOffers }
                     filter.search = valuesArrayOptions
+                    filter.label = filterSearchLabel
+                    filter.valorised = filterSearchLabel.length
                     break;
                 default:
                     filter.subType = []
@@ -485,7 +732,7 @@ class Funnel {
         // Mirror Search
         let searchMirrorData = {}
 
-        // I HAVE TO UPDATE the isFilterPanelResettable
+        // I HAVE TO UPDATE the isFilterPanelResettable        
         // with the        
         this.newSecondaryFilters.map(filterType => {
             const { type } = filterType
@@ -508,11 +755,16 @@ class Funnel {
                 filterLayoutType += 'secondary'
             }
 
-            this.filtersData[filterLayoutType][type].panel.isResettable = isFilterPanelResettable
+            this.filtersData[filterLayoutType][type].panel.isResettable = isFilterPanelResettable || this.filtersData.search.occupancy.panel.isResettable // DONT TOUCH // isFilterPanelResettable
         })
+        // SYNC WITH OCCUPANCY
+        // this.filtersData['search']['occupancy'].panel.isResettable = isFilterPanelResettable
 
-        this.filtersData.mirror.labels = searchMirrorData
-        // this.filtersData.search.mirror = searchMirrorData
+        this.filtersData.mirror.labels = {
+            ...this.filtersData.mirror.labels,
+            ...searchMirrorData,
+        }
+        // this.filtersData.mirror.labels = searchMirrorData
 
         console.log('LAST SYNC RESULTS: ');
         console.log(this.filtersData);

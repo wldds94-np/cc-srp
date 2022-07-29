@@ -56,9 +56,10 @@ const app = () => {
     function handlerBestPrice(data) {
         if (appCouldStart) {
             // SYNC OCCUPANCY
+            setup.Funnel.syncBestPrice(data, setup.Router.query)
         } else {
             toIntercept['/itineraries/bestPrice'].resolve = true
-            setup.Funnel.syncBestPrice(data)
+            setup.Funnel.syncBestPrice(data, setup.Router.query)
             setup.isInitializedBestPrc  = true
         }
         // console.log('HANDLER BestPrice: ', data);

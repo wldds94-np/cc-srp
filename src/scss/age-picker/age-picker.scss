@@ -10,6 +10,8 @@
         flex-direction: column;
         width: 100%;
         gap: 24px;
+
+        margin-bottom: 24px;
         // max-width: 600px;
         // margin: auto;
 
@@ -17,7 +19,13 @@
             &-wrapper {
                 display: flex;
                 justify-content: space-between;
+                flex-direction: column;
                 width: 100%;
+
+                &-container {
+                    display: flex;
+                    justify-content: space-between;
+                }
             }
 
             &_label {
@@ -76,6 +84,69 @@
                     padding: 0 20px;
 
                     color: $greyNatural8;
+
+                    min-width: 60px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .cc-age-picker-inputs-container {
+        color: $greyNatural7;
+
+        .data-input-container {
+            padding-top: 20px; // margin-bottom: 20px;
+        }
+
+        .cc-age-picker-info {
+            font-size: 13px;
+            line-height: 170%;
+            font-weight: 400;
+            margin-bottom: 24px;
+            display: block;
+
+            .info-intro {
+                font-weight: 600;
+            }
+        }
+
+        .label-container {
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .input-container {
+            width: 100%;
+
+            input[type="tel"], input[type="date"] {
+                width: 100%;
+                border: 1px solid $greyNatural4;
+                padding: 16px;
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 150%;
+                letter-spacing: 0.02em;
+
+                &:focus {
+                    border: 1px solid $turquoise;
+                }
+            }
+
+            input[type="date"] {
+                font-family: 'Poppins';
+
+                &::placeholder {
+                    color: $greyNatural6;
+                }
+
+                &::-webkit-calendar-picker-indicator{
+                    display: none;
+                }
+
+                &::-webkit-input-placeholder{ 
+                    visibility: hidden;
                 }
             }
         }

@@ -1,4 +1,4 @@
-const datePicker = (startDate = false, endDate = false, startClassPattern = 'selected start', endClassPattern = 'selected end') => {
+const monthsPicker = (startDate = false, endDate = false, startClassPattern = 'selected start', endClassPattern = 'selected end') => {
     console.log('Initialize DatePicker');
     const datePickerWrap = $('#cc-months-date-picker')
     // console.log(datePickerWrap);
@@ -67,4 +67,4 @@ const datePicker = (startDate = false, endDate = false, startClassPattern = 'sel
 
 }
 
-export default datePicker
+export default monthsPicker

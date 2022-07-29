@@ -18,13 +18,13 @@ class FilterPanel extends ccObject {
             parentElementToStyle: false,
             abortToStyleElement: false,
             domInstanceSelector: `[data-filterpanel=${this.type}]`,
-            resetAllDomInstanceSelector: '.' + this.config.baseStyleClass + "-body__info-clear",
+            resetAllDomInstanceSelector: '.' + this.config.baseStyleClass + "-body__info-clear." + this.type,
             htmlLabels: {
                 clear: this.saveSafePropertyProps(labels, 'clear', 'Clear All'),
                 save: this.saveSafePropertyProps(labels, 'save', 'Apply'),
                 cancel: this.saveSafePropertyProps(labels, 'filterCloseSrp', 'Back'), // filterCloseSrp
             },
-            maxChoices: -1,
+            maxOptions: Number(this.saveSafePropertyProps(props, 'maxOptions', -1)),
         }
 
         // CLASSES
@@ -38,9 +38,22 @@ class FilterPanel extends ccObject {
             filterSearchMemory: [],
             isResettable: this.saveSafePropertyProps(props, 'isResettable', false), // [],
         }
-        props.options.map(opt => {
-            this.OptionsInstances[opt.code].callbacks.FilterPanel.onClickCallback = this.onClickOptionCallback.bind(this)
-        })
+        if (Array.isArray(props.options)) {
+            // console.log(props.options); console.log(this.OptionsInstances);
+            props.options.map(opt => {
+                this.OptionsInstances[opt.code].callbacks.FilterPanel.onClickCallback = this.onClickOptionCallback.bind(this)
+            })
+        }
+
+        // Pensare come aggiungere priority su Classi "parallele"
+        // Su ChildClass -> OK stack normale (al bisogno overriding)
+        this.update = {
+            callbacks: {},
+        }
+
+        this.close = {
+            callbacks: {},
+        }
 
         this.callbacks = {
             Router: {
@@ -61,83 +74,65 @@ class FilterPanel extends ccObject {
 
     // OVERRIDDEN BEFORE UPDATE THE SEARCH VALUE
     transformFilterSearchValue(el, newEl = '', prevCopy = []) {
-        return el
+        return {...el}
     }
+    // transformFilterSearchValue(el, newEl = '', prevCopy = []) {
+    //     return el
+    // }
+    // OVERRIDDEN BEFORE PASS THE SEARCH VALUE TO FILTER
+    // transformFilterSearchValueCallback(el) {
+    //     return el
+    // }
 
     transformFilterLabelValue(optionInstance) {
-        console.log('TRANSFORM BY FILTER PANEL NORMAL');
-        // console.log(optionInstance);
+        // console.log('TRANSFORM BY FILTER PANEL NORMAL'); // console.log(optionInstance);
         return optionInstance.props.name
     }
 
     // FIRE BY FILTER - I HAVE TO SET FILTER SEARCH MEMORY = FILTER-SEARCH-VALUE
     onOpenPanel(/* newFilterMemory = [] */) {
-        console.log('Set the MEMORY');
-        // const filterSearchValue = this.state.filterSearchValue
-        // let filterSearchMemoryValue = []
-        // Object.keys(filterSearchValue).map(subtypeArr => {
-        //     console.log(subtypeArr); console.log(filterSearchValue[subtypeArr]);
-        //     filterSearchMemoryValue[subtypeArr] = filterSearchValue[subtypeArr]
-        // })
-        this.state.filterSearchMemory = JSON.parse(JSON.stringify({...this.state.filterSearchValue})); // this.state.filterSearchValue.clone() //  { ...this.state.filterSearchValue };
-        console.log(this);
+        // console.log('Set the MEMORY');
+        this.state.filterSearchMemory = JSON.parse(JSON.stringify({ ...this.state.filterSearchValue })); // this.state.filterSearchValue.clone() //  { ...this.state.filterSearchValue };
+        // console.log(this);
         return true
     }
 
     // FIRE BY OPTION
-    // onClickOptionCallback(optCode, subtypeKey = false) {
-    //     // console.log('I have to register the choice'); // console.log(this.OptionsInstances[optCode]); // console.log(optCode); console.log(subtypeKey); console.log(this);
-    //     const type = false != subtypeKey ? subtypeKey : this.type
-    //     console.log(this.state.filterSearchValue);
-    //     let filterSearch = this.state.filterSearchValue // console.log(this.state.filterSearchValue); console.log(this); // console.log(newFilterSearchType);
-    //     let newFilterSearchType = filterSearch[type] 
-
-    //     if (newFilterSearchType.includes(optCode)) {
-    //         // console.log(this.OptionsInstances); // newFilter = this.state.filterSearchValue.filter(el => el != newValue)
-    //         // this.state.filterSearchLabel = this.state.filterSearchLabel.filter(el => el != this.OptionsInstances[optCode].props.name)
-    //         this.state.filterSearchValue[type] = newFilterSearchType.filter(el => el != optCode)
-    //     } else {
-    //         // console.log(this.OptionsInstances); // this.state.filterSearchLabel.push(this.OptionsInstances[optCode].props.name)
-    //         this.state.filterSearchValue[type].push(optCode)
-    //     }
-    //     // const updatedFilterValue = this.transformFilterSearchValue(this.state.filterSearchValue, optCode)
-    //     this.state.filterSearchValue = {...this.transformFilterSearchValue(this.state.filterSearchValue, optCode)}
-    //     console.log(this.state.filterSearchValue);
-    //     // // const updatedLabelValue = this.transformFilterLabelValue(this.state.filterSearchLabel)
-    //     // const updatedLabelValue = this.getLabelValueBySearch(this.state.filterSearchValue)
-    //     // console.log(updatedLabelValue); // console.log(this.OptionsInstances[optCode].props.name);
-
-    //     // this.Filter.registerChoice(
-    //     //     updatedLabelValue,
-    //     //     this.state.filterSearchValue, // this.valueTransformCallback(updatedFilterValue),
-    //     //     subtypeKey
-    //     // ) // console.log(this.Filter); // console.log(this.OptionsInstances[optCode]);
-    // }
-    onClickOptionCallback(optCode, subtypeKey = false) {
-        // console.log('I have to register the choice'); // console.log(this.OptionsInstances[optCode]); // console.log(optCode); console.log(subtypeKey); console.log(this);
-        const type = false != subtypeKey ? subtypeKey : this.type
-        console.log(this);
+    onClickOptionCallback(optCode, subtypeKey = false, skipCheck = false) {
+        const type = false != subtypeKey ? subtypeKey : this.type // console.log(this);
         let filterSearchMemory = this.state.filterSearchMemory // [false != subtypeKey ? subtypeKey : this.type]
         let newFilterSearchMemoryType = filterSearchMemory[type] // console.log(this.state.filterSearchValue); console.log(this);
-        console.log(newFilterSearchMemoryType); // console.log(this.state.filterSearchMemory == this.state.filterSearchValue);
+        // console.log(newFilterSearchMemoryType); // console.log(this.state.filterSearchMemory == this.state.filterSearchValue);
 
-        if (Array.isArray(filterSearchMemory[type]) || filterSearchMemory.hasOwnProperty(type)) {
-            if (newFilterSearchMemoryType.includes(optCode)) {
-                this.state.filterSearchMemory[type] = newFilterSearchMemoryType.filter(el => el != optCode)
+        // console.log('I have to register the choice'); // console.log(this.OptionsInstances[optCode]); // console.log(optCode); console.log(subtypeKey); console.log(this);
+        if (skipCheck) {
+            // const type = false != subtypeKey ? subtypeKey : this.type // console.log('YOU WANT TO SKIP CHECK');
+            // console.log(this);
+            this.state.filterSearchMemory[type] = [optCode]
+        } else {
+
+            if (Array.isArray(filterSearchMemory[type]) || filterSearchMemory.hasOwnProperty(type)) {
+                if (newFilterSearchMemoryType.includes(optCode)) {
+                    this.state.filterSearchMemory[type] = newFilterSearchMemoryType.filter(el => el != optCode)
+                } else {
+                    this.state.filterSearchMemory[type].push(optCode)
+                }
             } else {
+                this.state.filterSearchMemory[type] = []
                 this.state.filterSearchMemory[type].push(optCode)
             }
-        } else {
-            this.state.filterSearchMemory[type] = []
-            this.state.filterSearchMemory[type].push(optCode)
+            // console.log(this); // const updatedFilterValue = this.transformFilterSearchValue(this.state.filterSearchValue, optCode)
+            this.state.filterSearchMemory = { ...this.transformFilterSearchValue(this.state.filterSearchMemory, optCode) }
         }
-        // console.log(this);
-        // // // const updatedFilterValue = this.transformFilterSearchValue(this.state.filterSearchValue, optCode)
-        this.state.filterSearchMemory = {...this.transformFilterSearchValue(this.state.filterSearchMemory, optCode)}
     }
 
+    // OVERRIDDEN
+    getFilterValueBySearch(updatedFilterValue) {
+        return updatedFilterValue
+    }   
+    // OVERRIDDEN
     getLabelValueBySearch(updatedFilterValue, callback = this.transformFilterLabelValue) {
-        console.log('getLabelValueBySearch');
+        console.log('getLabelValueBySearch BY PANEL');
         console.log(updatedFilterValue);
         // let flat = []
         let labelsArray = []
@@ -145,38 +140,44 @@ class FilterPanel extends ccObject {
             return this.flatten(updatedFilterValue[subtype])
         }).reduce((prev, next) => {
             return prev.concat(next)
-        }, [])
-        // let flat = this.flatten(updatedFilterValue)
+        }, []) // let flat = this.flatten(updatedFilterValue)
         console.log(flat);
-        // let reduced = flat.length ? flat[0] : [] // let flat = this.flatten(updatedFilterValue)
-        // console.log(reduced); // console.log(flat);
-        flat.map(code => {
-            // console.log(code);
-            labelsArray.push(callback(this.OptionsInstances[code]))
+        // let reduced = flat.length ? flat[0] : [] // let flat = this.flatten(updatedFilterValue) // console.log(reduced); // console.log(flat);
+        let flatFiltered = flat.filter(filter => {
+            return undefined != this.OptionsInstances[filter]
+        }) // console.log(flatFiltered);
+        flatFiltered.map(code => {
+            // NO DUPLICATE LABELS // console.log(labelsArray.includes(callback(this.OptionsInstances[code]))); // console.log(labelsArray[callback(this.OptionsInstances[code])]);
+            if (!labelsArray.includes(callback(this.OptionsInstances[code]/* .getLabel() */))) {
+                labelsArray.push(String(callback(this.OptionsInstances[code]/* .getLabel() */)))
+            } // labelsArray.push(String(callback(this.OptionsInstances[code]))) // labelsArray.push(callback(this.OptionsInstances[code]))
         })
+        console.log(labelsArray);
         return labelsArray
     }
 
-
     // ACTIVATED BY TOP HEADER -> PASSED LIKE CALLBACKS VARIABLED
     closePanel() {
+        this.closeStylePanel()
+
         // RETURN TO THE STATE BEFORE OPEN
         // this.state.filterSearchMemory = []
-
+        console.log(this); // console.log(this.state.filterSearchValue);
+        this.state.filterSearchValue = this.transformFilterSearchValue(this.state.filterSearchValue)/* { ...this.transformFilterSearchValue(this.state.filterSearchValue) } */
         console.log(this.state.filterSearchValue);
-        this.filterSearchValue = {...this.transformFilterSearchValue(this.state.filterSearchValue)}
         // const updatedLabelValue = this.getLabelValueBySearch(this.state.filterSearchValue) // console.log(updatedLabelValue);
+
+        // Start the callback stack
+        this.startFunctionsStack(this.close.callbacks)
 
         // Return to the initial options
         this.props.options.map(opt => {
-            this.OptionsInstances[opt.code].updateState({ selected: opt.selected, enabled: opt.enabled })
+            this.OptionsInstances[opt.code].updateState({ selected: opt.selected, enabled: opt.enabled }, opt)
         })
-
-        this.closeStylePanel()
     }
 
     closeStylePanel() {
-        // console.log('You Close the filters: ' + this.type); // let trg = e.target // trg.closest('.cc-fe_srp-filter__panel').classList.remove('open')
+        console.log('You Close the filters: ' + this.type); // let trg = e.target // trg.closest('.cc-fe_srp-filter__panel').classList.remove('open')
         this.getDomInstance(this.config.domInstanceSelector).classList.remove('open')
     }
 
@@ -186,6 +187,10 @@ class FilterPanel extends ccObject {
 
         this.closeStylePanel() // console.log('You want ressend Filter Value by Class List to Router??');
 
+        this.savePanel()
+    }
+
+    savePanel() {
         // RESET THE MEMORY
         const memory = this.state.filterSearchMemory
         // this.state.filterSearchValue = memory
@@ -195,10 +200,8 @@ class FilterPanel extends ccObject {
 
         this.Filter.registerChoice(
             updatedLabelValue,
-            memory, // this.valueTransformCallback(updatedFilterValue),
+            memory// this.valueTransformCallback(updatedFilterValue),
         ) // console.log(this.Filter); // console.log(this.OptionsInstances[optCode]);
-
-
     }
 
     resetPanel(e) {
@@ -214,7 +217,8 @@ class FilterPanel extends ccObject {
 
     updatePanel(props) {
         console.log('UPDATE PANEL');
-        // console.log(props); // console.log(this);
+        console.log(this.type);
+        console.log(props); // console.log(this);
 
         // I HAVE TO UPDATE THIS CLASS
         this.state = {
@@ -224,19 +228,21 @@ class FilterPanel extends ccObject {
             filterSearchLabel: this.saveSafePropertyProps(props, 'filterSearchLabel', []), // [],
             isResettable: this.saveSafePropertyProps(props, 'isResettable', false), // [],
             filterSearchMemory: [],
-            // limits: {
-            //     start: this.saveSafePropertyProps(this.props.limits, 'start', false),
-            //     end: this.saveSafePropertyProps(this.props.limits, 'end', false),
-            // }
         }
         // FOR THE MEMORY AND RETURN TO THE INTIAL RESYNC
         this.props.options = this.saveSafePropertyProps(props, 'options', [])
-        console.log(this);
+        console.log(this); console.log(this.state.filterSearchValue);
+        
         this.updateStyleResettable()
-        // console.log('FilterPanel'); console.log(this);
+
+        // Start the callback stack
+        this.startFunctionsStack(this.update.callbacks, props)
+
+        // this.state.filterSearchValue = { ...this.transformFilterSearchValue(this.state.filterSearchValue) }// [...this.transformFilterSearchValue(this.state.filterSearchValue)]
+        this.state.filterSearchValue = this.transformFilterSearchValue(this.state.filterSearchValue)// [...this.transformFilterSearchValue(this.state.filterSearchValue)]
 
         // // I HAVE TO UPDATE THE OPTIONS // UPDATE OPTIONS
-        console.log('Update OPTIONS CLASSES');
+        console.log('Update OPTIONS CLASSES'); // this.updateOptions(this.props.options)
         this.props.options.filter(opt => opt.hasOwnProperty('code') && '' != opt.code).map(option => {
             const key = option.code // console.log(option); // console.log('OLD OPTION CLASS'); // console.log(key);
             // let thisOption = 
@@ -246,6 +252,7 @@ class FilterPanel extends ccObject {
                         selected: option.selected,
                         enabled: option.enabled
                     },
+                    option,
                     {   // PREV
                         selected: this.OptionsInstances[key].state.selected,
                         enabled: this.OptionsInstances[key].state.enabled
@@ -255,26 +262,24 @@ class FilterPanel extends ccObject {
                 console.log('ITS UNDEFINED');
                 console.log(this.OptionsInstances);
             }
-            
         })
 
         // // I HAVE TO UPDATE THE FILTER // UPDATE FILTER CLASS
-        console.log('Update FILTER CLASS');
-        // const updatedFilterValue = this.transformFilterSearchValue(this.state.filterSearchValue)
-        this.state.filterSearchValue/* [this.type] */ = { ...this.transformFilterSearchValue(this.state.filterSearchValue) }// [...this.transformFilterSearchValue(this.state.filterSearchValue)]
+        // console.log('Update FILTER CLASS');
         const updatedLabelValue = this.getLabelValueBySearch(this.state.filterSearchValue) // this.transformFilterLabelValue(this.state.filterSearchLabel)
+        const updatedFilterValue = this.getFilterValueBySearch(this.state.filterSearchValue)
         this.Filter.updateState(
             updatedLabelValue,
-            this.state.filterSearchValue, // this.valueTransformCallback(updatedFilterValue)
+            updatedFilterValue, // this.state.filterSearchValue, // this.transformFilterSearchValueCallback(this.state.filterSearchValue), // this.transformFilterSearchValueCallback(this.state.filterSearchValue)
+            props.filter,
         )
     }
 
     updateStyleResettable() {
-        console.log('Update updateStyleResettable CLASSES');
-        console.log(this);
+        console.log('Update updateStyleResettable CLASSES'); // console.log(this);
         const { resettabledStyleClass, resetAllDomInstanceSelector } = this.config
         let resetButtonsDom = $(resetAllDomInstanceSelector)
-        if (this.state.isResettable) {
+        if (this.state.isResettable) { // console.log(resetButtonsDom);
             resetButtonsDom.addClass(resettabledStyleClass)
         } else {
             resetButtonsDom.removeClass(resettabledStyleClass)
@@ -349,22 +354,6 @@ class FilterPanel extends ccObject {
         }
     }
 
-        // AUX
-    /**
-     * @param {Array || Object} ary 
-     * @returns 
-     */
-     flatten(ary) {
-        var ret = [];
-        for (var i = 0; i < ary.length; i++) {
-            if (Array.isArray(ary[i])) {
-                ret = ret.concat(this.flatten(ary[i]));
-            } else {
-                ret.push(ary[i]);
-            }
-        }
-        return ret;
-    }
 }
 
 export default FilterPanel

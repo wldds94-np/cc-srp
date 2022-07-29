@@ -17,7 +17,8 @@ class Filter extends ccObject {
             // The real filter with PLACEHOLDER {{ $i }}
             realFilterTagKey: this.saveSafePropertyProps(this.props, 'realFilterTagKey', false), // filterTagKey || '',
             // selected: props.selected || false
-            defaultFilterValue: this.saveSafePropertyProps(this.props, 'defaultFilterValue', this.props.filterTitleDesktop)
+            defaultFilterValue: this.saveSafePropertyProps(this.props, 'defaultFilterValue', this.props.filterTitleDesktop),
+            // genLabels: this.saveSafePropertyProps(this.props, 'genLabels', {}),
         } // console.log(this.state);
 
         this.config = {
@@ -39,6 +40,10 @@ class Filter extends ccObject {
             valorised: this.saveSafePropertyProps(this.props, 'valorised', false),
             // search: this.saveSafePropertyProps(this.props, 'search', ''),
             openPing: false, // Set by Setup after inject HTML in the DOM
+        }
+
+        this.update = {
+            callbacks: {},
         }
 
         // Set the callbacks Routing
@@ -64,18 +69,19 @@ class Filter extends ccObject {
     isValorised() {
         const searchKey = Object.keys(this.state.search)
         // console.log(searchKey); // console.log(searchKey);
+        // const res = Boolean(searchKey.length) && searchKey.reduce((prev, next) => {
+        //     // console.log(this.state.search[next]);
+        //     return prev && Boolean(this.state.search[next].length)
+        // }, true) // console.log(res);
         const res = Boolean(searchKey.length) && searchKey.reduce((prev, next) => {
             // console.log(this.state.search[next]);
-            return prev && Boolean(this.state.search[next].length)
-        }, true) // console.log(res);
-
+            return prev || Boolean(this.state.search[next].length)
+        }, false) 
         return res
-
     }
 
     registerChoice(content = [], search = [], sendPing = true/* , subtypeKey = this.type */) {
-        console.log(this);
-        console.log(content, search);
+        // console.log(this);  console.log(content, search);
         // console.log('You clicked ByList with value: ' + search + ' --- Content: ', content); // console.log('RegisterChoice');
 
         this.state.label = content
@@ -88,40 +94,47 @@ class Filter extends ccObject {
         if (this.state.openPing && sendPing) {
             let newQueryValues = []
             // console.log(this.subType);
-            Object.keys(this.subType).map(typeKey => {
-                console.log(typeKey);
-
+            Object.keys(this.subType).map(typeKey => { // console.log(typeKey);
                 let queryObject = this.subType[typeKey]
-                const { filterTagKey, filterTagValue, regex } = queryObject
+                const { filterTagKey, filterTagValue, regex, valueQuerySeparator = ',' } = queryObject
                 // I HAVE TO SEND THE REQUEST WITH THE REGEX
-                const newSearchAttachedValue = this.generateSrcStringParam(this.state.search[typeKey])
+                const newSearchAttachedValue = this.generateSrcStringParam(this.state.search[typeKey], valueQuerySeparator)
+                // console.log(newSearchAttachedValue);
                 newQueryValues.push({
                     queryTag: filterTagKey.replace(regex, newSearchAttachedValue),
                     queryValue: filterTagValue.replace(regex, newSearchAttachedValue),
                     indexTag: this.subType[typeKey].indexTag,
                 })
             })
-
+            // console.log(newQueryValues);
             // UPDATE THE MIRROR
             if (false != this.callbacks.Mirror.onSavingMirror && 'function' == typeof this.callbacks.Mirror.onSavingMirror) {
                 this.callbacks.Mirror.onSavingMirror(this.type, this.getRealStringLabel(this.state.label))
             }
 
-            // console.log(newQueryValues);
+            // console.log(this); // console.log(newQueryValues);
             this.callbacks.Router.pingRequest(newQueryValues)
         }
     }
 
-    updateState(newContent = [], newSearch = []) {
+    updateState(newContent = [], newSearch = [], props) {
         const { label, search } = this.state
         // console.log(this); // console.log(label); console.log(search); console.log(newContent); console.log(newSearch); 
         // console.log(newSearch == search); console.log(label == newContent);
 
         // RETURN IF IT'S EQUAL - Otherwise -> Loop
-        if (this.arrayEquals(newSearch, search) && label == newContent) { // console.log('FILTER LABEL - NOT UPDATE RETURN - Nothing to UPDATE');
+        if (this.arrayEquals(newSearch, search) && label == newContent) { // 
+            console.log('FILTER LABEL - NOT UPDATE RETURN - Nothing to UPDATE : ' + this.type);
             return
         } else { // 
-            // console.log('FILTER LABEL - UPDATE RETURN - I have to UPDATE');
+            // Start the callback stack
+            Object.keys(this.update.callbacks).map(index => {
+                if ('function' == typeof this.update.callbacks[index]) {
+                    this.update.callbacks[index](props)
+                }
+            })
+
+            console.log('FILTER LABEL - UPDATE RETURN - I have to UPDATE : ' + this.type);
             this.registerChoice(newContent, newSearch/* , false */)
         }
     }
@@ -182,6 +195,7 @@ class Filter extends ccObject {
     resetFiltersPanel(e) {
         e.preventDefault()
         e.stopImmediatePropagation() // IMPORTANT
+        // console.log('RESETTING FILTER');
         Object.keys(this.subType).map(typeKey => {
             console.log(typeKey);
             this.state.search[typeKey] = []
@@ -234,15 +248,15 @@ class Filter extends ccObject {
     /**
      * AUX
      */
-    generateSrcStringParam(elArray) {
+    generateSrcStringParam(elArray, querySeparator) { // console.log(elArray);
         let filter = ''
         if (Array.isArray(elArray)) {
             filter += elArray.reduce((prev, curr) => {
                 // console.log(prev, curr);
-                return prev + ',' + curr
+                return prev + querySeparator + curr
             }, '')
             // console.log(filter.slice(1, filter.length));
-            return filter.slice(1, filter.length)
+            return filter.slice(querySeparator.length, filter.length)
         } else {
             return filter
         }

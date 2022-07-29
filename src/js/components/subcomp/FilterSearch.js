@@ -26,6 +26,8 @@ class FilterSearch extends Filter {
         // if (false != this.callbacks.Mirror.onSavingMirror && 'function' == typeof this.callbacks.Mirror.onSavingMirror) {
         //     this.callbacks.Mirror.onSavingMirror(this.type, this.getRealStringLabel({...this.state.label}))
         // }
+        console.log('FILTER SEARCH');
+        console.log(this);
     }
 
     getHtmlJson() {

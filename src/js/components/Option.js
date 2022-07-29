@@ -29,6 +29,12 @@ class Option extends ccObject {
             domInstanceSelector: `${this.saveSafePropertyProps(props, 'tagName', 'button')}.${this.parentType}[value='${this.props.code}']`, // this.saveSafePropertyProps(props, 'tagName', 'button') + `[value=${this.props.code}]`,
         }
 
+        this.update = {
+            callbacks: {},
+            // optionsCallbacks: {},
+            // filterCallbacks: {}
+        }
+
         this.callbacks = {
             // ON RUN - SETTED BY FilterPanel
             FilterPanel: {
@@ -115,7 +121,7 @@ class Option extends ccObject {
         }
     }
 
-    updateState(newState, prevState = { selected: this.state.selected, enabled: this.state.enabled }) {
+    updateState(newState, props, prevState = { selected: this.state.selected, enabled: this.state.enabled }) {
         const { selected, enabled } = newState
         const actualSelect = prevState.selected
         const actualEnabled = prevState.enabled // console.log(this); // console.log(selected); // console.log(enabled); // console.log(actualSelect); // console.log(actualEnabled);
@@ -134,6 +140,15 @@ class Option extends ccObject {
             this.state.selected = selected
             this.updateStyleSelectedButton(DOMInstance)
         }
+
+        // Start the callback stack
+        this.startFunctionsStack(this.update.callbacks, props)
+        // Object.keys(this.update.callbacks).map(index => {
+        //     // console.log(index);
+        //     if ('function' == typeof this.update.callbacks[index]) {
+        //         this.update.callbacks[index](props)
+        //     }
+        // })
     }
 
     getHtmlJson() {

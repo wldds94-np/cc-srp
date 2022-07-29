@@ -1,11 +1,11 @@
 // CC CalendarPicker
-import datePicker from './modules/datePicker'
+import monthsPicker from './modules/monthsPicker'
 // STICKY
 import stickyFilter from './modules/stickyFilter';
 
 class _App {
     constructor() {
-        console.log('Instace Here all other auxiliary modules');
+        console.log('Instance Here all other auxiliary modules');
         // eslint-disable-next-line no-console
         // console.log('Initialize App');
 
@@ -16,7 +16,7 @@ class _App {
             '.srp-header-left'
         ]
 
-        datePicker()
+        monthsPicker()
         stickyFilter()
     }
 

@@ -5,7 +5,7 @@ const stickyFilter = () => {
     const breakpoint = 240 // seems good
     /* ========================================== 
      * scrollTop() >= breakpoint
-     * Should be equal the the height of the header
+     * Should be equal the the height animation of the header
      * ========================================== */
 
     $(window).scroll(function () {
@@ -16,8 +16,7 @@ const stickyFilter = () => {
         // console.log($(window).scrollTop());
         if ($(window).scrollTop() >= breakpoint) {
             $('.cc-fe_srp.cc-fe_srp-container').addClass('sticky-filter'); // $('nav div').addClass('visible-title');
-        }
-        else {
+        } else {
             $('.cc-fe_srp.cc-fe_srp-container').removeClass('sticky-filter'); // $('nav div').removeClass('visible-title');
         }
     }

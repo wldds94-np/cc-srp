@@ -1,13 +1,18 @@
+import ClassPrototype from "../abstract/ClassPrototype"
+
 import FilterPanel from "../components/FilterPanel"
 import Option from "../components/Option"
 import Filter from "../components/Filter"
 
 // SUBCOMP
 import FilterPanelMonth from "../components/subcomp/FilterPanelMonth"
+import FilterPanelOccupancy from "../components/subcomp/FilterPanelOccupancy"
 import OptionMonth from "../components/subcomp/OptionMonth"
 import OptionDestination from "../components/subcomp/OptionDestination"
+import OptionOccupancy from "../components/subcomp/OptionOccupancy"
 // SEARCH FILTER
 import FilterSearch from "../components/subcomp/FilterSearch"
+// import FilterSearchOccupancy from "../components/subcomp/FilterSearchOccupancy"
 
 // SEARCH MIRROR
 import SearchMirror from "../components/inc/SearchMirror"
@@ -15,8 +20,10 @@ import SearchMirror from "../components/inc/SearchMirror"
 // SERVICES
 // import datePicker from "../modules/datePicker"
 
-class Setup {
+class Setup extends ClassPrototype {
     constructor(Router, Funnel) {
+        super()
+        
         // Router CLASS INSTANCE
         this.Router = Router
         this.Funnel = Funnel
@@ -52,9 +59,8 @@ class Setup {
 
             Object.keys(secondary).map(filterApiKey => {
                 switch (filterApiKey) {
-                    case 'occupancy':
-
-                        break;
+                    // case 'occupancy':
+                    //     break;
 
                     default:
                         this.FiltersPanelControllers[filterApiKey].updatePanel({
@@ -69,16 +75,14 @@ class Setup {
 
             Object.keys(search).map(filterApiKeySearch => {
                 switch (filterApiKeySearch) {
-                    case 'occupancy':
-
-                        break;
+                    // case 'occupancy':
+                    //     break;
 
                     default:
                         this.FiltersPanelControllers[filterApiKeySearch].updatePanel({
                             ...search[filterApiKeySearch].panel,
                             options: search[filterApiKeySearch].options, // OptionsInstances: this.createOptionsPanelArray(secondary[filterApiKey].options),
                             filter: search[filterApiKeySearch].filter,
-
                         })
                         break;
                 }
@@ -117,6 +121,19 @@ class Setup {
                     this.FiltersPanelControllers[filterSearchApiKey] = new FilterPanel({
                         ...search[filterSearchApiKey].panel, // PANEL DATA
                         OptionsInstances: this.createOptionsPanelArray(search[filterSearchApiKey].options, 'code', OptionDestination),
+                        FilterClass: new FilterSearch({
+                            ...search[filterSearchApiKey].filter,
+                            onSaveChoice: this.Router.pingRequestToHash.bind(this.Router),
+                            onSavingMirror: this.Mirror.update.bind(this.Mirror),
+                        }),
+                        // callbacks
+                        onResetPanel: this.Router.resetQuery.bind(this.Router),
+                    })
+                    break;
+                case 'occupancy':
+                    this.FiltersPanelControllers[filterSearchApiKey] = new FilterPanelOccupancy({
+                        ...search[filterSearchApiKey].panel, // PANEL DATA
+                        OptionsInstances: this.createOptionsPanelArray(search[filterSearchApiKey].options, 'code', OptionOccupancy),
                         FilterClass: new FilterSearch({
                             ...search[filterSearchApiKey].filter,
                             onSaveChoice: this.Router.pingRequestToHash.bind(this.Router),
@@ -190,29 +207,6 @@ class Setup {
                             class: "cc-fe_srp cc-fe_srp-search"
                         },
                         children: [
-                            // {
-                            //     attrs: {
-                            //         class: "cc-fe_srp cc-fe_srp-search_wrap"
-                            //     },
-                            //     children: [
-                            //         {
-                            //             tagName: "span",
-                            //             attrs: {
-                            //                 class: "cc-fe_srp cc-fe_srp-search__info"
-                            //             },
-                            //             content: '2 adults, Dec 2022, Mediterranean',
-                            //         },
-                            //         {
-                            //             // tagName: "i",
-                            //             attrs: {
-                            //                 class: "cc-fe_srp cc-fe_srp-search__action"
-                            //             },
-                            //             props: {
-                            //                 onclick: function (e) { $('.cc-fe_srp-search_display').toggleClass('open') }
-                            //             }
-                            //         },
-                            //     ]
-                            // },
                             this.Mirror.getHtmlJson(),
                             {
                                 attrs: {
@@ -283,28 +277,6 @@ class Setup {
         })
 
         // START THE SERVICES OF CORE DEPENDANT
-        // datePicker()
-    }
-
-    paint({ tagName = "div", attrs = {}, props = {}, dataset = {}, content = false, children = [], ...otherprops }) {
-        let dom = document.createElement(tagName)
-        for (let attr of Object.keys(attrs)) {
-            dom.setAttribute(attr, attrs[attr])
-        }
-
-        if (props) Object.assign(dom, props)
-
-        if (content) dom.textContent = content;
-
-        for (let data of Object.keys(dataset)) {
-            dom.dataset[data] = dataset[data]
-        }
-
-        for (let child in children) {
-            dom.appendChild(this.paint(children[child]))
-        }
-
-        return dom
     }
 }
 

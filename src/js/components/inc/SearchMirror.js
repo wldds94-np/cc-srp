@@ -14,12 +14,12 @@ class SearchMirror extends ccObject {
             labels: this.saveSafePropertyProps(props, 'labels', [])
         }
 
+        // console.log(this);
         // const content = this.getStringSearchMirror() // console.log(content); console.log(this);
     }
 
     update(type, string) {
-        console.log('UPDATING MIRROR');
-        console.log(type, string);
+        console.log('UPDATING MIRROR'); // console.log(type, string);
 
         this.state.labels[type].searchLabel = string // console.log(this.config.contentContainerSelector); // console.log($(this.config.contentContainerSelector)); // let string = this.getStringSearchMirror() // console.log(string);
         if (null != $(this.config.contentContainerSelector)) {
@@ -29,7 +29,7 @@ class SearchMirror extends ccObject {
 
     getStringSearchMirror(labels = this.state.labels) {
         return Object.keys(labels).reduce((prev, next) => {
-            console.log(labels[next].searchLabel);
+            // console.log(labels[next].searchLabel);
             if (labels[next].searchLabel.length) {
                 return prev + ' - ' + labels[next].searchLabel
             } else {

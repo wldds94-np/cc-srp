@@ -12,12 +12,13 @@ class Router extends ClassPrototype {
 
         this.state = {
             hash: location.hash,
-            params: this.getParamsByHash(),
+            params: this.getParamsByHash(location.hash),
             // search: []
         } // console.log(this.state.params);
 
         this.history = [] // Array of this.query
         this.query = this.getMapQuery(this.state.params)
+        // this.query = this.getMapQuery(this.state.params)
         // console.log(this);
 
         // // HASHCHANGE 
@@ -74,6 +75,7 @@ class Router extends ClassPrototype {
     // pingRequestToHash(queryTag, queryValue) {
     pingRequestToHash(newQueryValues) {
         console.log('I\'m pinging the request');
+        console.log(newQueryValues);
         let { query } = this // console.log(query); // console.log(queryTag); // console.log(queryValue);
         // console.log(newQueryValues);
         newQueryValues.map(newParam => {
@@ -132,6 +134,26 @@ class Router extends ClassPrototype {
     resetQuery() {
         this.query = []
         this.syncUrl()
+    }
+
+    /** EVENTS HANDLER **/
+    checkUrl(e) {
+        // console.log('The hash has changed!') console.log(e); console.log(e.newURL); // const newURL = e.newURL
+        console.log(location.hash);
+        this.state.params = this.getParamsByHash(location.hash) // let newParams = this.getParamsByHash(location.hash)
+        let newQuery = this.getMapQuery(this.state.params) // [...this.getMapQuery(newParams)]
+        // console.log(newQuery); console.log(this.query);
+
+        // this.state.params = newParams // 
+        this.query = newQuery
+
+        // console.log('CHECKING EQUALS'); // console.log(this.arraysMatch(newQuery, this.query));
+        // if (this.arraysMatch(newQuery, this.query)) {
+        //     console.log('ITS EQUALS QUERY'); // Nothing else
+        // } else {
+        //     // Ricreate my query
+        //     this.query = newQuery // this.getMapQuery(newParams)
+        // }
     }
 
     // syncQueryParams(listsClasses) {
@@ -196,26 +218,14 @@ class Router extends ClassPrototype {
     // window.location.hash = newHash
     // }
 
-    checkUrl(e) {
-        // console.log('The hash has changed!') console.log(e); console.log(e.newURL); // const newURL = e.newURL
-        this.state.params = this.getParamsByHash()
-        const newQuery = this.getMapQuery(this.state.params) // [...this.getMapQuery(newParams)]
 
-        if (this.arrayEquals(newQuery, this.query)) {
-            console.log('ITS EQUALS QUERY');
-            // Nothing else
-        } else {
-            // Ricreate my query
-            this.query = this.getMapQuery(newParams)
-        }
-    }
 
-    arrayEquals = function (a, b) {
-        return Array.isArray(a) &&
-            Array.isArray(b) &&
-            a.length === b.length &&
-            a.every((val, index) => val === b[index]);
-    }
+    // arrayEquals = function (a, b) {
+    //     return Array.isArray(a) &&
+    //         Array.isArray(b) &&
+    //         a.length === b.length &&
+    //         a.every((val, index) => val === b[index]);
+    // }
 }
 
 export default Router
