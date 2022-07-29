@@ -40,8 +40,17 @@ class ClassPrototype {
         if (key1.length !== key2.length) return false;
 
         return key1.every((val, index) => arr1[val] === arr2[val])
-
     };
+
+    arrayToString(array, separator) {
+        return array.reduce((prev, next) => {
+            if (Array.isArray(next) && next.length > 1) {
+                return prev + separator + this.arrayToString(next, separator)
+            } else {
+                return prev + separator + next
+            }
+        }, '').substring(separator.length)
+    }
 
     // AUX
     /**

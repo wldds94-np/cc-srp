@@ -43,12 +43,12 @@ class FilterPanelOccupancy extends FilterPanel {
             },
         }
 
-        console.log('FILTER PANEL OCCUPANCY');
-        console.log(this);
+        // console.log('FILTER PANEL OCCUPANCY');
+        // console.log(this);
     }
 
     onBeforeAlterCounterCallback(nextCounterValue, counterType) {
-        console.log('You want alter COUNTER value');
+        // console.log('You want alter COUNTER value');
 
         const { maxOptions } = this.config
 
@@ -157,7 +157,7 @@ class FilterPanelOccupancy extends FilterPanel {
                 searchFilter[subtype].push(src[subtype]) // console.log(subtype);
             }) // console.log(src);
         })
-        console.log(searchFilter);
+        // console.log(searchFilter);
         return searchFilter
     }
 
@@ -178,15 +178,13 @@ class FilterPanelOccupancy extends FilterPanel {
 
     // OVERRIDE
     getLabelValueBySearch(updatedFilterValue, callback = this.transformFilterLabelValue) {
-        // console.log('getLabelValueBySearch BY PANEL OCC');
-        console.log(updatedFilterValue);
-        // let searchUpdated = [...updatedFilterValue] console.log(searchUpdated);
+        // console.log(updatedFilterValue);
         let occupancies = Object.keys(updatedFilterValue).map(index => {
             return updatedFilterValue[index].occupancy
         })
-        // console.log(occupancies);
+
         let labels = this.getLabelsFilterByOccupancy(occupancies)
-        // console.log(labels);
+
         return labels
     }
     // OVERRIDE

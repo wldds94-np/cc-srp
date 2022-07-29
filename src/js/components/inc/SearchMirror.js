@@ -8,6 +8,7 @@ class SearchMirror extends ccObject {
             ...this.config,
             contentContainer: this.config.baseStyleClass + ' ' + this.config.baseStyleClass + "-search__info",
             contentContainerSelector: "." + this.config.baseStyleClass + "-search__info",
+            labelsSeparator: ' - ',
         }
 
         this.state = {
@@ -27,15 +28,15 @@ class SearchMirror extends ccObject {
         }
     }
 
-    getStringSearchMirror(labels = this.state.labels) {
+    getStringSearchMirror(labels = this.state.labels, labelsSeparator = this.config.labelsSeparator) {
+
         return Object.keys(labels).reduce((prev, next) => {
-            // console.log(labels[next].searchLabel);
             if (labels[next].searchLabel.length) {
-                return prev + ' - ' + labels[next].searchLabel
+                return prev + labelsSeparator + labels[next].searchLabel
             } else {
-                return prev + ' - ' + labels[next].defaultFilterValue
-            }            
-        }, '').substring(' - '.length)
+                return prev + labelsSeparator + labels[next].defaultFilterValue
+            }                   
+        }, '').substring(labelsSeparator.length)
     }
 
     getHtmlJson() {

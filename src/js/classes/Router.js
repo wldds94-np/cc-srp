@@ -74,10 +74,9 @@ class Router extends ClassPrototype {
 
     // pingRequestToHash(queryTag, queryValue) {
     pingRequestToHash(newQueryValues) {
-        console.log('I\'m pinging the request');
-        console.log(newQueryValues);
-        let { query } = this // console.log(query); // console.log(queryTag); // console.log(queryValue);
-        // console.log(newQueryValues);
+        console.log('I\'m pinging the request'); // console.log(newQueryValues);
+        let { query } = this 
+        
         newQueryValues.map(newParam => {
             // console.log(newParam);
             const { queryTag, queryValue, indexTag } = newParam // console.log(query[queryTag], queryTag, queryValue, indexTag);
@@ -120,13 +119,11 @@ class Router extends ClassPrototype {
     syncUrl(hash = false) {
         // console.log('BUILDING NEW URL PARAMS');
 
-        // let newHash = ''
         let newHash = hash ? hash : Object.keys(this.query).reduce((prev, next) => {
             // console.log(prev, next); // console.log(this.query[prev]);
             return prev += next + '=' + this.query[next] + '&'
         }, '').slice(0, -1)
 
-        // console.log(window.location); console.log(newHash);
         // CHECK IF HASH IS '' and TRIM the urlPage (remove # by URL) --- TO DO
         window.location.hash = newHash
     }
@@ -138,13 +135,10 @@ class Router extends ClassPrototype {
 
     /** EVENTS HANDLER **/
     checkUrl(e) {
-        // console.log('The hash has changed!') console.log(e); console.log(e.newURL); // const newURL = e.newURL
-        console.log(location.hash);
-        this.state.params = this.getParamsByHash(location.hash) // let newParams = this.getParamsByHash(location.hash)
-        let newQuery = this.getMapQuery(this.state.params) // [...this.getMapQuery(newParams)]
-        // console.log(newQuery); console.log(this.query);
+        // console.log('The hash has changed!') console.log(e); console.log(e.newURL); // console.log(location.hash);
+        this.state.params = this.getParamsByHash(location.hash)
+        let newQuery = this.getMapQuery(this.state.params) 
 
-        // this.state.params = newParams // 
         this.query = newQuery
 
         // console.log('CHECKING EQUALS'); // console.log(this.arraysMatch(newQuery, this.query));
@@ -155,77 +149,6 @@ class Router extends ClassPrototype {
         //     this.query = newQuery // this.getMapQuery(newParams)
         // }
     }
-
-    // syncQueryParams(listsClasses) {
-    //     console.log('Sync Params');
-    //     console.log(listsClasses);
-    //     console.log(listsClasses);
-    //     Object.keys(listsClasses).map(classIndex => {
-    //         console.log(classIndex); console.log(listsClasses); console.log(listsClasses[classIndex]); // console.log(listsClasses.classIndex); - NOT WORK
-    //         let FilterPanelClass = listsClasses[classIndex] // console.log(FilterPanelClass);
-    //         // const index = this.query.indexOf(FilterPanelClass.state.filterLabel.props.filterTagKey) // console.log(index);
-    //         let OptionClasses = FilterPanelClass.optionsInstances
-    //         console.log(OptionClasses);
-    //         const index = FilterPanelClass.state.filterLabel.props.filterTagKey // console.log(FilterPanelClass.state.filterLabel.props.filterTagKey); // console.log(this.query[filterPanel.state.filterLabel.props.filterTagKey]);
-
-    //         let values = 'string' == typeof this.query[index] ? this.query[index].split(",") : []
-    //         console.log(values);
-
-    //         Object.keys(OptionClasses).map(optionCode => {
-    //             console.log(values.length ? values.includes(optionCode) : 'Not Included');
-    //             OptionClasses[optionCode].setSelectedState.apply(OptionClasses[optionCode], [values.length ? values.includes(optionCode) : false]) // (values.length ? values.includes(optionCode) : false)
-    //         })
-    //     })
-
-    //     console.log(this);
-    // }
-
-    // pingRequest(FilterClass) {
-    //     console.log('I\'m pinging the request');
-    //     console.log(FilterClass);
-    //     console.log(this);
-    //     const filterTagKey = FilterClass.props.filterTagKey
-    //     const thisQuery = this.getQuery(filterTagKey)
-    //     const newSearch = FilterClass.state.search
-    //     console.log(thisQuery);
-    //     if (thisQuery == newSearch) {
-    //         console.log('Equal');
-    //     } else {
-    //         console.log('Not Equal');
-    //         // Update this query and push in history the last
-    //         this.history.push(this.query)
-    //         let newQuery = null
-    //         if (newSearch == '') {
-    //             delete this.query[filterTagKey] // this.query = Object.keys(this.query).filter(paramTag => paramTag != filterTagKey)
-    //         } else {
-    //             this.query[filterTagKey] = newSearch
-    //         }
-
-    //         this.updateUrl()
-    //     }
-    // }
-
-    // updateUrl(hash = false) {
-    // // let newHash = ''
-    // let newHash = hash ? hash : Object.keys(this.query).reduce((prev, next) => {
-    //     console.log(prev, next); // console.log(this.query[prev]);
-    //     return prev += next + '=' + this.query[next] + '&'
-    // }, '').slice(0, -1)
-
-    // console.log('NEW URL PARAMS');
-    // console.log(window.location); console.log(newHash);
-
-    // window.location.hash = newHash
-    // }
-
-
-
-    // arrayEquals = function (a, b) {
-    //     return Array.isArray(a) &&
-    //         Array.isArray(b) &&
-    //         a.length === b.length &&
-    //         a.every((val, index) => val === b[index]);
-    // }
 }
 
 export default Router

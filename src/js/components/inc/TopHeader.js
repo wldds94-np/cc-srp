@@ -24,8 +24,7 @@ class TopHeader extends ccObject {
         }
     }
 
-    setIsSafe(isSafe) {
-        console.log(isSafe);
+    setIsSafe(isSafe) { // console.log(isSafe);
         this.state.isSafe = isSafe
 
         this.updateSave()
@@ -33,9 +32,8 @@ class TopHeader extends ccObject {
 
     updateSave() {
         const {saveContainerSelector, disabledStyleClass} = this.config
-        const {isSafe} = this.state // const {type} = this.props
-        console.log(saveContainerSelector);
-        console.log($(saveContainerSelector));
+        const {isSafe} = this.state // const {type} = this.props // console.log(saveContainerSelector); console.log($(saveContainerSelector));
+
         if (isSafe) {
             $(saveContainerSelector).removeClass(disabledStyleClass)            
         } else {

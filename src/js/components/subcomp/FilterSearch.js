@@ -14,20 +14,8 @@ class FilterSearch extends Filter {
             hasCounter: false,
         }
   
-        // this.callbacks = {
-        //     ...this.callbacks,,
-        //     Mirror: {
-        //         onSavingMirror: this.saveSafePropertyProps(props, 'onSavingMirror', false),
-        //     }
-        // }
+        // console.log('FILTER SEARCH');
         // console.log(this);
-
-        // UPDATE THE MIRROR
-        // if (false != this.callbacks.Mirror.onSavingMirror && 'function' == typeof this.callbacks.Mirror.onSavingMirror) {
-        //     this.callbacks.Mirror.onSavingMirror(this.type, this.getRealStringLabel({...this.state.label}))
-        // }
-        console.log('FILTER SEARCH');
-        console.log(this);
     }
 
     getHtmlJson() {

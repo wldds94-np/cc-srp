@@ -143,27 +143,26 @@ class FilterPanel extends ccObject {
     }
     // OVERRIDDEN
     getLabelValueBySearch(updatedFilterValue, callback = this.transformFilterLabelValue) {
-        console.log('getLabelValueBySearch BY PANEL');
-        console.log(updatedFilterValue);
-        // let flat = []
+        // console.log('getLabelValueBySearch BY PANEL'); // console.log(updatedFilterValue);
+
         let labelsArray = []
         let flat = Object.keys(updatedFilterValue).map(subtype => {
             return this.flatten(updatedFilterValue[subtype])
         }).reduce((prev, next) => {
             return prev.concat(next)
-        }, []) // let flat = this.flatten(updatedFilterValue)
-        console.log(flat);
-        // let reduced = flat.length ? flat[0] : [] // let flat = this.flatten(updatedFilterValue) // console.log(reduced); // console.log(flat);
+        }, []) // console.log(flat);
+
         let flatFiltered = flat.filter(filter => {
             return undefined != this.OptionsInstances[filter]
         }) // console.log(flatFiltered);
+
         flatFiltered.map(code => {
-            // NO DUPLICATE LABELS // console.log(labelsArray.includes(callback(this.OptionsInstances[code]))); // console.log(labelsArray[callback(this.OptionsInstances[code])]);
+            // NO DUPLICATE LABELS
             if (!labelsArray.includes(callback(this.OptionsInstances[code]/* .getLabel() */))) {
                 labelsArray.push(String(callback(this.OptionsInstances[code]/* .getLabel() */)))
-            } // labelsArray.push(String(callback(this.OptionsInstances[code]))) // labelsArray.push(callback(this.OptionsInstances[code]))
-        })
-        console.log(labelsArray);
+            }
+        }) // console.log(labelsArray);
+
         return labelsArray
     }
 
@@ -172,12 +171,8 @@ class FilterPanel extends ccObject {
         this.closeStylePanel()
 
         // RETURN TO THE STATE BEFORE OPEN
-        // this.state.filterSearchMemory = []
-        console.log(this); // console.log(this.state.filterSearchValue);
-        this.state.filterSearchValue = this.transformFilterSearchValue(this.state.filterSearchValue)/* { ...this.transformFilterSearchValue(this.state.filterSearchValue) } */
-        console.log(this.state.filterSearchValue);
-        // const updatedLabelValue = this.getLabelValueBySearch(this.state.filterSearchValue) // console.log(updatedLabelValue);
-
+        this.state.filterSearchValue = this.transformFilterSearchValue(this.state.filterSearchValue) // console.log(this.state.filterSearchValue);
+        
         // Start the callback stack
         this.startFunctionsStack(this.close.callbacks)
 
@@ -188,13 +183,12 @@ class FilterPanel extends ccObject {
     }
 
     closeStylePanel() {
-        console.log('You Close the filters: ' + this.type); // let trg = e.target // trg.closest('.cc-fe_srp-filter__panel').classList.remove('open')
+        // console.log('You Close the filters: ' + this.type); // let trg = e.target // trg.closest('.cc-fe_srp-filter__panel').classList.remove('open')
         this.getDomInstance(this.config.domInstanceSelector).classList.remove('open')
     }
 
     saveClosePanel(e) {
-        e.preventDefault() // 
-        console.log('You Save & Close the filters: ' + this.type)
+        e.preventDefault() // console.log('You Save & Close the filters: ' + this.type)
 
         this.updateValidation()
 
@@ -234,8 +228,7 @@ class FilterPanel extends ccObject {
 
     updatePanel(props) {
         console.log('UPDATE PANEL');
-        console.log(this.type);
-        console.log(props); // console.log(this);
+        // console.log(this.type); console.log(props); // console.log(this);
 
         // I HAVE TO UPDATE THIS CLASS
         this.state = {
@@ -248,7 +241,7 @@ class FilterPanel extends ccObject {
         }
         // FOR THE MEMORY AND RETURN TO THE INTIAL RESYNC
         this.props.options = this.saveSafePropertyProps(props, 'options', [])
-        console.log(this); console.log(this.state.filterSearchValue);
+        // console.log(this); console.log(this.state.filterSearchValue);
 
         this.updateStyleResettable()
 
@@ -282,7 +275,7 @@ class FilterPanel extends ccObject {
         })
 
         // // I HAVE TO UPDATE THE FILTER // UPDATE FILTER CLASS
-        // console.log('Update FILTER CLASS');
+        console.log('Update FILTER CLASS');
         const updatedLabelValue = this.getLabelValueBySearch(this.state.filterSearchValue) // this.transformFilterLabelValue(this.state.filterSearchLabel)
         const updatedFilterValue = this.getFilterValueBySearch(this.state.filterSearchValue)
         this.Filter.updateState(
@@ -293,7 +286,7 @@ class FilterPanel extends ccObject {
     }
 
     updateStyleResettable() {
-        console.log('Update updateStyleResettable CLASSES'); // console.log(this);
+        // console.log('Update updateStyleResettable CLASSES'); // console.log(this);
         const { resettabledStyleClass, resetAllDomInstanceSelector } = this.config
         let resetButtonsDom = $(resetAllDomInstanceSelector)
         if (this.state.isResettable) { // console.log(resetButtonsDom);
@@ -391,19 +384,11 @@ class FilterPanel extends ccObject {
         const objs = this.getObjsValidation() // this.OptionsInstances
 
         const isNotValid = Object.keys(objs).reduce((prev, next) => {
-            console.log(objs[next].state.error.hasError);
+            // console.log(objs[next].state.error.hasError);
             return prev || objs[next].state.error.hasError
-        }, false) // 
-        console.log(isNotValid);
+        }, false) // console.log(isNotValid);
 
         return !isNotValid
-
-        // const isValid = Object.keys(objs).reduce((prev, next) => {
-        //     return prev && !objs[next].state.error.hasError
-        // }, true) // 
-        // console.log(isValid);
-
-        // return isValid
     }
 
     // OVERRIDDEN

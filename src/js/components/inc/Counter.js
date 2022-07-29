@@ -40,8 +40,8 @@ class Counter extends ccObject {
         // DATE PICKERS CLASSES
         this.DatePickersInstances = this.generateNewDatePickersInstances() // []
 
-        console.log('COUNTER');
-        console.log(this);
+        // console.log('COUNTER');
+        // console.log(this);
     }
 
     /**
@@ -50,7 +50,7 @@ class Counter extends ccObject {
      */
     generateNewDatePickersInstances() {
         let res = []
-        console.log(this.callbacks);
+
         const length = this.state.search.length
         for (let i = 1; i <= length; i++) {
             res.push(
@@ -88,7 +88,7 @@ class Counter extends ccObject {
      * SEARCH
      */
     getSearch() {
-        console.log(this);
+        // console.log(this);
         let searchObjs = []
         Object.keys(this.DatePickersInstances).map(index => {
             searchObjs.push(this.DatePickersInstances[index].getDatePickerObj())
@@ -115,8 +115,7 @@ class Counter extends ccObject {
         }
 
         const { updatebled, maxValue } = this.callbacks.FilterPanel.onBeforeAlterCounter(this.state.value - 1, type)
-        console.log(updatebled);
-        console.log(maxValue);
+        // console.log(updatebled); console.log(maxValue);
 
         if (updatebled) {
             this.state.maxValue = maxValue
@@ -137,8 +136,7 @@ class Counter extends ccObject {
         }
 
         const { updatebled, maxValue } = this.callbacks.FilterPanel.onBeforeAlterCounter(this.state.value + 1, type)
-        console.log(updatebled);
-        console.log(maxValue);
+        // console.log(updatebled); console.log(maxValue);
 
         if (updatebled) {
             this.state.maxValue = maxValue
@@ -176,8 +174,7 @@ class Counter extends ccObject {
      * RETURN TO INITIAL STATE (use search state)
      */
     returnToInitialState(maxValue) {
-        console.log('COUNTER'); // console.log(maxValue); onsole.log(this); console.log(this.state.search); console.log(this.DatePickersInstances);
-        
+        // console.log('COUNTER'); // console.log(maxValue); onsole.log(this); console.log(this.state.search); console.log(this.DatePickersInstances);
         const { search } = this.state
         const lenghtPickers = this.DatePickersInstances.length
         const lenghtSearch = search.length // console.log(search.length);

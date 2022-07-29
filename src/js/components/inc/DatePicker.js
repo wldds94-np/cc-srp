@@ -1,5 +1,4 @@
 import ccObject from "../../abstract/ccObject"
-import Error from "./Error"
 
 class DatePicker extends ccObject {
     constructor(props) {
@@ -62,13 +61,13 @@ class DatePicker extends ccObject {
             }
         }
 
-        console.log('DATEPICKER');
-        console.log(this);
+        // console.log('DATEPICKER');
+        // console.log(this);
     }
 
     // USE FOR CHECKING THE EMPTY ERROR AND A VALID DATE
     validateDOB(dob) {
-        console.log(dob); // return true
+        // console.log(dob); // return true
         var pattern = /^([0-9]{4}-([0-9]{2})-([0-9]{2}))$/;
         if (dob == null || dob == "" || !pattern.test(dob)) { // errMessage += "Invalid date of birth\n";
             return false;
@@ -105,15 +104,11 @@ class DatePicker extends ccObject {
         this.setGuestBirthdate(e.target.value)
 
         const isValid = this.isValidDate(e.target.value) // !this.validateDOB(e.target.value)
-        this.state.error.hasError = !isValid
-        console.log(this.state.error.hasError);
+        this.state.error.hasError = !isValid // console.log(this.state.error.hasError);
 
-        Object.keys(this.state.error.types).map(type => {
-            console.log(type, this.state.error.types[type].validator(e.target.value));
+        Object.keys(this.state.error.types).map(type => { // console.log(type, this.state.error.types[type].validator(e.target.value));
             this.state.error.types[type].isOn = ! (this.state.error.types[type].validator(e.target.value))
-        })
-        
-        console.log(this.state.error.types);
+        }) // console.log(this.state.error.types);
 
         this.cleanErrors()
         
@@ -127,21 +122,15 @@ class DatePicker extends ccObject {
     }
 
     cleanErrors() {
-        // Object.keys(this.state.error.types).map(index => {
-        //     this.state.error.types[index].isOn = false
-        // })
-
         $('#' + this.config.baseNodeSelector + this.props.index).closest('div').find('small').remove()
     }
 
     addErrors() {
-        console.log(this.state.error.types);
-        let types = Object.keys(this.state.error.types).filter(type => this.state.error.types[type].isOn)
-        console.log(types);
+        // console.log(this.state.error.types);
+        let types = Object.keys(this.state.error.types).filter(type => this.state.error.types[type].isOn) // console.log(types);
         if (types.length) {
 
             for (let i = 0; i < 1; i++) {
-                console.log($('#' + this.config.baseNodeSelector + this.props.index));
                 $('#' + 'cc-age-picker-value-' + this.props.index).closest('div').append('<small class="cc-srp_fe-input-error">' + this.state.error.types[types[i]].label + '</small>')
             }
         }
@@ -151,11 +140,8 @@ class DatePicker extends ccObject {
         const {minAge, maxAge} = this.props // console.log(labels);
         const guestAges = this.calcAge(dob)
         if (!isNaN(guestAges)) {
-            console.log(guestAges);
-            console.log(minAge, maxAge);
-            console.log(guestAges >= minAge && guestAges <= maxAge);
-            const isValid = (guestAges >= minAge && (maxAge > 0 ? guestAges <= maxAge : true)) && this.validateDOB(dob)
-            console.log(isValid);
+            // console.log(guestAges); console.log(minAge, maxAge); console.log(guestAges >= minAge && guestAges <= maxAge);
+            const isValid = (guestAges >= minAge && (maxAge > 0 ? guestAges <= maxAge : true)) && this.validateDOB(dob) // console.log(isValid);
             return isValid
         } else {
             return false

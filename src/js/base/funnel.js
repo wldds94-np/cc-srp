@@ -68,7 +68,7 @@ class Funnel extends ClassPrototype {
             },
         }
         // this.searchData = {}
-        console.log(this.searchFilters);
+        // console.log(this.searchFilters);
 
         // SECONDARY FILTER - ARRAY | The secondary filters // embarkPort - Duration - Ships - Offers - Flight+Cruis - PortsOfCall
         // FILTER LABEL
@@ -82,7 +82,7 @@ class Funnel extends ClassPrototype {
         ---- USE THIS filterTagKey FOR MERGE SELECTED VALUE
          */
         this.SRPDataSecondaryFilters = this.SRPData.attributes.header.secondaryFilters // USE THIS FOR THE LABEL
-        console.log(this.SRPDataSecondaryFilters);
+        // console.log(this.SRPDataSecondaryFilters);
 
         // THE PARAMETERS OF CLASSES - minus callbacks
         this.filtersData = {
@@ -141,7 +141,7 @@ class Funnel extends ClassPrototype {
             }
 
         })
-        console.log(this.filtersData);
+        // console.log(this.filtersData);
     }
 
     syncPromos(data) {

@@ -52,7 +52,7 @@ class Option extends ccObject {
     }
 
     clickChoice(e) {
-        console.log('Clicking choice by OPTIONS'); // console.log(e);
+        // console.log('Clicking choice by OPTIONS'); // console.log(e);
         e.preventDefault()
         e.stopImmediatePropagation() // console.log('I have to select Choice');
 
@@ -78,7 +78,7 @@ class Option extends ccObject {
         // const {filterSearchValue} = this.state
 
         let button = $(eTarget), buttonStyled = undefined // console.log(parentElementToStyle);
-        console.log(button);
+        // console.log(button);
         if (false != parentElementToStyle) { // console.log('Different'); // button = eTarget.closest(`.search-filter-calendar`)
             buttonStyled = $(eTarget).closest(`${parentElementToStyle}`)
         }
